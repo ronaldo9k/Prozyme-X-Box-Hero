@@ -150,20 +150,33 @@
 
 
     /* ======================================================
-       ⭐ STEP 2에서는 Fenomeno 배경을 완전히 제거
-       ⭐ 화면 맨 위부터 흰색
+       ⭐ STEP 2
+       ⭐ Fenomeno 배경은 그대로 유지
+       ⭐ 흰색 배경으로 바꾸지 않습니다.
        ====================================================== */
 
     body.step2-mode {
 
       background-color:
-        #ffffff;
+        #05070b;
 
       background-image:
-        none;
+        url('/Prozyme-X-Box-Hero/Fenomeno.png');
+
+      background-size:
+        cover;
+
+      background-position:
+        center;
+
+      background-repeat:
+        no-repeat;
+
+      background-attachment:
+        fixed;
 
       padding:
-        0 14px 30px;
+        16px 14px 30px;
 
     }
 
@@ -289,7 +302,7 @@
         flex-end;
 
       justify-content:
-        flex-start;
+        center;
 
       margin:
         0 -14px 18px;
@@ -360,43 +373,10 @@
         100%;
 
       text-align:
-        left;
-
-      /*
-       * ⭐ 기존 BOXHERO 글자가 시작하던 위치보다
-       * 조금 더 자연스럽게 왼쪽에 배치
-       */
+        center;
 
       padding:
         0 28px 45px;
-
-    }
-
-
-    /* ======================================================
-       ⭐ 왕군
-       ====================================================== */
-
-    .hero-kicker {
-
-      font-size:
-        15px;
-
-      font-weight:
-        950;
-
-      letter-spacing:
-        1px;
-
-      color:
-        #f0c83d;
-
-      margin-bottom:
-        8px;
-
-      text-shadow:
-        0 2px 10px
-        rgba(0,0,0,.75);
 
     }
 
@@ -419,6 +399,13 @@
       text-shadow:
         0 2px 9px
         rgba(0,0,0,.75);
+
+      /*
+       * ⭐ 왕관만 왼쪽 정렬
+       */
+
+      text-align:
+        left;
 
     }
 
@@ -448,6 +435,9 @@
         0 3px 15px
         rgba(0,0,0,.70);
 
+      text-align:
+        center;
+
     }
 
 
@@ -475,6 +465,21 @@
       text-shadow:
         0 2px 10px
         rgba(0,0,0,.80);
+
+      text-align:
+        center;
+
+    }
+
+
+    /* ======================================================
+       ⭐ STEP 2에서는 첫 화면 HERO를 완전히 숨김
+       ====================================================== */
+
+    body.step2-mode .hero {
+
+      display:
+        none;
 
     }
 
@@ -554,7 +559,7 @@
 
     /*
      * ======================================================
-     * ⭐ STEP 2의 흰색 영역에서는
+     * ⭐ STEP 2의 흰색 플로팅 패널 안에서는
      * STEP 표시선도 밝은 회색으로 변경
      * ======================================================
      */
@@ -625,22 +630,74 @@
 
     /*
      * ======================================================
-     * ⭐ STEP 2 카드는 완전한 흰색
+     * ⭐ STEP 2 전체가 하나의 흰색 플로팅 패널
+     *
+     * ⭐ Fenomeno 배경이 패널 바깥으로 보입니다.
      * ======================================================
      */
 
-    body.step2-mode .card {
+    #step2 {
 
       background:
         #ffffff;
 
       border:
         1px solid
-        #e5e7eb;
+        rgba(255,255,255,.90);
+
+      border-radius:
+        26px;
+
+      padding:
+        14px 16px 24px;
+
+      margin:
+        0 auto;
 
       box-shadow:
-        0 8px 30px
-        rgba(0,0,0,.06);
+        0 18px 55px
+        rgba(0,0,0,.30);
+
+      min-height:
+        calc(100vh - 46px);
+
+    }
+
+
+    body.step2-mode #step2 {
+
+      background:
+        #ffffff;
+
+    }
+
+
+    /*
+     * ======================================================
+     * ⭐ STEP 2 안쪽 카드는 별도의 큰 흰색 박스가
+     * 생기지 않도록 자연스럽게 연결
+     * ======================================================
+     */
+
+    body.step2-mode #step2 > .card {
+
+      background:
+        #ffffff;
+
+      border:
+        none;
+
+      box-shadow:
+        none;
+
+      border-radius:
+        0;
+
+      padding:
+        0;
+
+      margin-bottom:
+        0;
 
       backdrop-filter:
         none;
@@ -1054,7 +1111,7 @@
         7px;
 
       margin-bottom:
-        14px;
+        18px;
 
     }
 
@@ -1062,13 +1119,16 @@
     .preview-actions {
 
       display:
-        flex;
+        grid;
+
+      grid-template-columns:
+        1fr 1fr 1fr;
 
       align-items:
         center;
 
       gap:
-        5px;
+        7px;
 
       width:
         100%;
@@ -1078,8 +1138,8 @@
 
     .preview-action-button {
 
-      flex:
-        1;
+      width:
+        100%;
 
       min-width:
         0;
@@ -1092,7 +1152,7 @@
         11px;
 
       padding:
-        9px 7px;
+        10px 7px;
 
       background:
         white;
@@ -1112,25 +1172,28 @@
       cursor:
         pointer;
 
+      box-shadow:
+        0 2px 7px
+        rgba(0,0,0,.04);
+
+    }
+
+
+    .preview-action-button:hover {
+
+      border-color:
+        var(--gold);
+
+      background:
+        #fffdf4;
+
     }
 
 
     .preview-step-label {
 
-      flex:
-        0 0 auto;
-
-      color:
-        #9ca3af;
-
-      font-size:
-        11px;
-
-      font-weight:
-        900;
-
-      padding-left:
-        2px;
+      display:
+        none;
 
     }
 
@@ -1745,7 +1808,7 @@
       body.step2-mode {
 
         padding:
-          0 10px 25px;
+          10px 10px 25px;
 
       }
 
@@ -1780,14 +1843,6 @@
       }
 
 
-      .hero-kicker {
-
-        font-size:
-          15px;
-
-      }
-
-
       .hero-title {
 
         font-size:
@@ -1800,6 +1855,20 @@
 
         font-size:
           13px;
+
+      }
+
+
+      #step2 {
+
+        border-radius:
+          23px;
+
+        padding:
+          12px 14px 22px;
+
+        min-height:
+          calc(100vh - 45px);
 
       }
 
@@ -1851,10 +1920,18 @@
       }
 
 
+      .preview-header {
+
+        margin-bottom:
+          17px;
+
+      }
+
+
       .preview-actions {
 
         gap:
-          4px;
+          5px;
 
       }
 
@@ -1862,18 +1939,10 @@
       .preview-action-button {
 
         padding:
-          9px 5px;
+          10px 4px;
 
         font-size:
           12px;
-
-      }
-
-
-      .preview-step-label {
-
-        display:
-          none;
 
       }
 
@@ -1887,10 +1956,10 @@
       .preview-action-button {
 
         font-size:
-          13px;
+          12px;
 
         padding:
-          8px 4px;
+          9px 3px;
 
       }
 
@@ -1921,10 +1990,6 @@
   <div class="hero">
 
     <div class="hero-content">
-
-      <div class="hero-kicker">
-        왕군
-      </div>
 
       <div class="hero-symbol">
         ♛
@@ -2234,11 +2299,14 @@
           </button>
 
 
-          <div class="preview-step-label">
+          <button
+            class="preview-action-button"
+            onclick="openBoxHero()"
+          >
 
-            STEP 2
+            📦 박스히어로
 
-          </div>
+          </button>
 
         </div>
 
@@ -2575,6 +2643,20 @@
 
 const GAS_WEB_APP_URL =
   'https://script.google.com/macros/s/AKfycbzZX1JoVHJ07jFBKY6qH0UNcXHIulQuha6t7JnYfUymh8UKkwfpV0miwsAY_ud4WKvc/exec';
+
+
+// ==========================================================
+// 📦 BoxHero 열기
+// ==========================================================
+
+function openBoxHero() {
+
+  window.open(
+    'https://app.boxhero.io/',
+    '_blank'
+  );
+
+}
 
 
 // ==========================================================
@@ -5823,11 +5905,10 @@ function showStep2() {
 
   /*
    * ======================================================
-   * ⭐ 핵심 변경
+   * ⭐ STEP 2
    *
-   * STEP 2로 들어오면 body 자체를 흰색 모드로 변경합니다.
-   * 따라서 Fenomeno 이미지가 뒤에 남지 않고
-   * 화면 최상단부터 흰색 영역이 시작됩니다.
+   * Fenomeno.png 배경은 그대로 유지하고
+   * STEP 2 자체를 흰색 플로팅 패널로 보여줍니다.
    * ======================================================
    */
 
@@ -5887,7 +5968,7 @@ function backToStep1() {
 
   /*
    * ======================================================
-   * ⭐ STEP 2 흰색 모드 해제
+   * ⭐ STEP 2 모드 해제
    * ======================================================
    */
 
@@ -7182,7 +7263,7 @@ function resetApp() {
 
   /*
    * ======================================================
-   * ⭐ STEP 2 흰색 모드 해제
+   * ⭐ STEP 2 모드 해제
    * ======================================================
    */
 

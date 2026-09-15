@@ -1174,7 +1174,7 @@
         grid;
 
       grid-template-columns:
-        1fr;
+        1fr 1fr;
 
       gap:
         7px;
@@ -1240,12 +1240,129 @@
      */
 
     #step2 .client-search-row,
+
     #step2 .client-candidates {
 
       display:
         none;
 
     }
+
+
+    /*
+     * ======================================================
+     *  [ 거래처 검색 ] 버튼을 눌렀을 때만
+     *    STEP 2 안에서 검색창과 후보 목록이 보입니다.
+     *
+     * 전체 화면 거래처 선택은
+     * [ 거래처 선택 ] 버튼만 사용합니다.
+     * ======================================================
+     */
+
+    #step2 .client-search-wrap.search-open .client-search-row {
+
+      display:
+        block;
+
+    }
+
+
+    #step2 .client-search-wrap.search-open .client-candidates:not(:empty) {
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      gap:
+        7px;
+
+      margin-top:
+        9px;
+
+      max-height:
+        46vh;
+
+      overflow-y:
+        auto;
+
+      -webkit-overflow-scrolling:
+        touch;
+
+    }
+
+
+    #step2 .client-search-row input {
+
+      width:
+        100%;
+
+      padding:
+        12px 13px;
+
+      border:
+        1px solid
+        #dfe3e8;
+
+      border-radius:
+        13px;
+
+      background:
+        #ffffff;
+
+      color:
+        #111827;
+
+      font-size:
+        16px;
+
+      outline:
+        none;
+
+    }
+
+
+    #step2 .client-candidates .client-candidate {
+
+      padding:
+        12px 14px;
+
+      border:
+        1px solid
+        #e5e7eb;
+
+      border-radius:
+        13px;
+
+      background:
+        #ffffff;
+
+      color:
+        #111827;
+
+      font-size:
+        14px;
+
+      font-weight:
+        700;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    #step2 .client-candidates .client-candidate:active {
+
+      border-color:
+        var(--gold);
+
+      background:
+        #fffdf4;
+
+    }
+
 
 
     .selected-client {
@@ -2573,6 +2690,16 @@
           <div class="client-search-buttons">
 
             <button
+              id="partnerSearchButton"
+              type="button"
+              class="client-search-button"
+              onclick="activatePartnerSearch()"
+            >
+              🔍 거래처 검색
+            </button>
+
+
+            <button
               id="partnerSelectButton"
               type="button"
               class="client-search-button"
@@ -2582,6 +2709,24 @@
             </button>
 
           </div>
+
+
+          <div class="client-search-row">
+
+            <input
+              id="partnerSearch"
+              type="text"
+              placeholder="거래처 이름을 검색하세요."
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <div
+            id="clientCandidates"
+            class="client-candidates"
+          ></div>
 
 
           <div
@@ -6925,9 +7070,102 @@ function setupPartnerSearch() {
 
 function activatePartnerSearch() {
 
-  openPartnerPicker();
+  /*
+   * ======================================================
+   * ⭐ [ 거래처 검색 ] 버튼
+   *
+   * 화면을 이동하지 않고
+   * STEP 2 안에서만 검색창을 열고 닫습니다.
+   *
+   * 전체 화면 거래처 선택 화면과 history.pushState 는
+   * [ 거래처 선택 ] 버튼만 사용합니다.
+   * ======================================================
+   */
+
+  const step2 =
+    document
+      .getElementById(
+        'step2'
+      );
+
+
+  if (
+    !step2
+  ) {
+
+    return;
+
+  }
+
+
+  const wrap =
+    step2
+      .querySelector(
+        '.client-search-wrap'
+      );
+
+
+  if (
+    !wrap
+  ) {
+
+    return;
+
+  }
+
+
+  const input =
+    document
+      .getElementById(
+        'partnerSearch'
+      );
+
+
+  const container =
+    document
+      .getElementById(
+        'clientCandidates'
+      );
+
+
+  wrap
+    .classList
+    .toggle(
+      'search-open'
+    );
+
+
+  if (
+    container
+  ) {
+
+    container.innerHTML =
+      '';
+
+  }
+
+
+  if (
+    wrap
+      .classList
+      .contains(
+        'search-open'
+      )
+  ) {
+
+    if (
+      input
+    ) {
+
+      input
+        .focus();
+
+    }
+
+  }
 
 }
+
 
 
 // ==========================================================
@@ -8462,6 +8700,7 @@ function escapeHtml(
 
 </script>
 
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
 </body>
 
 </html>

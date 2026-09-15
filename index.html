@@ -17,6 +17,7 @@
   >
 
 <link rel="manifest" href="./manifest.json">
+
   <!-- 🐐 Ronaldo 앱 아이콘 -->
   <link
     rel="icon"
@@ -91,111 +92,143 @@
     }
 
 
-body {
+    body {
 
-  margin:
-    0;
+      margin:
+        0;
 
-  /*
-   * ======================================================
-   * 🐐 Fenomeno.png 전체 배경화면
-   *
-   * GitHub Pages 프로젝트:
-   * /Prozyme-X-Box-Hero/
-   *
-   * 따라서 이미지도 프로젝트 루트에서 직접 불러옵니다.
-   * ======================================================
-   */
+      /*
+       * ======================================================
+       * 🐐 Fenomeno.png 전체 배경화면
+       *
+       * GitHub Pages 프로젝트:
+       * /Prozyme-X-Box-Hero/
+       * ======================================================
+       */
 
-  background-color:
-    #05070b;
+      background-color:
+        #05070b;
 
-  background-image:
-    url('/Prozyme-X-Box-Hero/Fenomeno.png');
+      background-image:
+        url('/Prozyme-X-Box-Hero/Fenomeno.png');
 
-  background-size:
-    cover;
+      background-size:
+        cover;
 
-  background-position:
-    center;
+      background-position:
+        center;
 
-  background-repeat:
-    no-repeat;
+      background-repeat:
+        no-repeat;
 
-  background-attachment:
-    fixed;
+      background-attachment:
+        fixed;
 
-  padding:
-    0 14px 30px;
+      padding:
+        0 14px 30px;
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Noto Sans KR",
-    sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        sans-serif;
 
-  color:
-    var(--text);
+      color:
+        var(--text);
 
-  min-height:
-    100vh;
+      min-height:
+        100vh;
 
-  position:
-    relative;
+      position:
+        relative;
 
-  overflow-x:
-    hidden;
+      overflow-x:
+        hidden;
 
-}
+    }
+
+
+    /* ======================================================
+       ⭐ STEP 2에서는 Fenomeno 배경을 완전히 제거
+       ⭐ 화면 맨 위부터 흰색
+       ====================================================== */
+
+    body.step2-mode {
+
+      background-color:
+        #ffffff;
+
+      background-image:
+        none;
+
+      padding:
+        0 14px 30px;
+
+    }
+
+
+    body.step2-mode::before,
+    body.step2-mode::after {
+
+      background:
+        transparent;
+
+    }
+
 
     body::before {
 
-  content:
-    "";
+      content:
+        "";
 
-  position:
-    fixed;
+      position:
+        fixed;
 
-  inset:
-    0;
+      inset:
+        0;
 
-  background:
-    linear-gradient(
-      rgba(0,0,0,.12),
-      rgba(0,0,0,.22)
-    );
+      /*
+       * 첫 화면 Fenomeno 위에 아주 약한 어두움만 유지합니다.
+       * 기존보다 훨씬 자연스럽게 보이도록 조정했습니다.
+       */
 
-  pointer-events:
-    none;
+      background:
+        linear-gradient(
+          rgba(0,0,0,.04),
+          rgba(0,0,0,.10)
+        );
 
-  z-index:
-    0;
+      pointer-events:
+        none;
 
-}
+      z-index:
+        0;
+
+    }
 
 
     body::after {
 
-  content:
-    "";
+      content:
+        "";
 
-  position:
-    fixed;
+      position:
+        fixed;
 
-  inset:
-    0;
+      inset:
+        0;
 
-  background:
-    transparent;
+      background:
+        transparent;
 
-  pointer-events:
-    none;
+      pointer-events:
+        none;
 
-  z-index:
-    0;
+      z-index:
+        0;
 
-}
+    }
 
 
     .container {
@@ -235,149 +268,164 @@ body {
        🏆 HERO
        ====================================================== */
 
-    /* ======================================================
-   🏆 HERO
-   ====================================================== */
+    .hero {
 
-.hero {
+      height:
+        285px;
 
-  height:
-    285px;
+      border-radius:
+        0 0 30px 30px;
 
-  border-radius:
-    0 0 30px 30px;
+      overflow:
+        hidden;
 
-  overflow:
-    hidden;
+      position:
+        relative;
 
-  position:
-    relative;
+      display:
+        flex;
 
-  display:
-    flex;
+      align-items:
+        flex-end;
 
-  align-items:
-    flex-end;
+      justify-content:
+        flex-start;
 
-  justify-content:
-    center;
+      margin:
+        0 -14px 18px;
 
-  margin:
-    0 -14px 18px;
+      /*
+       * ⭐ 완전 투명
+       * Fenomeno.png가 그대로 보입니다.
+       */
 
-  /*
-   * ⭐ 중요
-   * HERO에는 어떤 배경도 깔지 않습니다.
-   * Fenomeno.png가 body 전체 배경으로
-   * 그대로 보이도록 완전 투명하게 유지합니다.
-   */
+      background:
+        transparent;
 
-  background:
-    transparent;
+      box-shadow:
+        none;
 
-  /*
-   * ⭐ 검은색 영역이 생기는 것을 방지
-   */
-
-  box-shadow:
-    none;
-
-}
+    }
 
 
     .hero::before {
 
-  content:
-    "";
+      content:
+        "";
 
-  position:
-    absolute;
+      position:
+        absolute;
 
-  inset:
-    0;
+      inset:
+        0;
 
-  background:
-    transparent;
+      background:
+        transparent;
 
-  pointer-events:
-    none;
+      pointer-events:
+        none;
 
-}
+    }
 
 
-.hero::after {
+    .hero::after {
 
-  content:
-    "";
+      content:
+        "";
 
-  position:
-    absolute;
+      position:
+        absolute;
 
-  inset:
-    0;
+      inset:
+        0;
 
-  background:
-    transparent;
+      background:
+        transparent;
 
-  pointer-events:
-    none;
+      pointer-events:
+        none;
 
-}
+    }
 
 
     .hero-content {
 
-  position:
-    relative;
+      position:
+        relative;
 
-  z-index:
-    2;
+      z-index:
+        2;
 
-  width:
-    100%;
+      width:
+        100%;
 
-  text-align:
-    center;
+      text-align:
+        left;
 
-  padding:
-    0 20px 45px;
+      /*
+       * ⭐ 기존 BOXHERO 글자가 시작하던 위치보다
+       * 조금 더 자연스럽게 왼쪽에 배치
+       */
 
-}
+      padding:
+        0 28px 45px;
 
+    }
+
+
+    /* ======================================================
+       ⭐ 왕군
+       ====================================================== */
 
     .hero-kicker {
 
       font-size:
-        11px;
+        15px;
 
       font-weight:
-        900;
+        950;
 
       letter-spacing:
-        2px;
+        1px;
 
       color:
-        #d7bd61;
+        #f0c83d;
 
       margin-bottom:
-        7px;
+        8px;
+
+      text-shadow:
+        0 2px 10px
+        rgba(0,0,0,.75);
 
     }
 
+
+    /* ======================================================
+       ⭐ 왕관
+       ====================================================== */
 
     .hero-symbol {
 
       font-size:
-        18px;
+        20px;
 
       color:
-        var(--gold);
+        #e0b52c;
 
       margin:
         0 0 5px;
 
+      text-shadow:
+        0 2px 9px
+        rgba(0,0,0,.75);
+
     }
 
+
+    /* ======================================================
+       ⭐ 메인 제목
+       ====================================================== */
 
     .hero-title {
 
@@ -397,24 +445,36 @@ body {
         white;
 
       text-shadow:
-        0 3px 15px rgba(0,0,0,.45);
+        0 3px 15px
+        rgba(0,0,0,.70);
 
     }
 
 
+    /* ======================================================
+       ⭐ 가족 이름
+       ====================================================== */
+
     .hero-sub {
 
       margin-top:
-        10px;
-
-      font-size:
         11px;
 
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+
       color:
-        rgba(255,255,255,.72);
+        #ffffff;
 
       letter-spacing:
-        .5px;
+        .3px;
+
+      text-shadow:
+        0 2px 10px
+        rgba(0,0,0,.80);
 
     }
 
@@ -472,7 +532,8 @@ body {
         var(--gold);
 
       box-shadow:
-        0 0 0 4px rgba(201,162,39,.13);
+        0 0 0 4px
+        rgba(201,162,39,.13);
 
     }
 
@@ -491,85 +552,155 @@ body {
     }
 
 
+    /*
+     * ======================================================
+     * ⭐ STEP 2의 흰색 영역에서는
+     * STEP 표시선도 밝은 회색으로 변경
+     * ======================================================
+     */
+
+    body.step2-mode .step-dot {
+
+      background:
+        #d1d5db;
+
+    }
+
+
+    body.step2-mode .step-dot.active {
+
+      background:
+        var(--gold);
+
+    }
+
+
+    body.step2-mode .step-line {
+
+      background:
+        #d1d5db;
+
+    }
+
+
     /* ======================================================
        🃏 CARD
        ====================================================== */
 
     .card {
 
-  /*
-   * ⭐ Fenomeno 배경이 비쳐 보이는
-   * 반투명 유리 카드
-   */
+      /*
+       * ⭐ 첫 화면에서는 Fenomeno가 비쳐 보이는
+       * 반투명 유리 카드
+       */
 
-  background:
-    rgba(10,15,25,.48);
+      background:
+        rgba(10,15,25,.48);
 
-  border:
-    1px solid
-    rgba(255,255,255,.18);
+      border:
+        1px solid
+        rgba(255,255,255,.18);
 
-  border-radius:
-    22px;
+      border-radius:
+        22px;
 
-  padding:
-    21px;
+      padding:
+        21px;
 
-  margin-bottom:
-    16px;
+      margin-bottom:
+        16px;
 
-  box-shadow:
-    0 18px 50px
-    rgba(0,0,0,.30);
+      box-shadow:
+        0 18px 50px
+        rgba(0,0,0,.30);
 
-  backdrop-filter:
-    blur(8px);
+      backdrop-filter:
+        blur(8px);
 
-  -webkit-backdrop-filter:
-    blur(8px);
+      -webkit-backdrop-filter:
+        blur(8px);
 
-}
+    }
+
+
+    /*
+     * ======================================================
+     * ⭐ STEP 2 카드는 완전한 흰색
+     * ======================================================
+     */
+
+    body.step2-mode .card {
+
+      background:
+        #ffffff;
+
+      border:
+        1px solid
+        #e5e7eb;
+
+      box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.06);
+
+      backdrop-filter:
+        none;
+
+      -webkit-backdrop-filter:
+        none;
+
+    }
 
 
     .card-title {
 
-  font-size:
-    19px;
+      font-size:
+        19px;
 
-  font-weight:
-    900;
+      font-weight:
+        900;
 
-  margin-bottom:
-    17px;
+      margin-bottom:
+        17px;
 
-  letter-spacing:
-    -.5px;
+      letter-spacing:
+        -.5px;
 
-  color:
-    white;
+      color:
+        white;
 
-  text-shadow:
-    0 2px 8px
-    rgba(0,0,0,.45);
+      text-shadow:
+        0 2px 8px
+        rgba(0,0,0,.45);
 
-}
+    }
+
+
+    body.step2-mode .card-title {
+
+      color:
+        #111827;
+
+      text-shadow:
+        none;
+
+    }
 
 
     .card-subtitle {
 
-  color:
-    rgba(255,255,255,.72);
+      color:
+        rgba(255,255,255,.72);
 
-  font-size:
-    13px;
+      font-size:
+        13px;
 
-  margin:
-    -8px 0 17px;
+      margin:
+        -8px 0 17px;
 
-  line-height:
-    1.5;
+      line-height:
+        1.5;
 
-}
+    }
 
 
     /* ======================================================
@@ -806,13 +937,26 @@ body {
     }
 
 
+    /* ======================================================
+       🎙️ 음성 인식 결과
+       
+       ⭐ 메인 버튼과 동일한 56px 높이
+       ⭐ 두께/테두리/모서리도 통일
+       ====================================================== */
+
     .recognized-text {
 
       margin-top:
         13px;
 
+      height:
+        56px;
+
+      min-height:
+        56px;
+
       padding:
-        13px;
+        0 15px;
 
       background:
         #f8fafc;
@@ -822,25 +966,31 @@ body {
         #e5e7eb;
 
       border-radius:
-        14px;
+        17px;
 
       font-size:
         14px;
 
       line-height:
-        1.65;
+        1.45;
 
       text-align:
         left;
 
-      min-height:
-        51px;
+      display:
+        flex;
+
+      align-items:
+        center;
 
       white-space:
         pre-wrap;
 
       word-break:
         break-word;
+
+      overflow:
+        hidden;
 
     }
 
@@ -1592,6 +1742,14 @@ body {
       }
 
 
+      body.step2-mode {
+
+        padding:
+          0 10px 25px;
+
+      }
+
+
       .container {
 
         max-width:
@@ -1614,6 +1772,22 @@ body {
       }
 
 
+      .hero-content {
+
+        padding:
+          0 22px 40px;
+
+      }
+
+
+      .hero-kicker {
+
+        font-size:
+          15px;
+
+      }
+
+
       .hero-title {
 
         font-size:
@@ -1625,7 +1799,7 @@ body {
       .hero-sub {
 
         font-size:
-          10px;
+          13px;
 
       }
 
@@ -1659,6 +1833,20 @@ body {
 
         font-size:
           14px;
+
+      }
+
+
+      .recognized-text {
+
+        height:
+          54px;
+
+        min-height:
+          54px;
+
+        border-radius:
+          16px;
 
       }
 
@@ -1735,7 +1923,7 @@ body {
     <div class="hero-content">
 
       <div class="hero-kicker">
-        BOXHERO INVENTORY
+        왕군
       </div>
 
       <div class="hero-symbol">
@@ -1744,8 +1932,7 @@ body {
 
       <div class="hero-title">
 
-        푸로찜 에스<br>
-        입출고 시스템
+        푸로찜 에스 X 박스히어로
 
       </div>
 
@@ -1803,7 +1990,7 @@ body {
 
         <button
           id="inButton"
-          class="mode-button in active"
+          class="mode-button in"
           onclick="setType('in')"
         >
           📥 입고
@@ -1811,7 +1998,7 @@ body {
 
         <button
           id="outButton"
-          class="mode-button out"
+          class="mode-button out active"
           onclick="setType('out')"
         >
           📤 출고
@@ -2501,7 +2688,7 @@ let masterData = {
 
 
 let selectedType =
-  'in';
+  'out';
 
 
 let recognition =
@@ -2555,11 +2742,6 @@ let transactionTime =
 /*
  * ==========================================================
  * 🎙️ 마이크 권한 상태
- *
- * GitHub Pages의 새로운 origin에서
- * 음성인식을 시작할 때 브라우저가 반복적으로
- * 마이크 접근을 요청하는 문제를 줄이기 위해
- * 실제 마이크 권한을 먼저 확인합니다.
  * ==========================================================
  */
 
@@ -2711,6 +2893,15 @@ window.addEventListener(
         getTodayLocal();
 
 
+    /*
+     * ⭐ 첫 화면 기본값 = 출고
+     */
+
+    setType(
+      'out'
+    );
+
+
     loadMasterData();
 
 
@@ -2774,8 +2965,6 @@ function loadMasterData() {
 
 // ==========================================================
 // 🔄 STEP 2 새로고침
-//
-// 기존 입력값은 최대한 보존합니다.
 // ==========================================================
 
 function refreshMasterData() {
@@ -3062,15 +3251,6 @@ function populateItemSelects() {
         '<option value="">제품을 선택하세요</option>';
 
 
-      /*
-       * BoxHero에서 실제 받아온 상품 중
-       * 푸로찜 상품을 규격 기준으로 정렬합니다.
-       *
-       * 기존처럼 이름에 "푸로찜"이 포함된 상품만
-       * 화면에 표시하되,
-       * 12/15/20 KG 규격 인식을 조금 더 유연하게 합니다.
-       */
-
       const items =
         [...masterData.items]
           .filter(
@@ -3190,16 +3370,6 @@ function populateItemSelects() {
 
 // ==========================================================
 // 📏 제품 규격
-//
-// BoxHero 실제 상품명과 음성인식 표현의 차이를 최대한 흡수합니다.
-//
-// 예:
-// 푸로찜 에스 15KG
-// 푸로찜에스 15 키로
-// 푸로찜 15키로
-// 푸로찜에스 십오키로
-//
-// → 모두 15 KG로 인식
 // ==========================================================
 
 function getProductSize(
@@ -3212,7 +3382,6 @@ function getProductSize(
     );
 
 
-  // 숫자형 KG
   if (
     /12(?:kg|키로|킬로)/i.test(
       text
@@ -3270,7 +3439,6 @@ function getProductSize(
   }
 
 
-  // 음성인식에서 한글 숫자로 들어오는 경우
   if (
     text.includes('십이') &&
     (
@@ -3385,14 +3553,6 @@ function setType(
 
 // ==========================================================
 // 🎙️ 마이크 권한 준비
-//
-// 최초 한 번 실제 마이크 권한을 확인합니다.
-//
-// 중요:
-// 브라우저 최초 권한 요청 자체는 브라우저 정책상
-// 완전히 제거할 수 없습니다.
-//
-// 권한이 허용된 뒤에는 microphoneReady=true로 유지합니다.
 // ==========================================================
 
 async function prepareMicrophone() {
@@ -3426,11 +3586,6 @@ async function prepareMicrophone() {
     !navigator.mediaDevices.getUserMedia
   ) {
 
-    /*
-     * 일부 브라우저에서는 getUserMedia가 없을 수 있습니다.
-     * 이 경우 기존 SpeechRecognition으로 계속 시도합니다.
-     */
-
     return true;
 
   }
@@ -3444,11 +3599,6 @@ async function prepareMicrophone() {
           true
       });
 
-
-    /*
-     * 권한 확인만 하고 실제 녹음은
-     * SpeechRecognition이 담당합니다.
-     */
 
     stream
       .getTracks()
@@ -3501,11 +3651,6 @@ async function prepareMicrophone() {
     }
 
 
-    /*
-     * 기타 오류는 SpeechRecognition 자체에서
-     * 다시 처리할 수 있도록 진행합니다.
-     */
-
     return true;
 
   }
@@ -3528,12 +3673,6 @@ async function startVoice() {
 
   }
 
-
-  /*
-   * --------------------------------------------------------
-   * 📱 휴대폰 마이크 권한 확인
-   * --------------------------------------------------------
-   */
 
   const microphoneOk =
     await prepareMicrophone();
@@ -3809,11 +3948,6 @@ function initRecognition() {
         stopRecordingTimer();
 
 
-        /*
-         * 권한이 차단된 상태에서는 계속 재시작해서
-         * 같은 권한 메시지를 반복하지 않습니다.
-         */
-
         microphonePermissionDenied =
           true;
 
@@ -3850,14 +3984,6 @@ function initRecognition() {
         'no-speech'
       ) {
 
-        /*
-         * 중요:
-         * no-speech라고 해서 녹음을 끝내지 않습니다.
-         *
-         * onend에서 자동 재시작되므로
-         * 사용자가 잠깐 말을 멈춰도 계속 듣습니다.
-         */
-
         document
           .getElementById(
             'voiceStatus'
@@ -3880,15 +4006,6 @@ function initRecognition() {
       recognitionStartPending =
         false;
 
-
-      /*
-       * ------------------------------------------------------
-       * ⭐ 핵심
-       *
-       * 음성이 잠깐 끊겼거나 공백이 생겨도
-       * finishRequested가 아니면 계속 이어갑니다.
-       * ------------------------------------------------------
-       */
 
       if (
         isRecording &&
@@ -3925,10 +4042,6 @@ function initRecognition() {
                   e
                 );
 
-                /*
-                 * 이미 시작된 상태 등의 이유로 실패한 경우
-                 * 짧게 한 번 더 시도합니다.
-                 */
 
                 clearTimeout(
                   recognitionRestartTimer
@@ -4467,24 +4580,6 @@ function finalizeRecording() {
 
 // ==========================================================
 // 🧠 주문 분석
-//
-// ⭐ 중요
-//
-// 음성인식 결과를 단순 문자열 includes()로 판단하지 않고
-// BoxHero에서 실제 받아온 거래처명 / 제품명을 기준으로
-// 최대한 정확하게 매칭합니다.
-//
-// 또한 메모에는 음성 전체 내용을 넣지 않습니다.
-//
-// 납품형태가 인식된 경우에만
-//
-//   택배 발송
-//   또는
-//   본사 발송
-//
-// 을 메모에 먼저 넣습니다.
-//
-// 이후 사용자가 직접 메모를 추가할 수 있습니다.
 // ==========================================================
 
 function parseOrderText(
@@ -4523,10 +4618,6 @@ function parseOrderText(
     );
 
 
-  // ========================================================
-  // 📥📤 입출고
-  // ========================================================
-
   if (
     /입고|입고해|받아|들어|입고로/i
       .test(
@@ -4552,10 +4643,6 @@ function parseOrderText(
 
   }
 
-
-  // ========================================================
-  // 🔢 수량
-  // ========================================================
 
   const quantityMatch =
     normalized.match(
@@ -4585,12 +4672,6 @@ function parseOrderText(
   }
 
 
-  // ========================================================
-  // 📦 제품
-  //
-  // BoxHero 실제 상품명 기준으로 찾습니다.
-  // ========================================================
-
   const itemMatch =
     findBestItemFromSpeech(
       normalized
@@ -4607,22 +4688,6 @@ function parseOrderText(
   }
 
 
-  // ========================================================
-  // 🏢 거래처
-  //
-  // BoxHero 실제 거래처명 기준으로 찾습니다.
-  //
-  // 띄어쓰기 차이:
-  //   강남 푸드
-  //   강남푸드
-  //
-  // 음성인식 차이:
-  //   강남푸드에
-  //   강남푸드로
-  //
-  // 등을 최대한 흡수합니다.
-  // ========================================================
-
   const partnerMatch =
     findBestPartnerFromSpeech(
       normalized
@@ -4638,18 +4703,6 @@ function parseOrderText(
 
   }
 
-
-  // ========================================================
-  // 🚚 납품형태
-  //
-  // 오직 BoxHero에서 사용할 두 값으로 통일
-  //
-  // 택배 / 택배로 / 택배 보내줘
-  // → 택배 발송
-  //
-  // 본사 / 본사에서 / 본사 발송
-  // → 본사 발송
-  // ========================================================
 
   let deliveryType =
     '';
@@ -4680,26 +4733,6 @@ function parseOrderText(
     deliveryType;
 
 
-  // ========================================================
-  // 📝 메모
-  //
-  // ⭐ 매우 중요
-  //
-  // 음성인식 전체 문장을 메모로 넣지 않습니다.
-  //
-  // 납품형태가 있을 때만
-  //
-  //   택배 발송
-  //   또는
-  //   본사 발송
-  //
-  // 을 메모에 넣습니다.
-  //
-  // 그 뒤의 음성 문장은 자동으로 메모에 넣지 않습니다.
-  //
-  // 이후 사용자가 STEP 2에서 직접 추가합니다.
-  // ========================================================
-
   if (
     deliveryType
   ) {
@@ -4722,14 +4755,6 @@ function parseOrderText(
 
 // ==========================================================
 // 🧹 음성인식 문자열 정규화
-//
-// 띄어쓰기 / 특수문자 / 대소문자 차이를 줄여서
-// BoxHero 실제 이름과 비교하기 쉽게 만듭니다.
-//
-// 예:
-// "강남 푸드"
-// "강남푸드"
-// → 같은 문자열로 비교
 // ==========================================================
 
 function normalizeSpeechText(
@@ -4751,10 +4776,6 @@ function normalizeSpeechText(
 
 // ==========================================================
 // 🔤 문자열 유사도
-//
-// 음성인식이 거래처 이름을 약간 틀리게 인식해도
-// 너무 쉽게 엉뚱한 거래처를 선택하지 않도록
-// 간단한 편집거리 기반 점수를 사용합니다.
 // ==========================================================
 
 function getStringSimilarity(
@@ -4958,8 +4979,6 @@ function levenshteinDistance(
 
 // ==========================================================
 // 👥 BoxHero 거래처 음성 매칭
-//
-// ⭐ 실제 masterData.partners의 이름을 기준으로 판단
 // ==========================================================
 
 function findBestPartnerFromSpeech(
@@ -5026,10 +5045,6 @@ function findBestPartnerFromSpeech(
         0;
 
 
-      // ------------------------------------------------------
-      // 1. 정확히 일치
-      // ------------------------------------------------------
-
       if (
         speech ===
         normalizedName
@@ -5040,10 +5055,6 @@ function findBestPartnerFromSpeech(
 
       }
 
-
-      // ------------------------------------------------------
-      // 2. 음성문장 안에 거래처명이 그대로 존재
-      // ------------------------------------------------------
 
       else if (
         speech.includes(
@@ -5056,10 +5067,6 @@ function findBestPartnerFromSpeech(
 
       }
 
-
-      // ------------------------------------------------------
-      // 3. 거래처명이 음성인식 결과의 일부인 경우
-      // ------------------------------------------------------
 
       else if (
         normalizedName.includes(
@@ -5074,10 +5081,6 @@ function findBestPartnerFromSpeech(
       }
 
 
-      // ------------------------------------------------------
-      // 4. 유사도
-      // ------------------------------------------------------
-
       else {
 
         score =
@@ -5088,13 +5091,6 @@ function findBestPartnerFromSpeech(
 
       }
 
-
-      /*
-       * 거래처명은 짧을수록 오인식 가능성이 높습니다.
-       *
-       * 따라서 두 글자 이하 이름은
-       * 유사도만으로 선택하지 않습니다.
-       */
 
       if (
         normalizedName.length <= 2 &&
@@ -5123,11 +5119,6 @@ function findBestPartnerFromSpeech(
   );
 
 
-  /*
-   * 너무 낮은 유사도는
-   * 엉뚱한 거래처가 자동 선택되는 것을 막습니다.
-   */
-
   if (
     bestScore < 0.72
   ) {
@@ -5144,10 +5135,6 @@ function findBestPartnerFromSpeech(
 
 // ==========================================================
 // 📦 BoxHero 상품 음성 매칭
-//
-// 실제 BoxHero 상품명을 기준으로 판단합니다.
-//
-// 특히 12 / 15 / 20 KG를 음성 표현까지 고려합니다.
 // ==========================================================
 
 function findBestItemFromSpeech(
@@ -5168,10 +5155,6 @@ function findBestItemFromSpeech(
 
   }
 
-
-  /*
-   * 먼저 푸로찜 관련 상품만 대상으로 합니다.
-   */
 
   const items =
     masterData.items.filter(
@@ -5210,11 +5193,6 @@ function findBestItemFromSpeech(
     );
 
 
-  /*
-   * 제품 규격을 찾지 못했다면
-   * 일반적인 BoxHero 상품명 유사도 비교를 합니다.
-   */
-
   let bestItem =
     null;
 
@@ -5250,11 +5228,6 @@ function findBestItemFromSpeech(
         );
 
 
-      // ------------------------------------------------------
-      // 규격이 명확하게 인식된 경우
-      // 해당 규격 상품을 강하게 우선합니다.
-      // ------------------------------------------------------
-
       if (
         requestedSize &&
         itemSize ===
@@ -5266,11 +5239,6 @@ function findBestItemFromSpeech(
 
       }
 
-
-      /*
-       * 다른 규격이면 자동 선택하지 않도록
-       * 점수를 크게 낮춥니다.
-       */
 
       if (
         requestedSize &&
@@ -5302,11 +5270,6 @@ function findBestItemFromSpeech(
   );
 
 
-  /*
-   * 규격이 명확한 경우에는
-   * 해당 규격의 BoxHero 상품을 우선합니다.
-   */
-
   if (
     requestedSize
   ) {
@@ -5334,11 +5297,6 @@ function findBestItemFromSpeech(
 
     }
 
-
-    /*
-     * 동일 규격 상품이 여러 개일 경우에는
-     * 이름 유사도가 높은 상품을 사용합니다.
-     */
 
     if (
       bestItem &&
@@ -5474,10 +5432,6 @@ function findItemByKeyword(
       );
 
 
-  /*
-   * 기존처럼 첫 번째 BoxHero 상품을 사용합니다.
-   */
-
   return (
     items[0] ||
     null
@@ -5488,23 +5442,6 @@ function findItemByKeyword(
 
 // ==========================================================
 // ✏️ 직접 입력
-//
-// ⭐ 기존 별도 직접입력 화면은 삭제하지 않습니다.
-//
-// 하지만 이제 "직접 입력하기"를 누르면
-// 음성입력과 동일한 STEP 2 확인 화면으로 이동합니다.
-//
-// 즉:
-//
-// 음성 입력
-//     ↓
-// STEP 2
-//
-// 직접 입력하기
-//     ↓
-// STEP 2
-//
-// 두 경로가 완전히 같은 확인 화면을 사용합니다.
 // ==========================================================
 
 function showDirectInput() {
@@ -5525,10 +5462,6 @@ function showDirectInput() {
     getCurrentTimeLocal();
 
 
-  // --------------------------------------------------------
-  // 기존 직접입력 카드가 혹시 열려 있다면 숨김
-  // --------------------------------------------------------
-
   document
     .getElementById(
       'directInputCard'
@@ -5538,10 +5471,6 @@ function showDirectInput() {
       'hidden'
     );
 
-
-  // --------------------------------------------------------
-  // STEP 2를 새 입력 상태로 준비
-  // --------------------------------------------------------
 
   document
     .getElementById(
@@ -5625,10 +5554,6 @@ function showDirectInput() {
     );
 
 
-  // --------------------------------------------------------
-  // 검색 버튼 상태 초기화
-  // --------------------------------------------------------
-
   document
     .getElementById(
       'partnerSearchButton'
@@ -5660,10 +5585,6 @@ function showDirectInput() {
 
   updateSummary();
 
-
-  // --------------------------------------------------------
-  // ⭐ 음성 입력과 완전히 동일한 STEP 2 표시
-  // --------------------------------------------------------
 
   showStep2();
 
@@ -5858,17 +5779,6 @@ function fillStep2(
       data.deliveryType || '';
 
 
-  // --------------------------------------------------------
-  // 📝 메모
-  //
-  // 음성 분석:
-  //   납품형태 있음 → 납품형태만 메모에 표시
-  //   납품형태 없음 → 빈 메모
-  //
-  // 직접 입력:
-  //   기본 빈 메모
-  // --------------------------------------------------------
-
   document
     .getElementById(
       'memoInput'
@@ -5879,6 +5789,7 @@ function fillStep2(
         : (
             data.memo || ''
           );
+
 
   if (
     data.deliveryType &&
@@ -5909,6 +5820,24 @@ function fillStep2(
 // ==========================================================
 
 function showStep2() {
+
+  /*
+   * ======================================================
+   * ⭐ 핵심 변경
+   *
+   * STEP 2로 들어오면 body 자체를 흰색 모드로 변경합니다.
+   * 따라서 Fenomeno 이미지가 뒤에 남지 않고
+   * 화면 최상단부터 흰색 영역이 시작됩니다.
+   * ======================================================
+   */
+
+  document
+    .body
+    .classList
+    .add(
+      'step2-mode'
+    );
+
 
   document
     .getElementById(
@@ -5955,6 +5884,20 @@ function showStep2() {
 // ==========================================================
 
 function backToStep1() {
+
+  /*
+   * ======================================================
+   * ⭐ STEP 2 흰색 모드 해제
+   * ======================================================
+   */
+
+  document
+    .body
+    .classList
+    .remove(
+      'step2-mode'
+    );
+
 
   document
     .getElementById(
@@ -6037,11 +5980,6 @@ function setupPartnerSearch() {
     'focus',
     function() {
 
-      /*
-       * 입력창에 직접 포커스했을 때도
-       * 현재 입력값 기준 후보를 표시합니다.
-       */
-
       renderPartnerCandidates(
         input.value
       );
@@ -6100,8 +6038,6 @@ function activatePartnerSearch() {
 
 // ==========================================================
 // ☑️ 거래처 선택 버튼
-//
-// 버튼을 누르면 전체 거래처 후보를 보여줍니다.
 // ==========================================================
 
 function showAllPartnerCandidates() {
@@ -6148,11 +6084,6 @@ function showAllPartnerCandidates() {
         'partnerSearch'
       );
 
-
-  /*
-   * 검색어가 있으면 그 검색어 기준,
-   * 없으면 전체 거래처를 표시합니다.
-   */
 
   renderPartnerCandidates(
     input
@@ -6660,19 +6591,6 @@ function updateSummary() {
 
 // ==========================================================
 // 🚚 납품형태 → 메모 자동 반영
-//
-// ⭐ 규칙
-//
-// 납품형태 없음
-// → 메모도 비워짐
-//
-// 택배 발송
-// → 메모 첫 부분에 택배 발송
-//
-// 본사 발송
-// → 메모 첫 부분에 본사 발송
-//
-// 이후 사용자가 추가한 메모는 유지합니다.
 // ==========================================================
 
 function applyDeliveryTypeToMemo() {
@@ -6698,12 +6616,6 @@ function applyDeliveryTypeToMemo() {
       .trim();
 
 
-  /*
-   * 기존 자동 납품형태 접두어만 제거합니다.
-   *
-   * 사용자가 직접 입력한 뒤의 메모는 유지합니다.
-   */
-
   const cleanedMemo =
     currentMemo
       .replace(
@@ -6727,11 +6639,6 @@ function applyDeliveryTypeToMemo() {
       );
 
   } else {
-
-    /*
-     * 납품형태가 없으면
-     * 메모에 자동으로 넣었던 납품형태만 제거합니다.
-     */
 
     memoInput.value =
       cleanedMemo;
@@ -6957,22 +6864,6 @@ function registerTransaction() {
       date
     );
 
-
-  /*
-   * --------------------------------------------------------
-   * 📝 최종 메모
-   *
-   * 메모 안에 이미 납품형태가 들어있다면
-   * 다시 앞에 붙이지 않습니다.
-   *
-   * 결과:
-   *
-   * 푸로찜 에스 음성입출고 /
-   * 날짜=2026-09-15 11:20:30 /
-   * 메모=택배 발송 / 오후에 보내주세요
-   *
-   * --------------------------------------------------------
-   */
 
   if (
     deliveryType &&
@@ -7289,6 +7180,20 @@ function resetApp() {
     getCurrentTimeLocal();
 
 
+  /*
+   * ======================================================
+   * ⭐ STEP 2 흰색 모드 해제
+   * ======================================================
+   */
+
+  document
+    .body
+    .classList
+    .remove(
+      'step2-mode'
+    );
+
+
   document
     .getElementById(
       'result'
@@ -7447,8 +7352,12 @@ function resetApp() {
     );
 
 
+  /*
+   * ⭐ 새 입력도 기본 = 출고
+   */
+
   setType(
-    'in'
+    'out'
   );
 
 

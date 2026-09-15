@@ -1,14 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<meta
+name="theme-color"
+content="#05070b"
+
+>
 
   <title>
     푸로찜 에스 X BoxHero
@@ -16,13 +24,69 @@
 
   <style>
 
-    * {
-      box-sizing: border-box;
+    /* ======================================================
+       🎨 기본 색상
+       ====================================================== */
+
+    :root {
+
+      --bg:
+        #05070b;
+
+      --card:
+        rgba(255,255,255,.96);
+
+      --text:
+        #111827;
+
+      --muted:
+        #6b7280;
+
+      --line:
+        #e5e7eb;
+
+      --green:
+        #15803d;
+
+      --red:
+        #dc2626;
+
+      --dark:
+        #111827;
+
+      --gold:
+        #c9a227;
+
     }
+
+
+    /* ======================================================
+       🔧 기본
+       ====================================================== */
+
+    * {
+
+      box-sizing:
+        border-box;
+
+    }
+
+
+    html {
+
+      scroll-behavior:
+        smooth;
+
+    }
+
 
     body {
 
-      margin: 0;
+      margin:
+        0;
+
+      padding:
+        0 14px 30px;
 
       font-family:
         -apple-system,
@@ -31,155 +95,397 @@
         "Noto Sans KR",
         sans-serif;
 
-      background:
-        linear-gradient(
-          180deg,
-          #f5f7fb 0%,
-          #eef2f7 100%
-        );
-
       color:
-        #222;
+        var(--text);
 
       min-height:
         100vh;
 
+      position:
+        relative;
+
+      overflow-x:
+        hidden;
+
+      background:
+        #05070b;
+
     }
 
 
-    .app {
+    /* ======================================================
+       🌌 배경
+       ====================================================== */
 
-      width:
-        100%;
+    body::before {
+
+      content:
+        "";
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.56),
+          rgba(0,0,0,.70)
+        );
+
+      pointer-events:
+        none;
+
+      z-index:
+        0;
+
+    }
+
+
+    body::after {
+
+      content:
+        "";
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(201,162,39,.18),
+          transparent 35%
+        );
+
+      pointer-events:
+        none;
+
+      z-index:
+        0;
+
+    }
+
+
+    /* ======================================================
+       📦 전체 컨테이너
+       ====================================================== */
+
+    .container {
 
       max-width:
-        720px;
+        560px;
 
       margin:
         0 auto;
 
-      padding:
-        20px 16px 50px;
+      position:
+        relative;
+
+      z-index:
+        1;
 
     }
 
 
     /* ======================================================
-       HEADER
+       🧭 화면
        ====================================================== */
 
-    .header {
+    .screen {
+
+      width:
+        100%;
+
+    }
+
+
+    .step-hidden {
+
+      display:
+        none !important;
+
+    }
+
+
+    /* ======================================================
+       🏆 HERO
+       ====================================================== */
+
+    .hero {
+
+      height:
+        285px;
+
+      border-radius:
+        0 0 30px 30px;
+
+      overflow:
+        hidden;
+
+      position:
+        relative;
+
+      display:
+        flex;
+
+      align-items:
+        flex-end;
+
+      justify-content:
+        center;
+
+      margin:
+        0 -14px 18px;
 
       background:
-        #111827;
+        linear-gradient(
+          180deg,
+          #111827 0%,
+          #05070b 100%
+        );
+
+    }
+
+
+    .hero::before {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(201,162,39,.24),
+          transparent 40%
+        );
+
+    }
+
+
+    .hero::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        linear-gradient(
+          transparent 35%,
+          rgba(5,7,11,.92) 100%
+        );
+
+    }
+
+
+    .hero-content {
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      width:
+        100%;
+
+      text-align:
+        center;
+
+      padding:
+        0 20px 27px;
+
+    }
+
+
+    .hero-kicker {
+
+      font-size:
+        11px;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        2px;
+
+      color:
+        #d7bd61;
+
+      margin-bottom:
+        7px;
+
+    }
+
+
+    .hero-symbol {
+
+      font-size:
+        18px;
+
+      color:
+        var(--gold);
+
+      margin:
+        0 0 5px;
+
+    }
+
+
+    .hero-title {
+
+      font-size:
+        28px;
+
+      line-height:
+        1.15;
+
+      font-weight:
+        950;
+
+      letter-spacing:
+        -1.2px;
 
       color:
         white;
 
-      border-radius:
-        22px;
-
-      padding:
-        25px 22px;
-
-      margin-bottom:
-        18px;
-
-      box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.12);
+      text-shadow:
+        0 3px 15px rgba(0,0,0,.45);
 
     }
 
 
-    .header-title {
-
-      font-size:
-        25px;
-
-      font-weight:
-        800;
-
-      letter-spacing:
-        -0.8px;
-
-    }
-
-
-    .header-sub {
+    .hero-sub {
 
       margin-top:
-        7px;
+        10px;
 
       font-size:
-        13px;
+        11px;
 
-      opacity:
-        0.72;
+      color:
+        rgba(255,255,255,.72);
+
+      letter-spacing:
+        .5px;
 
     }
 
 
     /* ======================================================
-       STEP
+       🔢 STEP INDICATOR
        ====================================================== */
 
-    .step {
+    .step-indicator {
 
       display:
-        inline-flex;
+        flex;
 
       align-items:
         center;
 
-      gap:
-        7px;
+      justify-content:
+        center;
 
-      padding:
-        7px 12px;
+      gap:
+        8px;
+
+      margin:
+        0 0 15px;
+
+    }
+
+
+    .step-dot {
+
+      width:
+        9px;
+
+      height:
+        9px;
 
       border-radius:
-        999px;
+        50%;
 
       background:
-        #e8eefc;
+        #d1d5db;
 
-      color:
-        #3155a6;
+    }
 
-      font-size:
-        12px;
 
-      font-weight:
-        800;
+    .step-dot.active {
 
-      margin-bottom:
-        12px;
+      width:
+        11px;
+
+      height:
+        11px;
+
+      background:
+        var(--gold);
+
+      box-shadow:
+        0 0 0 4px rgba(201,162,39,.13);
+
+    }
+
+
+    .step-line {
+
+      width:
+        38px;
+
+      height:
+        1px;
+
+      background:
+        #d1d5db;
 
     }
 
 
     /* ======================================================
-       CARD
+       🃏 CARD
        ====================================================== */
 
     .card {
 
       background:
-        white;
+        var(--card);
+
+      border:
+        1px solid
+        rgba(255,255,255,.72);
 
       border-radius:
-        20px;
+        22px;
 
       padding:
-        20px;
+        21px;
 
       margin-bottom:
         16px;
 
       box-shadow:
-        0 6px 22px
-        rgba(0,0,0,0.07);
+        0 18px 50px
+        rgba(0,0,0,.18);
+
+      backdrop-filter:
+        blur(12px);
 
     }
 
@@ -187,19 +493,39 @@
     .card-title {
 
       font-size:
-        18px;
+        19px;
 
       font-weight:
-        800;
+        900;
 
       margin-bottom:
-        15px;
+        17px;
+
+      letter-spacing:
+        -.5px;
+
+    }
+
+
+    .card-subtitle {
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+      margin:
+        -8px 0 17px;
+
+      line-height:
+        1.5;
 
     }
 
 
     /* ======================================================
-       MODE BUTTON
+       📥📤 입출고 선택
        ====================================================== */
 
     .mode-buttons {
@@ -214,7 +540,7 @@
         10px;
 
       margin-bottom:
-        15px;
+        17px;
 
     }
 
@@ -222,22 +548,26 @@
     .mode-button {
 
       border:
-        0;
+        1px solid
+        transparent;
 
       border-radius:
-        15px;
+        16px;
 
       padding:
-        15px;
+        15px 10px;
 
       font-size:
         16px;
 
       font-weight:
-        800;
+        900;
 
       cursor:
         pointer;
+
+      transition:
+        .18s;
 
     }
 
@@ -245,10 +575,10 @@
     .mode-button.in {
 
       background:
-        #e9f8ef;
+        #ecfdf3;
 
       color:
-        #15733c;
+        var(--green);
 
     }
 
@@ -256,28 +586,25 @@
     .mode-button.out {
 
       background:
-        #fff0f0;
+        #fff1f2;
 
       color:
-        #b3261e;
+        var(--red);
 
     }
 
 
     .mode-button.active {
 
-      outline:
-        3px solid
+      box-shadow:
+        0 0 0 3px
         currentColor;
-
-      outline-offset:
-        1px;
 
     }
 
 
     /* ======================================================
-       VOICE
+       🎙️ 음성 영역
        ====================================================== */
 
     .voice-area {
@@ -286,84 +613,113 @@
         center;
 
       padding:
-        20px 10px;
+        8px 4px 5px;
 
     }
 
 
-    .voice-button {
+    .main-buttons {
+
+      display:
+        flex;
+
+      justify-content:
+        center;
+
+      gap:
+        10px;
+
+    }
+
+
+    .main-button {
 
       width:
-        125px;
+        170px;
 
       height:
-        125px;
-
-      border-radius:
-        50%;
+        56px;
 
       border:
-        none;
+        1px solid
+        rgba(201,162,39,.75);
 
-      background:
-        #111827;
+      border-radius:
+        17px;
 
       color:
         white;
 
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #252c3a
+        );
+
       font-size:
-        17px;
+        15px;
 
       font-weight:
-        800;
+        900;
 
       cursor:
         pointer;
 
       box-shadow:
-        0 12px 30px
-        rgba(17,24,39,0.25);
+        0 9px 25px
+        rgba(0,0,0,.20);
 
       transition:
-        0.2s;
+        .18s;
 
     }
 
 
-    .voice-button.recording {
-
-      background:
-        #dc2626;
+    .main-button:hover {
 
       transform:
-        scale(1.05);
-
-      animation:
-        pulse 1.2s
-        infinite;
+        translateY(-1px);
 
     }
 
 
-    @keyframes pulse {
+    .main-button:disabled {
 
-      0% {
-        box-shadow:
-          0 0 0 0
-          rgba(220,38,38,0.35);
-      }
+      opacity:
+        .48;
 
-      70% {
-        box-shadow:
-          0 0 0 20px
-          rgba(220,38,38,0);
-      }
+      cursor:
+        not-allowed;
 
-      100% {
-        box-shadow:
-          0 0 0 0
-          rgba(220,38,38,0);
-      }
+      transform:
+        none;
+
+    }
+
+
+    .main-button.finish {
+
+      background:
+        linear-gradient(
+          135deg,
+          #c9a227,
+          #a88414
+        );
+
+      color:
+        #111827;
+
+    }
+
+
+    .main-button-label {
+
+      display:
+        inline-block;
+
+      margin-left:
+        4px;
 
     }
 
@@ -371,16 +727,33 @@
     .voice-status {
 
       margin-top:
-        14px;
+        13px;
 
       font-size:
-        14px;
+        13px;
 
       color:
-        #666;
+        var(--muted);
 
       min-height:
-        22px;
+        20px;
+
+    }
+
+
+    .timer {
+
+      margin-top:
+        4px;
+
+      font-size:
+        12px;
+
+      color:
+        var(--muted);
+
+      min-height:
+        17px;
 
     }
 
@@ -388,40 +761,343 @@
     .recognized-text {
 
       margin-top:
-        14px;
+        13px;
 
       padding:
         13px;
 
       background:
-        #f7f7f8;
+        #f8fafc;
+
+      border:
+        1px solid
+        #e5e7eb;
 
       border-radius:
-        13px;
+        14px;
 
       font-size:
         14px;
 
       line-height:
-        1.6;
+        1.65;
 
       text-align:
         left;
 
       min-height:
-        48px;
+        51px;
+
+      white-space:
+        pre-wrap;
+
+      word-break:
+        break-word;
 
     }
 
 
     /* ======================================================
-       FORM
+       ✏️ 직접 입력 버튼
+       ====================================================== */
+
+    .direct-button {
+
+      width:
+        100%;
+
+      margin-top:
+        12px;
+
+      border:
+        1px solid
+        #d9dde5;
+
+      border-radius:
+        15px;
+
+      padding:
+        14px;
+
+      background:
+        white;
+
+      color:
+        #374151;
+
+      font-size:
+        15px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    /* ======================================================
+       📝 STEP 2 HEADER
+       ====================================================== */
+
+    .preview-header {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        7px;
+
+      margin-bottom:
+        14px;
+
+    }
+
+
+    .preview-actions {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        5px;
+
+      width:
+        100%;
+
+    }
+
+
+    .preview-action-button {
+
+      flex:
+        1;
+
+      min-width:
+        0;
+
+      border:
+        1px solid
+        #e1e4e9;
+
+      border-radius:
+        11px;
+
+      padding:
+        9px 7px;
+
+      background:
+        white;
+
+      color:
+        #374151;
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      white-space:
+        nowrap;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .preview-step-label {
+
+      flex:
+        0 0 auto;
+
+      color:
+        #9ca3af;
+
+      font-size:
+        11px;
+
+      font-weight:
+        900;
+
+      padding-left:
+        2px;
+
+    }
+
+
+    /* ======================================================
+       🏢 거래처 검색
+       ====================================================== */
+
+    .client-search-wrap {
+
+      position:
+        relative;
+
+    }
+
+
+    .client-search-row {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr;
+
+      gap:
+        8px;
+
+    }
+
+
+    .client-search {
+
+      position:
+        relative;
+
+    }
+
+
+    .client-search-icon {
+
+      position:
+        absolute;
+
+      left:
+        13px;
+
+      top:
+        50%;
+
+      transform:
+        translateY(-50%);
+
+      font-size:
+        15px;
+
+      z-index:
+        1;
+
+    }
+
+
+    .client-search input {
+
+      padding-left:
+        39px;
+
+    }
+
+
+    .client-candidates {
+
+      margin-top:
+        7px;
+
+      max-height:
+        180px;
+
+      overflow-y:
+        auto;
+
+      border-radius:
+        13px;
+
+    }
+
+
+    .client-candidate {
+
+      padding:
+        11px 13px;
+
+      border:
+        1px solid
+        #e5e7eb;
+
+      border-bottom:
+        none;
+
+      background:
+        white;
+
+      cursor:
+        pointer;
+
+      font-size:
+        14px;
+
+    }
+
+
+    .client-candidate:last-child {
+
+      border-bottom:
+        1px solid
+        #e5e7eb;
+
+    }
+
+
+    .client-candidate:hover {
+
+      background:
+        #f8fafc;
+
+    }
+
+
+    .selected-client {
+
+      margin-top:
+        8px;
+
+      padding:
+        11px 13px;
+
+      background:
+        #ecfdf3;
+
+      border:
+        1px solid
+        #bbf7d0;
+
+      color:
+        #166534;
+
+      border-radius:
+        12px;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    /* ======================================================
+       🏷️ FIELD
        ====================================================== */
 
     .field {
 
       margin-bottom:
-        15px;
+        16px;
 
     }
 
@@ -443,13 +1119,13 @@
         13px;
 
       font-weight:
-        800;
+        900;
 
       margin-bottom:
         7px;
 
       color:
-        #555;
+        #4b5563;
 
     }
 
@@ -463,19 +1139,22 @@
 
       border:
         1px solid
-        #d9dde5;
+        #dfe3e8;
 
       border-radius:
-        13px;
+        14px;
 
       padding:
         13px;
 
       font-size:
-        15px;
+        17px;
 
       background:
         white;
+
+      color:
+        #111827;
 
       outline:
         none;
@@ -488,11 +1167,19 @@
     textarea:focus {
 
       border-color:
-        #4f6fd8;
+        var(--gold);
 
       box-shadow:
         0 0 0 3px
-        rgba(79,111,216,0.1);
+        rgba(201,162,39,.12);
+
+    }
+
+
+    input[type="date"] {
+
+      min-height:
+        49px;
 
     }
 
@@ -500,16 +1187,33 @@
     textarea {
 
       min-height:
-        80px;
+        85px;
 
       resize:
         vertical;
+
+      line-height:
+        1.55;
+
+    }
+
+
+    .product-help {
+
+      margin-top:
+        7px;
+
+      color:
+        #9ca3af;
+
+      font-size:
+        11px;
 
     }
 
 
     /* ======================================================
-       SUMMARY
+       📊 SUMMARY
        ====================================================== */
 
     .summary {
@@ -522,16 +1226,16 @@
         #e5e7eb;
 
       border-radius:
-        15px;
+        16px;
 
       padding:
         15px;
 
       margin-top:
-        16px;
+        17px;
 
       line-height:
-        1.8;
+        1.85;
 
       font-size:
         14px;
@@ -542,13 +1246,13 @@
     .summary strong {
 
       font-weight:
-        800;
+        900;
 
     }
 
 
     /* ======================================================
-       BUTTON
+       🚀 BUTTON
        ====================================================== */
 
     .primary-button {
@@ -557,16 +1261,21 @@
         100%;
 
       border:
-        none;
+        1px solid
+        rgba(201,162,39,.75);
 
       border-radius:
-        15px;
+        16px;
 
       padding:
         16px;
 
       background:
-        #111827;
+        linear-gradient(
+          135deg,
+          #111827,
+          #252c3a
+        );
 
       color:
         white;
@@ -575,13 +1284,17 @@
         16px;
 
       font-weight:
-        800;
+        900;
 
       cursor:
         pointer;
 
       margin-top:
-        16px;
+        17px;
+
+      box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.15);
 
     }
 
@@ -589,7 +1302,7 @@
     .primary-button:disabled {
 
       opacity:
-        0.45;
+        .45;
 
       cursor:
         not-allowed;
@@ -604,7 +1317,7 @@
 
       border:
         1px solid
-        #d6dae2;
+        #d8dce3;
 
       border-radius:
         15px;
@@ -616,13 +1329,13 @@
         white;
 
       color:
-        #444;
+        #374151;
 
       font-size:
         15px;
 
       font-weight:
-        700;
+        800;
 
       cursor:
         pointer;
@@ -634,7 +1347,7 @@
 
 
     /* ======================================================
-       LOADING
+       ⏳ LOADING
        ====================================================== */
 
     .loading {
@@ -643,10 +1356,10 @@
         center;
 
       padding:
-        35px 15px;
+        30px 10px;
 
       color:
-        #666;
+        var(--muted);
 
     }
 
@@ -654,27 +1367,27 @@
     .spinner {
 
       width:
-        34px;
+        36px;
 
       height:
-        34px;
+        36px;
 
       border:
         4px solid
         #e5e7eb;
 
       border-top-color:
-        #111827;
+        var(--gold);
 
       border-radius:
         50%;
 
       animation:
-        spin 0.8s
+        spin .8s
         linear infinite;
 
       margin:
-        0 auto 12px;
+        0 auto 13px;
 
     }
 
@@ -682,15 +1395,17 @@
     @keyframes spin {
 
       to {
+
         transform:
           rotate(360deg);
+
       }
 
     }
 
 
     /* ======================================================
-       RESULT
+       🎉 RESULT
        ====================================================== */
 
     .result {
@@ -699,7 +1414,7 @@
         center;
 
       padding:
-        25px 10px;
+        20px 7px 7px;
 
     }
 
@@ -718,10 +1433,10 @@
     .result-title {
 
       font-size:
-        22px;
+        24px;
 
       font-weight:
-        900;
+        950;
 
     }
 
@@ -729,13 +1444,16 @@
     .result-text {
 
       margin-top:
-        10px;
+        12px;
 
       color:
-        #666;
+        #6b7280;
 
       line-height:
-        1.7;
+        1.85;
+
+      font-size:
+        14px;
 
     }
 
@@ -748,51 +1466,143 @@
     }
 
 
+    /* ======================================================
+       📱 모바일
+       ====================================================== */
+
     @media (
-      max-width: 480px
+      max-width: 500px
     ) {
 
-      .app {
+      body {
 
         padding:
-          12px 10px 35px;
+          0 10px 25px;
 
       }
 
-      .header {
+
+      .container {
+
+        max-width:
+          100%;
+
+      }
+
+
+      .hero {
+
+        margin:
+          0 -10px 16px;
+
+        height:
+          270px;
 
         border-radius:
-          18px;
-
-        padding:
-          20px 17px;
+          0 0 27px 27px;
 
       }
 
-      .header-title {
+
+      .hero-title {
 
         font-size:
-          22px;
+          25px;
 
       }
+
+
+      .hero-sub {
+
+        font-size:
+          10px;
+
+      }
+
 
       .card {
 
-        border-radius:
-          17px;
-
         padding:
           17px;
 
+        border-radius:
+          19px;
+
       }
 
-      .voice-button {
+
+      .main-buttons {
+
+        gap:
+          7px;
+
+      }
+
+
+      .main-button {
 
         width:
-          110px;
+          50%;
 
         height:
-          110px;
+          54px;
+
+        font-size:
+          14px;
+
+      }
+
+
+      .preview-actions {
+
+        gap:
+          4px;
+
+      }
+
+
+      .preview-action-button {
+
+        padding:
+          9px 5px;
+
+        font-size:
+          12px;
+
+      }
+
+
+      .preview-step-label {
+
+        display:
+          none;
+
+      }
+
+    }
+
+
+    @media (
+      max-width: 420px
+    ) {
+
+      .preview-action-button {
+
+        font-size:
+          13px;
+
+        padding:
+          8px 4px;
+
+      }
+
+
+      select,
+      input,
+      textarea {
+
+        font-size:
+          16px;
 
       }
 
@@ -802,33 +1612,44 @@
 
 </head>
 
-
 <body>
 
-
-<div class="app">
-
+<div class="container">
 
   <!-- =====================================================
-       HEADER
+       🏆 HERO
        ====================================================== -->
 
-  <div class="header">
+  <div class="hero">
 
-    <div class="header-title">
+```
+<div class="hero-content">
 
-      📦 푸로찜 에스 X BoxHero
+  <div class="hero-kicker">
+    BOXHERO INVENTORY
+  </div>
 
-    </div>
+  <div class="hero-symbol">
+    ♛
+  </div>
 
-    <div class="header-sub">
+  <div class="hero-title">
 
-      음성 주문 → 확인 → BoxHero 자동 등록
-
-    </div>
+    푸로찜 에스<br>
+    입출고 시스템
 
   </div>
 
+  <div class="hero-sub">
+
+    김경우 ♡ 박희수 ♡ 김준모 ♡ 김준석
+
+  </div>
+
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        STEP 1
@@ -836,195 +1657,236 @@
 
   <div
     id="step1"
+    class="screen"
   >
 
-    <div class="step">
+```
+<div class="step-indicator">
 
-      STEP 1 · 주문 입력
+  <div class="step-dot active"></div>
 
-    </div>
+  <div class="step-line"></div>
 
+  <div class="step-dot"></div>
 
-    <div class="card">
+  <div class="step-line"></div>
 
-      <div class="card-title">
+  <div class="step-dot"></div>
 
-        거래 유형
-
-      </div>
-
-
-      <div class="mode-buttons">
-
-        <button
-          id="inButton"
-          class="mode-button in active"
-          onclick="setType('in')"
-        >
-          📥 입고
-        </button>
-
-        <button
-          id="outButton"
-          class="mode-button out"
-          onclick="setType('out')"
-        >
-          📤 출고
-        </button>
-
-      </div>
+</div>
 
 
-      <div class="voice-area">
+<div class="card">
 
-        <button
-          id="voiceButton"
-          class="voice-button"
-          onclick="toggleVoice()"
-        >
+  <div class="card-title">
 
-          🎙️<br>
-          말하기
+    📦 주문을 입력해주세요
 
-        </button>
+  </div>
 
+  <div class="card-subtitle">
 
-        <div
-          id="voiceStatus"
-          class="voice-status"
-        >
+    음성으로 말하거나 직접 입력할 수 있습니다.
 
-          버튼을 누르고 주문 내용을 말해주세요.
-
-        </div>
+  </div>
 
 
-        <div
-          id="recognizedText"
-          class="recognized-text"
-        >
+  <div class="mode-buttons">
 
-          음성 인식 내용이 여기에 표시됩니다.
+    <button
+      id="inButton"
+      class="mode-button in active"
+      onclick="setType('in')"
+    >
+      📥 입고
+    </button>
 
-        </div>
+    <button
+      id="outButton"
+      class="mode-button out"
+      onclick="setType('out')"
+    >
+      📤 출고
+    </button>
 
-      </div>
+  </div>
+
+
+  <div class="voice-area">
+
+    <div class="main-buttons">
+
+      <button
+        id="startButton"
+        class="main-button"
+        onclick="startVoice()"
+      >
+
+        🎙️
+        <span class="main-button-label">
+          말하기 시작
+        </span>
+
+      </button>
 
 
       <button
-        class="secondary-button"
-        onclick="showDirectInput()"
+        id="finishButton"
+        class="main-button finish"
+        onclick="finishRecording()"
+        disabled
       >
 
-        ✏️ 직접 입력하기
+        ⏹️
+        <span class="main-button-label">
+          말하기 완료
+        </span>
 
       </button>
 
     </div>
 
-  </div>
 
-
-  <!-- =====================================================
-       직접 입력
-       ====================================================== -->
-
-  <div
-    id="directInputCard"
-    class="card hidden"
-  >
-
-    <div class="card-title">
-
-      직접 주문 입력
-
-    </div>
-
-
-    <div class="field">
-
-      <label class="field-label">
-
-        거래처
-
-      </label>
-
-      <select
-        id="directPartner"
-      ></select>
-
-    </div>
-
-
-    <div class="field">
-
-      <label class="field-label">
-
-        규격
-
-      </label>
-
-      <select
-        id="directItem"
-      ></select>
-
-    </div>
-
-
-    <div class="field">
-
-      <label class="field-label">
-
-        수량
-
-      </label>
-
-      <input
-        id="directQuantity"
-        type="number"
-        min="1"
-        value="1"
-      >
-
-    </div>
-
-
-    <div class="field">
-
-      <label class="field-label">
-
-        납품형태
-
-      </label>
-
-      <select
-        id="directDeliveryType"
-      >
-
-        <option value="직송">
-          직송
-        </option>
-
-        <option value="택배 발송">
-          택배 발송
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <button
-      class="primary-button"
-      onclick="directInputAnalyze()"
+    <div
+      id="voiceStatus"
+      class="voice-status"
     >
 
-      🔎 분석하고 확인하기
+      버튼을 누르고 주문 내용을 말씀해주세요.
 
-    </button>
+    </div>
+
+
+    <div
+      id="timer"
+      class="timer"
+    ></div>
+
+
+    <div
+      id="recognizedText"
+      class="recognized-text"
+    >
+
+      음성 인식 내용이 여기에 표시됩니다.
+
+    </div>
 
   </div>
 
+
+  <button
+    id="directButton"
+    class="direct-button"
+    onclick="showDirectInput()"
+  >
+
+    ✏️ 직접 입력하기
+
+  </button>
+
+</div>
+
+
+<div
+  id="directInputCard"
+  class="card hidden"
+>
+
+  <div class="card-title">
+
+    ✏️ 직접 주문 입력
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      거래처
+    </label>
+
+    <select
+      id="directPartner"
+    ></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      제품
+    </label>
+
+    <select
+      id="directItem"
+    ></select>
+
+    <div class="product-help">
+      푸로찜 15 KG → 20 KG → 12 KG
+    </div>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      수량
+    </label>
+
+    <input
+      id="directQuantity"
+      type="number"
+      min="1"
+      value="1"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      날짜
+    </label>
+
+    <input
+      id="directDate"
+      type="date"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      메모
+    </label>
+
+    <textarea
+      id="directMemo"
+      placeholder="필요하면 메모를 입력하세요."
+    ></textarea>
+
+  </div>
+
+
+  <button
+    class="primary-button"
+    onclick="directInputAnalyze()"
+  >
+
+    🔎 분석하고 확인하기
+
+  </button>
+
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        STEP 2
@@ -1032,143 +1894,263 @@
 
   <div
     id="step2"
-    class="hidden"
+    class="screen hidden"
   >
 
-    <div class="step">
+```
+<div class="step-indicator">
 
-      STEP 2 · 확인 / 수정
+  <div class="step-dot"></div>
 
-    </div>
+  <div class="step-line"></div>
 
+  <div class="step-dot active"></div>
 
-    <div class="card">
+  <div class="step-line"></div>
 
-      <div class="card-title">
+  <div class="step-dot"></div>
 
-        주문 내용을 확인해주세요.
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-
-          거래처
-
-        </label>
-
-        <select
-          id="partnerSelect"
-        ></select>
-
-      </div>
+</div>
 
 
-      <div class="field">
-
-        <label class="field-label">
-
-          상품
-
-        </label>
-
-        <select
-          id="itemSelect"
-        ></select>
-
-      </div>
+<div class="card">
 
 
-      <div class="field">
+  <div class="preview-header">
 
-        <label class="field-label">
-
-          수량
-
-        </label>
-
-        <input
-          id="quantityInput"
-          type="number"
-          min="1"
-          value="1"
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-
-          납품형태
-
-        </label>
-
-        <select
-          id="deliveryTypeSelect"
-        >
-
-          <option value="직송">
-            직송
-          </option>
-
-          <option value="택배 발송">
-            택배 발송
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-
-          메모
-
-        </label>
-
-        <textarea
-          id="memoInput"
-          placeholder="필요하면 메모를 입력하세요."
-        ></textarea>
-
-      </div>
-
-
-      <div
-        id="summary"
-        class="summary"
-      ></div>
-
+    <div class="preview-actions">
 
       <button
-        class="primary-button"
-        onclick="registerTransaction()"
-      >
-
-        🚀 최종 확인 · BoxHero 등록
-
-      </button>
-
-
-      <button
-        class="secondary-button"
+        class="preview-action-button"
         onclick="backToStep1()"
       >
 
-        ← 입력 화면으로
+        ← 입력 화면
 
       </button>
+
+
+      <button
+        class="preview-action-button"
+        onclick="refreshMasterData()"
+      >
+
+        🔄 새로 고침
+
+      </button>
+
+
+      <div class="preview-step-label">
+
+        STEP 2
+
+      </div>
 
     </div>
 
   </div>
 
+
+  <div class="card-title">
+
+    📝 등록 내용을 확인해주세요
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      거래처
+    </label>
+
+
+    <div class="client-search-wrap">
+
+      <div class="client-search">
+
+        <span class="client-search-icon">
+          🔍
+        </span>
+
+        <input
+          id="partnerSearch"
+          type="text"
+          placeholder="거래처를 검색하세요."
+          autocomplete="off"
+        >
+
+      </div>
+
+
+      <div
+        id="clientCandidates"
+        class="client-candidates"
+      ></div>
+
+
+      <div
+        id="selectedClient"
+        class="selected-client hidden"
+      ></div>
+
+    </div>
+
+
+    <select
+      id="partnerSelect"
+      class="hidden"
+    ></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      제품
+    </label>
+
+    <select
+      id="itemSelect"
+    ></select>
+
+    <div class="product-help">
+      푸로찜 15 KG → 20 KG → 12 KG
+    </div>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      수량
+    </label>
+
+    <input
+      id="quantityInput"
+      type="number"
+      min="1"
+      value="1"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      입출고
+    </label>
+
+    <select
+      id="typeSelect"
+    >
+
+      <option value="in">
+        📥 입고
+      </option>
+
+      <option value="out">
+        📤 출고
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      날짜
+    </label>
+
+    <input
+      id="dateInput"
+      type="date"
+    >
+
+    <div class="product-help">
+      시간은 입력을 시작한 현재 시간이 유지됩니다.
+    </div>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      납품형태
+    </label>
+
+    <select
+      id="deliveryTypeSelect"
+    >
+
+      <option value="">
+        납품형태를 선택하세요
+      </option>
+
+      <option value="택배 발송">
+        📦 택배 발송
+      </option>
+
+      <option value="본사 발송">
+        🏢 본사 발송
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      메모
+    </label>
+
+    <textarea
+      id="memoInput"
+      placeholder="필요하면 추가 메모를 입력하세요."
+    ></textarea>
+
+  </div>
+
+
+  <div
+    id="summary"
+    class="summary"
+  ></div>
+
+
+  <button
+    id="registerButton"
+    class="primary-button"
+    onclick="registerTransaction()"
+  >
+
+    🚀 최종 확인 · BoxHero 등록
+
+  </button>
+
+
+  <button
+    class="secondary-button"
+    onclick="backToStep1()"
+  >
+
+    ← 입력 화면으로
+
+  </button>
+
+
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        LOADING
@@ -1179,23 +2161,24 @@
     class="card hidden"
   >
 
-    <div class="loading">
+```
+<div class="loading">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div id="loadingText">
+  <div id="loadingText">
 
-        처리 중입니다.
-
-      </div>
-
-    </div>
+    처리 중입니다.
 
   </div>
 
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
-       RESULT
+       STEP 3
        ====================================================== -->
 
   <div
@@ -1203,44 +2186,179 @@
     class="card hidden"
   >
 
-    <div class="result">
+```
+<div class="step-indicator">
 
-      <div class="result-icon">
+  <div class="step-dot"></div>
 
-        🎉
+  <div class="step-line"></div>
 
-      </div>
+  <div class="step-dot"></div>
 
-      <div class="result-title">
+  <div class="step-line"></div>
 
-        BoxHero 등록 완료!
-
-      </div>
-
-      <div
-        id="resultText"
-        class="result-text"
-      ></div>
-
-
-      <button
-        class="primary-button"
-        onclick="resetApp()"
-      >
-
-        ➕ 다음 주문 입력
-
-      </button>
-
-    </div>
-
-  </div>
-
+  <div class="step-dot active"></div>
 
 </div>
 
 
+<div class="result">
+
+  <div class="result-icon">
+    🎉
+  </div>
+
+
+  <div class="result-title">
+
+    BoxHero 등록 완료!
+
+  </div>
+
+
+  <div
+    id="resultText"
+    class="result-text"
+  ></div>
+
+
+  <button
+    class="primary-button"
+    onclick="resetApp()"
+  >
+
+    🎙️ 새 입출고 입력
+
+  </button>
+
+</div>
+```
+
+  </div>
+
+</div>
+
 <script>
+
+
+// ==========================================================
+// 🌐 GitHub Pages → GAS Web App
+//
+// ⚠️ 여기 한 곳에만 실제 GAS Web App /exec 주소를 넣습니다.
+//
+// 예:
+// const GAS_WEB_APP_URL =
+//   'https://script.google.com/macros/s/XXXXXXXXXXXX/exec';
+//
+// GitHub Pages에서는 google.script.run을 사용할 수 없으므로
+// 아래의 callGas() 함수가 GAS Web App으로 요청을 전달합니다.
+// ==========================================================
+
+const GAS_WEB_APP_URL =
+  '여기에_실제_GAS_Web_App_exec_URL을_넣으세요';
+
+
+// ==========================================================
+// 📡 GAS Web App 호출
+// ==========================================================
+//
+// action:
+//   getBoxHeroMasterData
+//   registerBoxHeroTransaction
+//
+// data:
+//   각 GAS 함수에 전달할 객체
+// ==========================================================
+
+async function callGas(
+  action,
+  data
+) {
+
+  if (
+    !GAS_WEB_APP_URL ||
+    GAS_WEB_APP_URL.includes(
+      '여기에_실제_GAS'
+    )
+  ) {
+
+    throw new Error(
+      'GAS_WEB_APP_URL이 아직 설정되지 않았습니다.'
+    );
+
+  }
+
+
+  const response =
+    await fetch(
+      GAS_WEB_APP_URL,
+      {
+
+        method:
+          'POST',
+
+        headers: {
+
+          'Content-Type':
+            'text/plain;charset=utf-8'
+
+        },
+
+        body:
+          JSON.stringify({
+
+            action:
+              action,
+
+            data:
+              data || {}
+
+          })
+
+      }
+    );
+
+
+  if (
+    !response.ok
+  ) {
+
+    throw new Error(
+      'GAS Web App HTTP 오류: ' +
+      response.status
+    );
+
+  }
+
+
+  const result =
+    await response.json();
+
+
+  if (
+    result &&
+    result.ok === false
+  ) {
+
+    throw new Error(
+      result.message ||
+      'GAS Web App에서 오류가 발생했습니다.'
+    );
+
+  }
+
+
+  return (
+    result &&
+    Object.prototype.hasOwnProperty.call(
+      result,
+      'data'
+    )
+      ? result.data
+      : result
+  );
+
+}
 
 
 // ==========================================================
@@ -1261,11 +2379,165 @@ let masterData = {
 let selectedType =
   'in';
 
+
 let recognition =
   null;
 
+
 let isRecording =
   false;
+
+
+let finishRequested =
+  false;
+
+
+let recognitionRunning =
+  false;
+
+
+let recognitionStartPending =
+  false;
+
+
+let finalTranscript =
+  '';
+
+
+let interimTranscript =
+  '';
+
+
+let displayedTranscript =
+  '';
+
+
+let recordingTimer =
+  null;
+
+
+let recognitionRestartTimer =
+  null;
+
+
+let isSending =
+  false;
+
+
+let transactionTime =
+  '';
+
+
+// ==========================================================
+// 📅 오늘 날짜
+// ==========================================================
+
+function getTodayLocal() {
+
+  const now =
+    new Date();
+
+  const year =
+    now.getFullYear();
+
+  const month =
+    String(
+      now.getMonth() + 1
+    ).padStart(
+      2,
+      '0'
+    );
+
+  const day =
+    String(
+      now.getDate()
+    ).padStart(
+      2,
+      '0'
+    );
+
+  return (
+    year +
+    '-' +
+    month +
+    '-' +
+    day
+  );
+
+}
+
+
+// ==========================================================
+// ⏰ 현재 시간
+// ==========================================================
+
+function getCurrentTimeLocal() {
+
+  const now =
+    new Date();
+
+  const hours =
+    String(
+      now.getHours()
+    ).padStart(
+      2,
+      '0'
+    );
+
+  const minutes =
+    String(
+      now.getMinutes()
+    ).padStart(
+      2,
+      '0'
+    );
+
+  const seconds =
+    String(
+      now.getSeconds()
+    ).padStart(
+      2,
+      '0'
+    );
+
+  return (
+    hours +
+    ':' +
+    minutes +
+    ':' +
+    seconds
+  );
+
+}
+
+
+// ==========================================================
+// 📅 날짜 + 시간 만들기
+// ==========================================================
+
+function combineDateAndTime(
+  date
+) {
+
+  const selectedDate =
+    String(
+      date ||
+      getTodayLocal()
+    ).trim();
+
+
+  const time =
+    transactionTime ||
+    getCurrentTimeLocal();
+
+
+  return (
+    selectedDate +
+    ' ' +
+    time
+  );
+
+}
 
 
 // ==========================================================
@@ -1276,14 +2548,37 @@ window.addEventListener(
   'load',
   function() {
 
+    transactionTime =
+      getCurrentTimeLocal();
+
+
+    document
+      .getElementById(
+        'directDate'
+      )
+      .value =
+        getTodayLocal();
+
+
+    document
+      .getElementById(
+        'dateInput'
+      )
+      .value =
+        getTodayLocal();
+
+
     loadMasterData();
+
+
+    setupPartnerSearch();
 
   }
 );
 
 
 // ==========================================================
-// 📚 BoxHero 마스터 데이터 조회
+// 📚 BoxHero 마스터 데이터
 // ==========================================================
 
 function loadMasterData() {
@@ -1292,19 +2587,19 @@ function loadMasterData() {
     'BoxHero 거래처와 상품 정보를 불러오는 중입니다...'
   );
 
-  google
-    .script
-    .run
-    .withSuccessHandler(
+
+  callGas(
+    'getBoxHeroMasterData',
+    {}
+  )
+    .then(
       function(data) {
 
         masterData =
           data || {
 
             partners: [],
-
             items: [],
-
             locations: []
 
           };
@@ -1318,7 +2613,7 @@ function loadMasterData() {
 
       }
     )
-    .withFailureHandler(
+    .catch(
       function(error) {
 
         hideLoading();
@@ -1329,8 +2624,181 @@ function loadMasterData() {
         );
 
       }
+    );
+
+}
+
+
+// ==========================================================
+// 🔄 STEP 2 새로고침
+//
+// 기존 입력값은 최대한 보존합니다.
+// ==========================================================
+
+function refreshMasterData() {
+
+  const oldPartner =
+    document
+      .getElementById(
+        'partnerSelect'
+      )
+      .value;
+
+  const oldItem =
+    document
+      .getElementById(
+        'itemSelect'
+      )
+      .value;
+
+  const oldQuantity =
+    document
+      .getElementById(
+        'quantityInput'
+      )
+      .value;
+
+  const oldType =
+    document
+      .getElementById(
+        'typeSelect'
+      )
+      .value;
+
+  const oldDate =
+    document
+      .getElementById(
+        'dateInput'
+      )
+      .value;
+
+  const oldMemo =
+    document
+      .getElementById(
+        'memoInput'
+      )
+      .value;
+
+  const oldDeliveryType =
+    document
+      .getElementById(
+        'deliveryTypeSelect'
+      )
+      .value;
+
+
+  showLoading(
+    'BoxHero 최신 정보를 다시 불러오는 중입니다...'
+  );
+
+
+  callGas(
+    'getBoxHeroMasterData',
+    {}
+  )
+    .then(
+      function(data) {
+
+        masterData =
+          data || {
+
+            partners: [],
+            items: [],
+            locations: []
+
+          };
+
+
+        populatePartnerSelects();
+
+        populateItemSelects();
+
+
+        document
+          .getElementById(
+            'partnerSelect'
+          )
+          .value =
+            oldPartner;
+
+
+        document
+          .getElementById(
+            'itemSelect'
+          )
+          .value =
+            oldItem;
+
+
+        document
+          .getElementById(
+            'quantityInput'
+          )
+          .value =
+            oldQuantity;
+
+
+        document
+          .getElementById(
+            'typeSelect'
+          )
+          .value =
+            oldType;
+
+
+        document
+          .getElementById(
+            'dateInput'
+          )
+          .value =
+            oldDate;
+
+
+        document
+          .getElementById(
+            'memoInput'
+          )
+          .value =
+            oldMemo;
+
+
+        document
+          .getElementById(
+            'deliveryTypeSelect'
+          )
+          .value =
+            oldDeliveryType;
+
+
+        selectedType =
+          oldType;
+
+
+        setType(
+          oldType
+        );
+
+
+        updateSelectedClient();
+
+        updateSummary();
+
+        hideLoading();
+
+      }
     )
-    .getBoxHeroMasterData();
+    .catch(
+      function(error) {
+
+        hideLoading();
+
+        alert(
+          '새로고침에 실패했습니다.\n\n' +
+          getErrorMessage(error)
+        );
+
+      }
+    );
 
 }
 
@@ -1358,7 +2826,9 @@ function populatePartnerSelects() {
     function(select) {
 
       if (!select) {
+
         return;
+
       }
 
 
@@ -1392,11 +2862,14 @@ function populatePartnerSelects() {
               'option'
             );
 
+
           option.value =
             partner.id;
 
+
           option.textContent =
             partner.name;
+
 
           select.appendChild(
             option
@@ -1434,12 +2907,14 @@ function populateItemSelects() {
     function(select) {
 
       if (!select) {
+
         return;
+
       }
 
 
       select.innerHTML =
-        '<option value="">규격을 선택하세요</option>';
+        '<option value="">제품을 선택하세요</option>';
 
 
       const items =
@@ -1457,6 +2932,48 @@ function populateItemSelects() {
           )
           .sort(
             function(a, b) {
+
+              const aSize =
+                getProductSize(
+                  a.name
+                );
+
+              const bSize =
+                getProductSize(
+                  b.name
+                );
+
+
+              const order = {
+
+                15: 1,
+
+                20: 2,
+
+                12: 3
+
+              };
+
+
+              const aOrder =
+                order[aSize] || 99;
+
+              const bOrder =
+                order[bSize] || 99;
+
+
+              if (
+                aOrder !==
+                bOrder
+              ) {
+
+                return (
+                  aOrder -
+                  bOrder
+                );
+
+              }
+
 
               return String(
                 a.name
@@ -1479,11 +2996,14 @@ function populateItemSelects() {
               'option'
             );
 
+
           option.value =
             item.id;
 
+
           option.textContent =
             item.name;
+
 
           select.appendChild(
             option
@@ -1499,193 +3019,173 @@ function populateItemSelects() {
 
 
 // ==========================================================
+// 📏 제품 규격
+// ==========================================================
+
+function getProductSize(
+  productName
+) {
+
+  const text =
+    String(
+      productName || ''
+    );
+
+
+  if (
+    /12\s*(kg|KG|키로|킬로)/i.test(
+      text
+    )
+  ) {
+
+    return 12;
+
+  }
+
+
+  if (
+    /15\s*(kg|KG|키로|킬로)/i.test(
+      text
+    )
+  ) {
+
+    return 15;
+
+  }
+
+
+  if (
+    /20\s*(kg|KG|키로|킬로)/i.test(
+      text
+    )
+  ) {
+
+    return 20;
+
+  }
+
+
+  return '';
+
+}
+
+
+// ==========================================================
 // 📥📤 거래 유형
 // ==========================================================
 
-function setType(type) {
+function setType(
+  type
+) {
 
   selectedType =
     type;
 
 
-  document
-    .getElementById(
+  const inButton =
+    document.getElementById(
       'inButton'
-    )
-    .classList
-    .toggle(
-      'active',
-      type === 'in'
     );
 
-
-  document
-    .getElementById(
+  const outButton =
+    document.getElementById(
       'outButton'
-    )
-    .classList
-    .toggle(
-      'active',
-      type === 'out'
     );
 
-}
 
+  if (inButton) {
 
-// ==========================================================
-// 🎙️ 음성 인식
-// ==========================================================
-
-function initRecognition() {
-
-  const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
-
-
-  if (!SpeechRecognition) {
-
-    alert(
-      '이 브라우저에서는 음성인식을 사용할 수 없습니다.\n' +
-      'Chrome 또는 Edge에서 사용해주세요.'
-    );
-
-    return false;
+    inButton
+      .classList
+      .toggle(
+        'active',
+        type === 'in'
+      );
 
   }
 
 
-  recognition =
-    new SpeechRecognition();
+  if (outButton) {
 
-
-  recognition.lang =
-    'ko-KR';
-
-  recognition.continuous =
-    false;
-
-  recognition.interimResults =
-    true;
-
-  recognition.maxAlternatives =
-    1;
-
-
-  recognition.onstart =
-    function() {
-
-      isRecording =
-        true;
-
-      updateVoiceUI();
-
-    };
-
-
-  recognition.onresult =
-    function(event) {
-
-      let text =
-        '';
-
-      for (
-        let i = event.resultIndex;
-        i < event.results.length;
-        i++
-      ) {
-
-        text +=
-          event.results[i][0].transcript;
-
-      }
-
-
-      document
-        .getElementById(
-          'recognizedText'
-        )
-        .textContent =
-          text;
-
-    };
-
-
-  recognition.onerror =
-    function(event) {
-
-      isRecording =
-        false;
-
-      updateVoiceUI();
-
-      console.log(
-        'Speech recognition error:',
-        event.error
+    outButton
+      .classList
+      .toggle(
+        'active',
+        type === 'out'
       );
 
-    };
+  }
 
 
-  recognition.onend =
-    function() {
-
-      isRecording =
-        false;
-
-      updateVoiceUI();
-
-      const text =
-        document
-          .getElementById(
-            'recognizedText'
-          )
-          .textContent
-          .trim();
+  const typeSelect =
+    document.getElementById(
+      'typeSelect'
+    );
 
 
-      if (
-        text &&
-        text !==
-        '음성 인식 내용이 여기에 표시됩니다.'
-      ) {
+  if (
+    typeSelect
+  ) {
 
-        analyzeSpeech(
-          text
-        );
+    typeSelect.value =
+      type;
 
-      }
-
-    };
-
-
-  return true;
+  }
 
 }
 
 
 // ==========================================================
-// 🎙️ 말하기 시작 / 종료
+// 🎙️ 음성 인식 시작
 // ==========================================================
 
-function toggleVoice() {
+function startVoice() {
 
-  if (!recognition) {
+  if (
+    isRecording ||
+    recognitionStartPending
+  ) {
 
-    if (!initRecognition()) {
+    return;
+
+  }
+
+
+  if (
+    !recognition
+  ) {
+
+    if (
+      !initRecognition()
+    ) {
+
       return;
+
     }
 
   }
 
 
-  if (isRecording) {
+  finishRequested =
+    false;
 
-    recognition.stop();
 
-    return;
+  recognitionStartPending =
+    true;
 
-  }
+
+  finalTranscript =
+    '';
+
+  interimTranscript =
+    '';
+
+  displayedTranscript =
+    '';
+
+
+  transactionTime =
+    getCurrentTimeLocal();
 
 
   document
@@ -1704,15 +3204,548 @@ function toggleVoice() {
       '주문 내용을 말씀해주세요.';
 
 
+  document
+    .getElementById(
+      'startButton'
+    )
+    .disabled =
+      true;
+
+
+  document
+    .getElementById(
+      'finishButton'
+    )
+    .disabled =
+      false;
+
+
   try {
 
     recognition.start();
 
   } catch (e) {
 
-    console.log(e);
+    console.log(
+      'recognition.start:',
+      e
+    );
+
+
+    recognitionStartPending =
+      false;
+
+
+    isRecording =
+      false;
+
+    recognitionRunning =
+      false;
+
+
+    updateVoiceUI();
+
+    return;
 
   }
+
+
+  startRecordingTimer();
+
+}
+
+
+// ==========================================================
+// 🎙️ Recognition 초기화
+// ==========================================================
+
+function initRecognition() {
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+  if (
+    !SpeechRecognition
+  ) {
+
+    alert(
+      '이 브라우저에서는 음성인식을 사용할 수 없습니다.\n' +
+      'Chrome 또는 Edge에서 사용해주세요.'
+    );
+
+
+    return false;
+
+  }
+
+
+  recognition =
+    new SpeechRecognition();
+
+
+  recognition.lang =
+    'ko-KR';
+
+
+  recognition.continuous =
+    true;
+
+
+  recognition.interimResults =
+    true;
+
+
+  recognition.maxAlternatives =
+    1;
+
+
+  recognition.onstart =
+    function() {
+
+      recognitionStartPending =
+        false;
+
+      isRecording =
+        true;
+
+      recognitionRunning =
+        true;
+
+      updateVoiceUI();
+
+    };
+
+
+  recognition.onresult =
+    function(event) {
+
+      let finalText =
+        '';
+
+      let interimText =
+        '';
+
+
+      for (
+        let i =
+          event.resultIndex;
+
+        i <
+        event.results.length;
+
+        i++
+      ) {
+
+        const transcript =
+          event.results[i][0]
+            .transcript
+            .trim();
+
+
+        if (
+          event.results[i].isFinal
+        ) {
+
+          finalText +=
+            transcript +
+            ' ';
+
+        } else {
+
+          interimText +=
+            transcript +
+            ' ';
+
+        }
+
+      }
+
+
+      if (
+        finalText
+      ) {
+
+        finalTranscript =
+          appendWithoutDuplicate(
+            finalTranscript,
+            finalText
+          );
+
+      }
+
+
+      interimTranscript =
+        interimText.trim();
+
+
+      showCurrentText();
+
+    };
+
+
+  recognition.onerror =
+    function(event) {
+
+      console.log(
+        'Speech recognition error:',
+        event.error
+      );
+
+
+      if (
+        event.error ===
+        'not-allowed'
+      ) {
+
+        isRecording =
+          false;
+
+        recognitionRunning =
+          false;
+
+        recognitionStartPending =
+          false;
+
+        finishRequested =
+          false;
+
+
+        stopRecordingTimer();
+
+
+        updateVoiceUI();
+
+
+        alert(
+          '마이크 권한이 허용되지 않았습니다.\n' +
+          '브라우저의 마이크 권한을 확인해주세요.'
+        );
+
+
+        return;
+
+      }
+
+
+      if (
+        event.error ===
+        'aborted'
+      ) {
+
+        recognitionStartPending =
+          false;
+
+        return;
+
+      }
+
+
+      if (
+        event.error ===
+        'no-speech'
+      ) {
+
+        document
+          .getElementById(
+            'voiceStatus'
+          )
+          .textContent =
+            '음성이 감지되지 않았습니다. 계속 말씀해주세요.';
+
+      }
+
+    };
+
+
+  recognition.onend =
+    function() {
+
+      recognitionRunning =
+        false;
+
+
+      recognitionStartPending =
+        false;
+
+
+      if (
+        isRecording &&
+        !finishRequested
+      ) {
+
+        clearTimeout(
+          recognitionRestartTimer
+        );
+
+
+        recognitionRestartTimer =
+          setTimeout(
+            function() {
+
+              if (
+                !isRecording ||
+                finishRequested
+              ) {
+
+                return;
+
+              }
+
+
+              try {
+
+                recognition.start();
+
+              } catch (e) {
+
+                console.log(
+                  '자동 재시작:',
+                  e
+                );
+
+              }
+
+            },
+            300
+          );
+
+
+        return;
+
+      }
+
+
+      isRecording =
+        false;
+
+
+      stopRecordingTimer();
+
+      updateVoiceUI();
+
+
+      if (
+        finishRequested &&
+        (
+          finalTranscript.trim() ||
+          displayedTranscript.trim()
+        )
+      ) {
+
+        finalizeRecording();
+
+      } else {
+
+        finishRequested =
+          false;
+
+      }
+
+    };
+
+
+  return true;
+
+}
+
+
+// ==========================================================
+// 🎙️ 현재 음성 표시
+// ==========================================================
+
+function showCurrentText() {
+
+  const finalText =
+    finalTranscript.trim();
+
+  const interimText =
+    interimTranscript.trim();
+
+
+  let text =
+    finalText;
+
+
+  if (
+    interimText
+  ) {
+
+    if (
+      text
+    ) {
+
+      text +=
+        ' ';
+
+    }
+
+
+    text +=
+      interimText;
+
+  }
+
+
+  if (
+    text
+  ) {
+
+    displayedTranscript =
+      text;
+
+
+    document
+      .getElementById(
+        'recognizedText'
+      )
+      .textContent =
+        text;
+
+  }
+
+}
+
+
+// ==========================================================
+// 🔄 중복 문장 방지
+// ==========================================================
+
+function appendWithoutDuplicate(
+  base,
+  addition
+) {
+
+  const cleanBase =
+    String(
+      base || ''
+    ).trim();
+
+  const cleanAddition =
+    String(
+      addition || ''
+    ).trim();
+
+
+  if (
+    !cleanAddition
+  ) {
+
+    return cleanBase;
+
+  }
+
+
+  if (
+    !cleanBase
+  ) {
+
+    return cleanAddition;
+
+  }
+
+
+  if (
+    cleanBase.includes(
+      cleanAddition
+    )
+  ) {
+
+    return cleanBase;
+
+  }
+
+
+  return (
+    cleanBase +
+    ' ' +
+    cleanAddition
+  );
+
+}
+
+
+// ==========================================================
+// ⏱️ 30초 타이머
+// ==========================================================
+
+function startRecordingTimer() {
+
+  stopRecordingTimer();
+
+
+  let seconds =
+    30;
+
+
+  document
+    .getElementById(
+      'timer'
+    )
+    .textContent =
+      '남은 시간 30초';
+
+
+  recordingTimer =
+    setInterval(
+      function() {
+
+        seconds--;
+
+
+        document
+          .getElementById(
+            'timer'
+          )
+          .textContent =
+            '남은 시간 ' +
+            seconds +
+            '초';
+
+
+        if (
+          seconds <=
+          0
+        ) {
+
+          finishRecording();
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+
+// ==========================================================
+// ⏹️ 타이머 종료
+// ==========================================================
+
+function stopRecordingTimer() {
+
+  if (
+    recordingTimer
+  ) {
+
+    clearInterval(
+      recordingTimer
+    );
+
+    recordingTimer =
+      null;
+
+  }
+
+
+  document
+    .getElementById(
+      'timer'
+    )
+    .textContent =
+      '';
 
 }
 
@@ -1723,35 +3756,59 @@ function toggleVoice() {
 
 function updateVoiceUI() {
 
-  const button =
+  const startButton =
     document.getElementById(
-      'voiceButton'
+      'startButton'
     );
 
-  if (isRecording) {
-
-    button.classList.add(
-      'recording'
+  const finishButton =
+    document.getElementById(
+      'finishButton'
     );
 
-    button.innerHTML =
-      '⏹️<br>말하기 완료';
 
-  } else {
+  if (
+    isRecording ||
+    recognitionStartPending
+  ) {
 
-    button.classList.remove(
-      'recording'
-    );
+    startButton.disabled =
+      true;
 
-    button.innerHTML =
-      '🎙️<br>말하기';
+    finishButton.disabled =
+      false;
+
+
+    startButton
+      .querySelector(
+        '.main-button-label'
+      )
+      .textContent =
+        '듣는 중';
+
 
     document
       .getElementById(
         'voiceStatus'
       )
       .textContent =
-        '음성 입력이 완료되었습니다.';
+        '주문 내용을 듣고 있습니다...';
+
+  } else {
+
+    startButton.disabled =
+      false;
+
+    finishButton.disabled =
+      true;
+
+
+    startButton
+      .querySelector(
+        '.main-button-label'
+      )
+      .textContent =
+        '말하기 시작';
 
   }
 
@@ -1759,12 +3816,155 @@ function updateVoiceUI() {
 
 
 // ==========================================================
-// 🧠 음성 내용 분석
+// ⏹️ 말하기 완료
 // ==========================================================
 
-function analyzeSpeech(
-  text
-) {
+function finishRecording() {
+
+  if (
+    !isRecording &&
+    !recognitionStartPending &&
+    !recognition
+  ) {
+
+    return;
+
+  }
+
+
+  finishRequested =
+    true;
+
+
+  isRecording =
+    false;
+
+
+  recognitionStartPending =
+    false;
+
+
+  stopRecordingTimer();
+
+
+  clearTimeout(
+    recognitionRestartTimer
+  );
+
+
+  if (
+    recognition &&
+    recognitionRunning
+  ) {
+
+    try {
+
+      recognition.stop();
+
+    } catch (e) {
+
+      console.log(
+        e
+      );
+
+    }
+
+
+    return;
+
+  }
+
+
+  if (
+    finalTranscript.trim() ||
+    displayedTranscript.trim()
+  ) {
+
+    finalizeRecording();
+
+  } else {
+
+    finishRequested =
+      false;
+
+    updateVoiceUI();
+
+    document
+      .getElementById(
+        'voiceStatus'
+      )
+      .textContent =
+        '음성이 인식되지 않았습니다. 다시 말씀해주세요.';
+
+  }
+
+}
+
+
+// ==========================================================
+// 🧠 최종 음성 처리
+// ==========================================================
+
+function finalizeRecording() {
+
+  if (
+    isSending
+  ) {
+
+    return;
+
+  }
+
+
+  const text =
+    (
+      finalTranscript ||
+      displayedTranscript ||
+      document
+        .getElementById(
+          'recognizedText'
+        )
+        .textContent
+    )
+      .trim();
+
+
+  if (
+    !text ||
+    text ===
+    '음성 인식 내용이 여기에 표시됩니다.' ||
+    text ===
+    '듣고 있습니다...'
+  ) {
+
+    alert(
+      '인식된 주문 내용이 없습니다.\n다시 말씀해주세요.'
+    );
+
+
+    finishRequested =
+      false;
+
+
+    updateVoiceUI();
+
+
+    return;
+
+  }
+
+
+  isSending =
+    true;
+
+
+  document
+    .getElementById(
+      'voiceStatus'
+    )
+    .textContent =
+      '🔎 음성을 분석하고 있어요...';
+
 
   showLoading(
     '주문 내용을 분석하고 있어요...'
@@ -1783,6 +3983,10 @@ function analyzeSpeech(
       hideLoading();
 
 
+      isSending =
+        false;
+
+
       fillStep2(
         parsed
       );
@@ -1798,11 +4002,7 @@ function analyzeSpeech(
 
 
 // ==========================================================
-// 🧠 주문 텍스트 분석
-//
-// 예:
-// "프렌즈푸드코리아 15키로 2개 출고 직송"
-//
+// 🧠 주문 분석
 // ==========================================================
 
 function parseOrderText(
@@ -1823,8 +4023,8 @@ function parseOrderText(
     quantity:
       1,
 
-    deliveryType:
-      '직송',
+    date:
+      getTodayLocal(),
 
     memo:
       text
@@ -1842,10 +4042,6 @@ function parseOrderText(
       )
       .trim();
 
-
-  // --------------------------------------------------------
-  // 📥📤 거래 유형 자동 인식
-  // --------------------------------------------------------
 
   if (
     /입고|입고해|받아|들어|입고로/i
@@ -1872,32 +4068,6 @@ function parseOrderText(
 
   }
 
-
-  // --------------------------------------------------------
-  // 🚚 납품형태
-  // --------------------------------------------------------
-
-  if (
-    /택배|택배로|택배발송|택배 발송/i
-      .test(
-        normalized
-      )
-  ) {
-
-    result.deliveryType =
-      '택배 발송';
-
-  } else {
-
-    result.deliveryType =
-      '직송';
-
-  }
-
-
-  // --------------------------------------------------------
-  // 🔢 수량
-  // --------------------------------------------------------
 
   const quantityMatch =
     normalized.match(
@@ -1926,10 +4096,6 @@ function parseOrderText(
 
   }
 
-
-  // --------------------------------------------------------
-  // 📦 규격
-  // --------------------------------------------------------
 
   let itemMatch =
     null;
@@ -1983,13 +4149,6 @@ function parseOrderText(
 
   }
 
-
-  // --------------------------------------------------------
-  // 👥 거래처
-  //
-  // 음성 문장에 들어있는 거래처명을
-  // BoxHero 거래처 목록과 비교
-  // --------------------------------------------------------
 
   let bestPartner =
     null;
@@ -2073,6 +4232,22 @@ function findItemByKeyword(
 
 function showDirectInput() {
 
+  if (
+    isRecording ||
+    recognitionStartPending
+  ) {
+
+    finishRecording();
+
+    return;
+
+  }
+
+
+  transactionTime =
+    getCurrentTimeLocal();
+
+
   document
     .getElementById(
       'directInputCard'
@@ -2081,6 +4256,15 @@ function showDirectInput() {
     .remove(
       'hidden'
     );
+
+
+  document
+    .getElementById(
+      'directDate'
+    )
+    .value =
+      getTodayLocal();
+
 
   document
     .getElementById(
@@ -2126,15 +4310,27 @@ function directInputAnalyze() {
     );
 
 
-  const deliveryType =
+  const date =
     document
       .getElementById(
-        'directDeliveryType'
+        'directDate'
       )
-      .value;
+      .value ||
+      getTodayLocal();
 
 
-  if (!partnerId) {
+  const memo =
+    document
+      .getElementById(
+        'directMemo'
+      )
+      .value
+      .trim();
+
+
+  if (
+    !partnerId
+  ) {
 
     alert(
       '거래처를 선택해주세요.'
@@ -2145,10 +4341,12 @@ function directInputAnalyze() {
   }
 
 
-  if (!itemId) {
+  if (
+    !itemId
+  ) {
 
     alert(
-      '규격을 선택해주세요.'
+      '제품을 선택해주세요.'
     );
 
     return;
@@ -2184,10 +4382,11 @@ function directInputAnalyze() {
     quantity:
       quantity,
 
-    deliveryType:
-      deliveryType,
+    date:
+      date,
 
     memo:
+      memo ||
       '직접 입력'
 
   });
@@ -2243,11 +4442,28 @@ function fillStep2(
 
   document
     .getElementById(
+      'typeSelect'
+    )
+    .value =
+      data.type ||
+      selectedType;
+
+
+  document
+    .getElementById(
+      'dateInput'
+    )
+    .value =
+      data.date ||
+      getTodayLocal();
+
+
+  document
+    .getElementById(
       'deliveryTypeSelect'
     )
     .value =
-      data.deliveryType ||
-      '직송';
+      '';
 
 
   document
@@ -2257,6 +4473,8 @@ function fillStep2(
     .value =
       data.memo || '';
 
+
+  updateSelectedClient();
 
   updateSummary();
 
@@ -2281,16 +4499,6 @@ function showStep2() {
 
   document
     .getElementById(
-      'directInputCard'
-    )
-    .classList
-    .add(
-      'hidden'
-    );
-
-
-  document
-    .getElementById(
       'step2'
     )
     .classList
@@ -2299,9 +4507,13 @@ function showStep2() {
     );
 
 
+  updateSelectedClient();
+
   updateSummary();
 
+
   window.scrollTo({
+
     top:
       0,
 
@@ -2338,6 +4550,321 @@ function backToStep1() {
       'hidden'
     );
 
+
+  document
+    .getElementById(
+      'directInputCard'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  window.scrollTo({
+
+    top:
+      0,
+
+    behavior:
+      'smooth'
+
+  });
+
+}
+
+
+// ==========================================================
+// 🔍 거래처 검색
+// ==========================================================
+
+function setupPartnerSearch() {
+
+  const input =
+    document
+      .getElementById(
+        'partnerSearch'
+      );
+
+
+  if (
+    !input
+  ) {
+
+    return;
+
+  }
+
+
+  input.addEventListener(
+    'input',
+    function() {
+
+      renderPartnerCandidates(
+        input.value
+      );
+
+    }
+  );
+
+
+  input.addEventListener(
+    'focus',
+    function() {
+
+      renderPartnerCandidates(
+        input.value
+      );
+
+    }
+  );
+
+}
+
+
+// ==========================================================
+// 👥 거래처 후보
+// ==========================================================
+
+function renderPartnerCandidates(
+  keyword
+) {
+
+  const container =
+    document
+      .getElementById(
+        'clientCandidates'
+      );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  const normalized =
+    String(
+      keyword || ''
+    )
+      .trim()
+      .toLowerCase();
+
+
+  const partners =
+    [...masterData.partners]
+      .filter(
+        function(partner) {
+
+          if (
+            !normalized
+          ) {
+
+            return true;
+
+          }
+
+
+          return String(
+            partner.name
+          )
+            .toLowerCase()
+            .includes(
+              normalized
+            );
+
+        }
+      )
+      .sort(
+        function(a, b) {
+
+          return String(
+            a.name
+          ).localeCompare(
+            String(
+              b.name
+            ),
+            'ko'
+          );
+
+        }
+      )
+      .slice(
+        0,
+        30
+      );
+
+
+  container.innerHTML =
+    '';
+
+
+  partners.forEach(
+    function(partner) {
+
+      const div =
+        document.createElement(
+          'div'
+        );
+
+
+      div.className =
+        'client-candidate';
+
+
+      div.textContent =
+        partner.name;
+
+
+      div.addEventListener(
+        'click',
+        function() {
+
+          selectPartner(
+            partner.id
+          );
+
+        }
+      );
+
+
+      container.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+// ==========================================================
+// 👥 거래처 선택
+// ==========================================================
+
+function selectPartner(
+  partnerId
+) {
+
+  document
+    .getElementById(
+      'partnerSelect'
+    )
+    .value =
+      partnerId;
+
+
+  updateSelectedClient();
+
+
+  document
+    .getElementById(
+      'clientCandidates'
+    )
+    .innerHTML =
+      '';
+
+
+  const partner =
+    masterData.partners.find(
+      function(item) {
+
+        return String(
+          item.id
+        ) ===
+        String(
+          partnerId
+        );
+
+      }
+    );
+
+
+  document
+    .getElementById(
+      'partnerSearch'
+    )
+    .value =
+      partner
+        ? partner.name
+        : '';
+
+
+  updateSummary();
+
+}
+
+
+// ==========================================================
+// 👥 선택 거래처 표시
+// ==========================================================
+
+function updateSelectedClient() {
+
+  const partnerId =
+    document
+      .getElementById(
+        'partnerSelect'
+      )
+      .value;
+
+
+  const box =
+    document
+      .getElementById(
+        'selectedClient'
+      );
+
+
+  if (
+    !partnerId
+  ) {
+
+    box.classList.add(
+      'hidden'
+    );
+
+    box.textContent =
+      '';
+
+    return;
+
+  }
+
+
+  const partner =
+    masterData.partners.find(
+      function(item) {
+
+        return String(
+          item.id
+        ) ===
+        String(
+          partnerId
+        );
+
+      }
+    );
+
+
+  if (
+    partner
+  ) {
+
+    box.textContent =
+      '✓ 선택된 거래처: ' +
+      partner.name;
+
+
+    box.classList.remove(
+      'hidden'
+    );
+
+  }
+
 }
 
 
@@ -2371,7 +4898,23 @@ function updateSummary() {
       .value;
 
 
-  const delivery =
+  const type =
+    document
+      .getElementById(
+        'typeSelect'
+      )
+      .value;
+
+
+  const date =
+    document
+      .getElementById(
+        'dateInput'
+      )
+      .value;
+
+
+  const deliveryType =
     document
       .getElementById(
         'deliveryTypeSelect'
@@ -2409,6 +4952,12 @@ function updateSummary() {
     );
 
 
+  const transactionDateTime =
+    combineDateAndTime(
+      date
+    );
+
+
   document
     .getElementById(
       'summary'
@@ -2417,7 +4966,7 @@ function updateSummary() {
 
       '<strong>거래 유형:</strong> ' +
       (
-        selectedType === 'in'
+        type === 'in'
           ? '📥 입고'
           : '📤 출고'
       ) +
@@ -2433,7 +4982,7 @@ function updateSummary() {
       ) +
       '<br>' +
 
-      '<strong>상품:</strong> ' +
+      '<strong>제품:</strong> ' +
       (
         product
           ? escapeHtml(
@@ -2449,16 +4998,112 @@ function updateSummary() {
       ) +
       '개<br>' +
 
-      '<strong>납품형태:</strong> ' +
+      '<strong>날짜:</strong> ' +
       escapeHtml(
-        delivery
+        transactionDateTime
+      ) +
+
+      '<br>' +
+
+      '<strong>납품형태:</strong> ' +
+      (
+        deliveryType
+          ? escapeHtml(
+              deliveryType
+            )
+          : '선택 안 함'
+      ) +
+
+      '<br>' +
+
+      '<strong>메모:</strong> ' +
+      (
+        document
+          .getElementById(
+            'memoInput'
+          )
+          .value
+          ? escapeHtml(
+              document
+                .getElementById(
+                  'memoInput'
+                )
+                .value
+            )
+          : '없음'
       );
 
 }
 
 
 // ==========================================================
-// 🔄 STEP 2 입력값 변경 시
+// 🚚 납품형태 → 메모 자동 반영
+// ==========================================================
+
+function applyDeliveryTypeToMemo() {
+
+  const deliveryType =
+    document
+      .getElementById(
+        'deliveryTypeSelect'
+      )
+      .value;
+
+
+  const memoInput =
+    document
+      .getElementById(
+        'memoInput'
+      );
+
+
+  const currentMemo =
+    memoInput
+      .value
+      .trim();
+
+
+  const cleanedMemo =
+    currentMemo
+      .replace(
+        /(^|\s|\n)(택배 발송|본사 발송)(?=\s|\n|$)/g,
+        ' '
+      )
+      .replace(
+        /\s{2,}/g,
+        ' '
+      )
+      .trim();
+
+
+  if (
+    deliveryType
+  ) {
+
+    memoInput.value =
+      deliveryType +
+      (
+        cleanedMemo
+          ? ' / ' +
+            cleanedMemo
+          : ''
+      );
+
+  } else {
+
+    memoInput.value =
+      cleanedMemo;
+
+  }
+
+
+  updateSummary();
+
+}
+
+
+// ==========================================================
+// 🔄 STEP 2 변경 감지
 // ==========================================================
 
 document.addEventListener(
@@ -2467,8 +5112,17 @@ document.addEventListener(
 
     if (
       event.target.id ===
-      'partnerSelect' ||
+      'partnerSelect'
+    ) {
 
+      updateSelectedClient();
+
+      updateSummary();
+
+    }
+
+
+    if (
       event.target.id ===
       'itemSelect' ||
 
@@ -2476,8 +5130,40 @@ document.addEventListener(
       'quantityInput' ||
 
       event.target.id ===
+      'typeSelect' ||
+
+      event.target.id ===
+      'dateInput' ||
+
+      event.target.id ===
       'deliveryTypeSelect'
     ) {
+
+      if (
+        event.target.id ===
+        'typeSelect'
+      ) {
+
+        selectedType =
+          event.target.value;
+
+
+        setType(
+          selectedType
+        );
+
+      }
+
+
+      if (
+        event.target.id ===
+        'deliveryTypeSelect'
+      ) {
+
+        applyDeliveryTypeToMemo();
+
+      }
+
 
       updateSummary();
 
@@ -2519,6 +5205,22 @@ function registerTransaction() {
     );
 
 
+  const type =
+    document
+      .getElementById(
+        'typeSelect'
+      )
+      .value;
+
+
+  const date =
+    document
+      .getElementById(
+        'dateInput'
+      )
+      .value;
+
+
   const deliveryType =
     document
       .getElementById(
@@ -2536,7 +5238,9 @@ function registerTransaction() {
       .trim();
 
 
-  if (!partnerId) {
+  if (
+    !partnerId
+  ) {
 
     alert(
       '거래처를 선택해주세요.'
@@ -2547,10 +5251,12 @@ function registerTransaction() {
   }
 
 
-  if (!itemId) {
+  if (
+    !itemId
+  ) {
 
     alert(
-      '상품을 선택해주세요.'
+      '제품을 선택해주세요.'
     );
 
     return;
@@ -2572,11 +5278,26 @@ function registerTransaction() {
   }
 
 
+  if (
+    !date
+  ) {
+
+    alert(
+      '날짜를 선택해주세요.'
+    );
+
+    return;
+
+  }
+
+
   const location =
     masterData.locations[0];
 
 
-  if (!location) {
+  if (
+    !location
+  ) {
 
     alert(
       'BoxHero 위치 정보를 찾을 수 없습니다.'
@@ -2587,21 +5308,35 @@ function registerTransaction() {
   }
 
 
+  const transactionDateTime =
+    combineDateAndTime(
+      date
+    );
+
+
   const finalMemo =
     [
       '푸로찜 에스 음성입출고',
 
-      '납품형태=' +
-      deliveryType,
+      '날짜=' +
+      transactionDateTime,
+
+      deliveryType
+        ? '납품형태=' +
+          deliveryType
+        : '',
 
       memo
-        ? '메모=' + memo
+        ? '메모=' +
+          memo
         : ''
 
     ]
       .filter(
         function(value) {
+
           return value !== '';
+
         }
       )
       .join(
@@ -2609,41 +5344,28 @@ function registerTransaction() {
       );
 
 
+  const registerButton =
+    document
+      .getElementById(
+        'registerButton'
+      );
+
+
+  registerButton.disabled =
+    true;
+
+
   showLoading(
     'BoxHero에 실제 재고를 등록하고 있습니다...'
   );
 
 
-  google
-    .script
-    .run
-    .withSuccessHandler(
-      function(result) {
-
-        hideLoading();
-
-        showResult(
-          result
-        );
-
-      }
-    )
-    .withFailureHandler(
-      function(error) {
-
-        hideLoading();
-
-        alert(
-          'BoxHero 등록에 실패했습니다.\n\n' +
-          getErrorMessage(error)
-        );
-
-      }
-    )
-    .registerBoxHeroTransaction({
+  callGas(
+    'registerBoxHeroTransaction',
+    {
 
       type:
-        selectedType,
+        type,
 
       partnerId:
         partnerId,
@@ -2657,10 +5379,43 @@ function registerTransaction() {
       quantity:
         quantity,
 
+      transactionDate:
+        transactionDateTime,
+
       memo:
         finalMemo
 
-    });
+    }
+  )
+    .then(
+      function(result) {
+
+        hideLoading();
+
+        registerButton.disabled =
+          false;
+
+        showResult(
+          result
+        );
+
+      }
+    )
+    .catch(
+      function(error) {
+
+        hideLoading();
+
+        registerButton.disabled =
+          false;
+
+        alert(
+          'BoxHero 등록에 실패했습니다.\n\n' +
+          getErrorMessage(error)
+        );
+
+      }
+    );
 
 }
 
@@ -2683,6 +5438,41 @@ function showResult(
     result.quantity;
 
 
+  const date =
+    result.transactionDate ||
+    '';
+
+
+  const partner =
+    masterData.partners.find(
+      function(item) {
+
+        return String(
+          item.id
+        ) ===
+        String(
+          result.partnerId
+        );
+
+      }
+    );
+
+
+  const product =
+    masterData.items.find(
+      function(item) {
+
+        return String(
+          item.id
+        ) ===
+        String(
+          result.itemId
+        );
+
+      }
+    );
+
+
   document
     .getElementById(
       'resultText'
@@ -2692,16 +5482,43 @@ function showResult(
       typeText +
       '<br>' +
 
+      '거래처: <strong>' +
+      (
+        partner
+          ? escapeHtml(
+              partner.name
+            )
+          : ''
+      ) +
+      '</strong><br>' +
+
+      '제품: <strong>' +
+      (
+        product
+          ? escapeHtml(
+              product.name
+            )
+          : ''
+      ) +
+      '</strong><br>' +
+
       '수량: <strong>' +
       quantity +
-      '개</strong><br><br>' +
+      '개</strong><br>' +
+
+      '날짜: <strong>' +
+      escapeHtml(
+        date
+      ) +
+      '</strong><br><br>' +
 
       'BoxHero 거래 ID<br>' +
 
       '<strong>' +
       escapeHtml(
         String(
-          result.transactionId || ''
+          result.transactionId ||
+          ''
         )
       ) +
       '</strong>';
@@ -2728,6 +5545,7 @@ function showResult(
 
 
   window.scrollTo({
+
     top:
       0,
 
@@ -2744,6 +5562,66 @@ function showResult(
 // ==========================================================
 
 function resetApp() {
+
+  clearTimeout(
+    recognitionRestartTimer
+  );
+
+
+  stopRecordingTimer();
+
+
+  if (
+    recognition
+  ) {
+
+    try {
+
+      recognition.stop();
+
+    } catch (e) {
+
+      console.log(
+        e
+      );
+
+    }
+
+  }
+
+
+  recognition =
+    null;
+
+
+  isRecording =
+    false;
+
+  recognitionRunning =
+    false;
+
+  recognitionStartPending =
+    false;
+
+  finishRequested =
+    false;
+
+  finalTranscript =
+    '';
+
+  interimTranscript =
+    '';
+
+  displayedTranscript =
+    '';
+
+  isSending =
+    false;
+
+
+  transactionTime =
+    getCurrentTimeLocal();
+
 
   document
     .getElementById(
@@ -2798,12 +5676,20 @@ function resetApp() {
       'voiceStatus'
     )
     .textContent =
-      '버튼을 누르고 주문 내용을 말해주세요.';
+      '버튼을 누르고 주문 내용을 말씀해주세요.';
 
 
   document
     .getElementById(
       'memoInput'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'directMemo'
     )
     .value =
       '';
@@ -2817,12 +5703,74 @@ function resetApp() {
       '1';
 
 
+  document
+    .getElementById(
+      'directQuantity'
+    )
+    .value =
+      '1';
+
+
+  document
+    .getElementById(
+      'dateInput'
+    )
+    .value =
+      getTodayLocal();
+
+
+  document
+    .getElementById(
+      'directDate'
+    )
+    .value =
+      getTodayLocal();
+
+
+  document
+    .getElementById(
+      'deliveryTypeSelect'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'partnerSearch'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'clientCandidates'
+    )
+    .innerHTML =
+      '';
+
+
+  document
+    .getElementById(
+      'selectedClient'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
   setType(
     'in'
   );
 
 
+  updateVoiceUI();
+
+
   window.scrollTo({
+
     top:
       0,
 
@@ -2884,7 +5832,9 @@ function getErrorMessage(
   error
 ) {
 
-  if (!error) {
+  if (
+    !error
+  ) {
 
     return '알 수 없는 오류';
 
@@ -2951,4 +5901,3 @@ function escapeHtml(
 </body>
 
 </html>
-```

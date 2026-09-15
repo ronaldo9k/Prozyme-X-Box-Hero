@@ -6,19 +6,17 @@
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
->
+  <meta
+    name="theme-color"
+    content="#05070b"
+  >
 
-<meta
-name="theme-color"
-content="#05070b"
-
->
-
-<link rel="manifest" href="./manifest.json">
+  <link rel="manifest" href="./manifest.json">
 
   <!-- 🐐 Ronaldo 앱 아이콘 -->
 
@@ -103,9 +101,6 @@ content="#05070b"
       /*
        * ======================================================
        * 🐐 Fenomeno.png 전체 배경화면
-       *
-       * GitHub Pages 프로젝트:
-       * /Prozyme-X-Box-Hero/
        * ======================================================
        */
 
@@ -154,8 +149,6 @@ content="#05070b"
 
     /* ======================================================
        ⭐ STEP 2
-       ⭐ Fenomeno 배경은 그대로 유지
-       ⭐ 흰색 배경으로 바꾸지 않습니다.
        ====================================================== */
 
     body.step2-mode {
@@ -203,11 +196,6 @@ content="#05070b"
 
       inset:
         0;
-
-      /*
-       * 첫 화면 Fenomeno 위에 아주 약한 어두움만 유지합니다.
-       * 기존보다 훨씬 자연스럽게 보이도록 조정했습니다.
-       */
 
       background:
         linear-gradient(
@@ -310,11 +298,6 @@ content="#05070b"
       margin:
         0 -14px 18px;
 
-      /*
-       * ⭐ 완전 투명
-       * Fenomeno.png가 그대로 보입니다.
-       */
-
       background:
         transparent;
 
@@ -401,11 +384,7 @@ content="#05070b"
 
       text-shadow:
         0 2px 9px
-        rgba(0,0,0,.99);
-
-      /*
-       * ⭐ 왕관만 왼쪽 정렬
-       */
+        rgba(0,0,0,.83);
 
       text-align:
         left;
@@ -560,13 +539,6 @@ content="#05070b"
     }
 
 
-    /*
-     * ======================================================
-     * ⭐ STEP 2의 흰색 플로팅 패널 안에서는
-     * STEP 표시선도 밝은 회색으로 변경
-     * ======================================================
-     */
-
     body.step2-mode .step-dot {
 
       background:
@@ -597,11 +569,6 @@ content="#05070b"
 
     .card {
 
-      /*
-       * ⭐ 첫 화면에서는 Fenomeno가 비쳐 보이는
-       * 반투명 유리 카드
-       */
-
       background:
         rgba(10,15,25,.48);
 
@@ -631,13 +598,9 @@ content="#05070b"
     }
 
 
-    /*
-     * ======================================================
-     * ⭐ STEP 2 전체가 하나의 흰색 플로팅 패널
-     *
-     * ⭐ Fenomeno 배경이 패널 바깥으로 보입니다.
-     * ======================================================
-     */
+    /* ======================================================
+       ⭐ STEP 2 전체 흰색 플로팅 패널
+       ====================================================== */
 
     #step2 {
 
@@ -674,13 +637,6 @@ content="#05070b"
 
     }
 
-
-    /*
-     * ======================================================
-     * ⭐ STEP 2 안쪽 카드는 별도의 큰 흰색 박스가
-     * 생기지 않도록 자연스럽게 연결
-     * ======================================================
-     */
 
     body.step2-mode #step2 > .card {
 
@@ -999,9 +955,6 @@ content="#05070b"
 
     /* ======================================================
        🎙️ 음성 인식 결과
-       
-       ⭐ 메인 버튼과 동일한 56px 높이
-       ⭐ 두께/테두리/모서리도 통일
        ====================================================== */
 
     .recognized-text {
@@ -1202,7 +1155,9 @@ content="#05070b"
 
 
     /* ======================================================
-       🏢 거래처 검색
+       🏢 STEP 2 거래처 영역
+       ⭐ 이제 거래처 목록은 여기서 펼쳐지지 않습니다.
+       ⭐ 선택된 거래처만 표시됩니다.
        ====================================================== */
 
     .client-search-wrap {
@@ -1219,7 +1174,7 @@ content="#05070b"
         grid;
 
       grid-template-columns:
-        1fr 1fr;
+        1fr;
 
       gap:
         7px;
@@ -1240,7 +1195,7 @@ content="#05070b"
         12px;
 
       padding:
-        11px 8px;
+        13px 10px;
 
       background:
         white;
@@ -1249,7 +1204,7 @@ content="#05070b"
         #374151;
 
       font-size:
-        13px;
+        14px;
 
       font-weight:
         800;
@@ -1275,138 +1230,20 @@ content="#05070b"
     }
 
 
-    .client-search-row {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        1fr;
-
-      gap:
-        8px;
-
-    }
-
-
-    .client-search {
-
-      position:
-        relative;
-
-    }
-
-
-    .client-search-icon {
-
-      position:
-        absolute;
-
-      left:
-        13px;
-
-      top:
-        50%;
-
-      transform:
-        translateY(-50%);
-
-      font-size:
-        15px;
-
-      z-index:
-        1;
-
-    }
-
-
-    .client-search input {
-
-      padding-left:
-        39px;
-
-    }
-
-
     /*
      * ======================================================
-     * ⭐ 거래처 전체 선택 목록
+     * ⭐ 기존 STEP 2 안의 검색창/후보 목록은 숨김
      *
-     * 기존 180px 제한 제거
-     * BoxHero의 전체 거래처가 가나다순으로
-     * 화면 아래로 모두 펼쳐집니다.
+     * 거래처 검색/선택은 새로운 거래처 선택 화면에서
+     * 처리합니다.
      * ======================================================
      */
 
-    .client-candidates {
-
-      margin-top:
-        7px;
-
-      max-height:
-        none;
-
-      height:
-        auto;
-
-      overflow-y:
-        visible;
-
-      border-radius:
-        13px;
-
-    }
-
-
-    .client-candidate {
-
-      padding:
-        13px 13px;
-
-      border:
-        1px solid
-        #e5e7eb;
-
-      border-bottom:
-        none;
-
-      background:
-        white;
-
-      cursor:
-        pointer;
-
-      font-size:
-        14px;
-
-      line-height:
-        1.4;
-
-      min-height:
-        45px;
+    #step2 .client-search-row,
+    #step2 .client-candidates {
 
       display:
-        flex;
-
-      align-items:
-        center;
-
-    }
-
-
-    .client-candidate:last-child {
-
-      border-bottom:
-        1px solid
-        #e5e7eb;
-
-    }
-
-
-    .client-candidate:hover {
-
-      background:
-        #f8fafc;
+        none;
 
     }
 
@@ -1417,7 +1254,7 @@ content="#05070b"
         8px;
 
       padding:
-        11px 13px;
+        12px 13px;
 
       background:
         #ecfdf3;
@@ -1437,6 +1274,360 @@ content="#05070b"
 
       font-weight:
         800;
+
+    }
+
+
+    /* ======================================================
+       👥 새로운 거래처 선택 화면
+       ====================================================== */
+
+    #partnerPicker {
+
+      background:
+        #ffffff;
+
+      border:
+        1px solid
+        rgba(255,255,255,.90);
+
+      border-radius:
+        26px;
+
+      padding:
+        14px 16px 24px;
+
+      margin:
+        0 auto;
+
+      box-shadow:
+        0 18px 55px
+        rgba(0,0,0,.30);
+
+      min-height:
+        calc(100vh - 46px);
+
+    }
+
+
+    .partner-picker-header {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
+
+      margin-bottom:
+        16px;
+
+    }
+
+
+    .partner-picker-back {
+
+      width:
+        42px;
+
+      height:
+        42px;
+
+      flex:
+        0 0 42px;
+
+      border:
+        1px solid
+        #e1e4e9;
+
+      border-radius:
+        12px;
+
+      background:
+        white;
+
+      color:
+        #374151;
+
+      font-size:
+        20px;
+
+      font-weight:
+        900;
+
+      cursor:
+        pointer;
+
+      box-shadow:
+        0 2px 7px
+        rgba(0,0,0,.04);
+
+    }
+
+
+    .partner-picker-title-wrap {
+
+      flex:
+        1;
+
+      min-width:
+        0;
+
+    }
+
+
+    .partner-picker-title {
+
+      font-size:
+        20px;
+
+      font-weight:
+        950;
+
+      color:
+        #111827;
+
+      line-height:
+        1.25;
+
+    }
+
+
+    .partner-picker-subtitle {
+
+      margin-top:
+        3px;
+
+      font-size:
+        12px;
+
+      color:
+        #6b7280;
+
+    }
+
+
+    .partner-picker-search-wrap {
+
+      position:
+        relative;
+
+      margin-bottom:
+        12px;
+
+    }
+
+
+    .partner-picker-search-icon {
+
+      position:
+        absolute;
+
+      left:
+        14px;
+
+      top:
+        50%;
+
+      transform:
+        translateY(-50%);
+
+      font-size:
+        16px;
+
+      z-index:
+        1;
+
+    }
+
+
+    #partnerPickerSearch {
+
+      width:
+        100%;
+
+      padding:
+        14px 14px 14px 41px;
+
+      border:
+        1px solid
+        #dfe3e8;
+
+      border-radius:
+        14px;
+
+      font-size:
+        16px;
+
+      background:
+        #ffffff;
+
+      color:
+        #111827;
+
+      outline:
+        none;
+
+    }
+
+
+    #partnerPickerSearch:focus {
+
+      border-color:
+        var(--gold);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(201,162,39,.12);
+
+    }
+
+
+    .partner-picker-count {
+
+      margin:
+        0 2px 9px;
+
+      color:
+        #6b7280;
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    /*
+     * ======================================================
+     * ⭐ 새로운 거래처 전체 목록
+     *
+     * 화면 전체에 가나다순으로 쭉 표시
+     * ======================================================
+     */
+
+    #partnerPickerCandidates {
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      gap:
+        7px;
+
+    }
+
+
+    .partner-picker-candidate {
+
+      width:
+        100%;
+
+      min-height:
+        49px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        12px 14px;
+
+      border:
+        1px solid
+        #e5e7eb;
+
+      border-radius:
+        13px;
+
+      background:
+        #ffffff;
+
+      color:
+        #111827;
+
+      font-size:
+        14px;
+
+      font-weight:
+        700;
+
+      text-align:
+        left;
+
+      cursor:
+        pointer;
+
+      transition:
+        .15s;
+
+    }
+
+
+    .partner-picker-candidate:hover {
+
+      border-color:
+        var(--gold);
+
+      background:
+        #fffdf4;
+
+    }
+
+
+    .partner-picker-candidate:active {
+
+      transform:
+        scale(.99);
+
+    }
+
+
+    .partner-picker-candidate.selected {
+
+      border-color:
+        #86efac;
+
+      background:
+        #ecfdf3;
+
+      color:
+        #166534;
+
+    }
+
+
+    .partner-picker-empty {
+
+      padding:
+        30px 15px;
+
+      text-align:
+        center;
+
+      color:
+        #6b7280;
+
+      font-size:
+        14px;
+
+      border:
+        1px solid
+        #e5e7eb;
+
+      border-radius:
+        14px;
+
+      background:
+        #f8fafc;
 
     }
 
@@ -1975,29 +2166,42 @@ content="#05070b"
       }
 
 
-      /*
-       * ⭐ 모바일에서도 전체 거래처 목록을
-       * 잘리지 않고 전부 표시
-       */
+      /* ====================================================
+         ⭐ 새로운 거래처 선택 화면 모바일
+         ==================================================== */
 
-      .client-candidates {
+      #partnerPicker {
 
-        max-height:
-          none;
+        border-radius:
+          23px;
 
-        overflow-y:
-          visible;
+        padding:
+          12px 14px 22px;
+
+        min-height:
+          calc(100vh - 45px);
 
       }
 
 
-      .client-candidate {
+      .partner-picker-title {
+
+        font-size:
+          19px;
+
+      }
+
+
+      .partner-picker-candidate {
 
         min-height:
-          46px;
+          50px;
 
         padding:
-          13px 12px;
+          13px 13px;
+
+        font-size:
+          14px;
 
       }
 
@@ -2044,29 +2248,24 @@ content="#05070b"
 
   <div class="hero">
 
-```
-<div class="hero-content">
+    <div class="hero-content">
 
-  <div class="hero-symbol">
-    ♛
-  </div>
+      <div class="hero-symbol">
+        ♛
+      </div>
 
-  <div class="hero-title">
+      <div class="hero-title">
+        푸로찜 에스 X 박스 히어로
+      </div>
 
-    푸로찜 에스 X 박스 히어로
+      <div class="hero-sub">
+        김경우 ♡ 박희수 ♡ 김준모 ♡ 김준석
+      </div>
 
-  </div>
-
-  <div class="hero-sub">
-
-    김경우 ♡ 박희수 ♡ 김준모 ♡ 김준석
-
-  </div>
-
-</div>
-```
+    </div>
 
   </div>
+
 
   <!-- =====================================================
        STEP 1
@@ -2077,233 +2276,220 @@ content="#05070b"
     class="screen"
   >
 
-```
-<div class="step-indicator">
+    <div class="step-indicator">
 
-  <div class="step-dot active"></div>
+      <div class="step-dot active"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-</div>
-
-
-<div class="card">
-
-  <div class="card-title">
-
-    📦 입고/출고 내용을 입력해주세요
-
-  </div>
-
-  <div class="card-subtitle">
-
-    음성으로 말하거나 직접 입력할 수 있습니다.
-
-  </div>
+    </div>
 
 
-  <div class="mode-buttons">
+    <div class="card">
 
-    <button
-      id="inButton"
-      class="mode-button in"
-      onclick="setType('in')"
-    >
-      📥 입고
-    </button>
+      <div class="card-title">
+        📦 입고/출고 내용을 입력해주세요
+      </div>
 
-    <button
-      id="outButton"
-      class="mode-button out active"
-      onclick="setType('out')"
-    >
-      📤 출고
-    </button>
-
-  </div>
+      <div class="card-subtitle">
+        음성으로 말하거나 직접 입력할 수 있습니다.
+      </div>
 
 
-  <div class="voice-area">
+      <div class="mode-buttons">
 
-    <div class="main-buttons">
+        <button
+          id="inButton"
+          class="mode-button in"
+          onclick="setType('in')"
+        >
+          📥 입고
+        </button>
+
+        <button
+          id="outButton"
+          class="mode-button out active"
+          onclick="setType('out')"
+        >
+          📤 출고
+        </button>
+
+      </div>
+
+
+      <div class="voice-area">
+
+        <div class="main-buttons">
+
+          <button
+            id="startButton"
+            class="main-button"
+            onclick="startVoice()"
+          >
+
+            🎙️
+
+            <span class="main-button-label">
+              말하기 시작
+            </span>
+
+          </button>
+
+
+          <button
+            id="finishButton"
+            class="main-button finish"
+            onclick="finishRecording()"
+            disabled
+          >
+
+            ⏹️
+
+            <span class="main-button-label">
+              말하기 완료
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <div
+          id="voiceStatus"
+          class="voice-status"
+        >
+          버튼을 누르고 주문 내용을 말씀해주세요.
+        </div>
+
+
+        <div
+          id="timer"
+          class="timer"
+        ></div>
+
+
+        <div
+          id="recognizedText"
+          class="recognized-text"
+        >
+          음성 인식 내용이 여기에 표시됩니다.
+        </div>
+
+      </div>
+
 
       <button
-        id="startButton"
-        class="main-button"
-        onclick="startVoice()"
+        id="directButton"
+        class="direct-button"
+        onclick="showDirectInput()"
       >
-
-        🎙️
-        <span class="main-button-label">
-          말하기 시작
-        </span>
-
+        ✏️ 직접 입력하기
       </button>
+
+    </div>
+
+
+    <div
+      id="directInputCard"
+      class="card hidden"
+    >
+
+      <div class="card-title">
+        ✏️ 직접 주문 입력
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          거래처
+        </label>
+
+        <select
+          id="directPartner"
+        ></select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          제품
+        </label>
+
+        <select
+          id="directItem"
+        ></select>
+
+        <div class="product-help">
+          푸로찜 15 KG → 20 KG → 12 KG
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          수량
+        </label>
+
+        <input
+          id="directQuantity"
+          type="number"
+          min="1"
+          value="1"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          날짜
+        </label>
+
+        <input
+          id="directDate"
+          type="date"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          메모
+        </label>
+
+        <textarea
+          id="directMemo"
+          placeholder="필요하면 메모를 입력하세요."
+        ></textarea>
+
+      </div>
 
 
       <button
-        id="finishButton"
-        class="main-button finish"
-        onclick="finishRecording()"
-        disabled
+        class="primary-button"
+        onclick="directInputAnalyze()"
       >
-
-        ⏹️
-        <span class="main-button-label">
-          말하기 완료
-        </span>
-
+        🔎 분석하고 확인하기
       </button>
 
     </div>
 
-
-    <div
-      id="voiceStatus"
-      class="voice-status"
-    >
-
-      버튼을 누르고 주문 내용을 말씀해주세요.
-
-    </div>
-
-
-    <div
-      id="timer"
-      class="timer"
-    ></div>
-
-
-    <div
-      id="recognizedText"
-      class="recognized-text"
-    >
-
-      음성 인식 내용이 여기에 표시됩니다.
-
-    </div>
-
   </div>
 
-
-  <button
-    id="directButton"
-    class="direct-button"
-    onclick="showDirectInput()"
-  >
-
-    ✏️ 직접 입력하기
-
-  </button>
-
-</div>
-
-
-<div
-  id="directInputCard"
-  class="card hidden"
->
-
-  <div class="card-title">
-
-    ✏️ 직접 주문 입력
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      거래처
-    </label>
-
-    <select
-      id="directPartner"
-    ></select>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      제품
-    </label>
-
-    <select
-      id="directItem"
-    ></select>
-
-    <div class="product-help">
-      푸로찜 15 KG → 20 KG → 12 KG
-    </div>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      수량
-    </label>
-
-    <input
-      id="directQuantity"
-      type="number"
-      min="1"
-      value="1"
-    >
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      날짜
-    </label>
-
-    <input
-      id="directDate"
-      type="date"
-    >
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      메모
-    </label>
-
-    <textarea
-      id="directMemo"
-      placeholder="필요하면 메모를 입력하세요."
-    ></textarea>
-
-  </div>
-
-
-  <button
-    class="primary-button"
-    onclick="directInputAnalyze()"
-  >
-
-    🔎 분석하고 확인하기
-
-  </button>
-
-</div>
-```
-
-  </div>
 
   <!-- =====================================================
        STEP 2
@@ -2314,299 +2500,318 @@ content="#05070b"
     class="screen hidden"
   >
 
-```
-<div class="step-indicator">
+    <div class="step-indicator">
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot active"></div>
+      <div class="step-dot active"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
-
-</div>
-
-
-<div class="card">
-
-
-  <div class="preview-header">
-
-    <div class="preview-actions">
-
-      <button
-        class="preview-action-button"
-        onclick="backToStep1()"
-      >
-
-        ← 입력 화면
-
-      </button>
-
-
-      <button
-        class="preview-action-button"
-        onclick="refreshMasterData()"
-      >
-
-        🔄 새로 고침
-
-      </button>
-
-
-      <button
-        class="preview-action-button"
-        onclick="openBoxHero()"
-      >
-
-        📦 박스히어로
-
-      </button>
+      <div class="step-dot"></div>
 
     </div>
 
-  </div>
+
+    <div class="card">
 
 
-  <div class="card-title">
+      <div class="preview-header">
 
-    📝 등록 내용을 확인해주세요
+        <div class="preview-actions">
 
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      거래처
-    </label>
-
-
-    <div class="client-search-wrap">
-
-      <!-- =================================================
-           👥 거래처 검색 / 선택 버튼
-           ================================================= -->
-
-      <div class="client-search-buttons">
-
-        <button
-          id="partnerSearchButton"
-          type="button"
-          class="client-search-button"
-          onclick="activatePartnerSearch()"
-        >
-
-          🔍 거래처 검색
-
-        </button>
-
-
-        <button
-          id="partnerSelectButton"
-          type="button"
-          class="client-search-button"
-          onclick="showAllPartnerCandidates()"
-        >
-
-          ☑️ 거래처 선택
-
-        </button>
-
-      </div>
-
-
-      <div class="client-search-row">
-
-        <div class="client-search">
-
-          <span class="client-search-icon">
-            🔍
-          </span>
-
-          <input
-            id="partnerSearch"
-            type="text"
-            placeholder="거래처 이름 일부를 입력하세요."
-            autocomplete="off"
+          <button
+            class="preview-action-button"
+            onclick="backToStep1()"
           >
+            ← 입력 화면
+          </button>
+
+
+          <button
+            class="preview-action-button"
+            onclick="refreshMasterData()"
+          >
+            🔄 새로 고침
+          </button>
+
+
+          <button
+            class="preview-action-button"
+            onclick="openBoxHero()"
+          >
+            📦 박스히어로
+          </button>
 
         </div>
 
       </div>
 
 
-      <div
-        id="clientCandidates"
-        class="client-candidates"
-      ></div>
+      <div class="card-title">
+        📝 등록 내용을 확인해주세요
+      </div>
+
+
+      <!-- =================================================
+           ⭐ 거래처
+           ⭐ STEP 2에서는 이름 목록을 펼치지 않음
+           ⭐ 버튼을 누르면 별도 화면으로 이동
+           ================================================= -->
+
+      <div class="field">
+
+        <label class="field-label">
+          거래처
+        </label>
+
+
+        <div class="client-search-wrap">
+
+          <div class="client-search-buttons">
+
+            <button
+              id="partnerSelectButton"
+              type="button"
+              class="client-search-button"
+              onclick="openPartnerPicker()"
+            >
+              ☑️ 거래처 선택
+            </button>
+
+          </div>
+
+
+          <div
+            id="selectedClient"
+            class="selected-client hidden"
+          ></div>
+
+        </div>
+
+
+        <select
+          id="partnerSelect"
+          class="hidden"
+        ></select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          제품
+        </label>
+
+        <select
+          id="itemSelect"
+        ></select>
+
+        <div class="product-help">
+          푸로찜 15 KG → 20 KG → 12 KG
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          수량
+        </label>
+
+        <input
+          id="quantityInput"
+          type="number"
+          min="1"
+          value="1"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          입출고
+        </label>
+
+        <select
+          id="typeSelect"
+        >
+
+          <option value="in">
+            📥 입고
+          </option>
+
+          <option value="out">
+            📤 출고
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          날짜
+        </label>
+
+        <input
+          id="dateInput"
+          type="date"
+        >
+
+        <div class="product-help">
+          시간은 입력을 시작한 현재 시간이 유지됩니다.
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          납품형태
+        </label>
+
+        <select
+          id="deliveryTypeSelect"
+        >
+
+          <option value="">
+            납품형태를 선택하세요
+          </option>
+
+          <option value="택배 발송">
+            📦 택배 발송
+          </option>
+
+          <option value="본사 발송">
+            🏢 본사 발송
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          메모
+        </label>
+
+        <textarea
+          id="memoInput"
+          placeholder="필요하면 추가 메모를 입력하세요."
+        ></textarea>
+
+      </div>
 
 
       <div
-        id="selectedClient"
-        class="selected-client hidden"
+        id="summary"
+        class="summary"
       ></div>
 
-    </div>
+
+      <button
+        id="registerButton"
+        class="primary-button"
+        onclick="registerTransaction()"
+      >
+        🚀 최종 확인 · BoxHero 등록
+      </button>
 
 
-    <select
-      id="partnerSelect"
-      class="hidden"
-    ></select>
+      <button
+        class="secondary-button"
+        onclick="backToStep1()"
+      >
+        ← 입력 화면으로
+      </button>
 
-  </div>
 
-
-  <div class="field">
-
-    <label class="field-label">
-      제품
-    </label>
-
-    <select
-      id="itemSelect"
-    ></select>
-
-    <div class="product-help">
-      푸로찜 15 KG → 20 KG → 12 KG
     </div>
 
   </div>
 
 
-  <div class="field">
+  <!-- =====================================================
+       ⭐ 새로운 거래처 선택 화면
+       
+       STEP 2와 별개의 화면입니다.
 
-    <label class="field-label">
-      수량
-    </label>
-
-    <input
-      id="quantityInput"
-      type="number"
-      min="1"
-      value="1"
-    >
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      입출고
-    </label>
-
-    <select
-      id="typeSelect"
-    >
-
-      <option value="in">
-        📥 입고
-      </option>
-
-      <option value="out">
-        📤 출고
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      날짜
-    </label>
-
-    <input
-      id="dateInput"
-      type="date"
-    >
-
-    <div class="product-help">
-      시간은 입력을 시작한 현재 시간이 유지됩니다.
-    </div>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      납품형태
-    </label>
-
-    <select
-      id="deliveryTypeSelect"
-    >
-
-      <option value="">
-        납품형태를 선택하세요
-      </option>
-
-      <option value="택배 발송">
-        📦 택배 발송
-      </option>
-
-      <option value="본사 발송">
-        🏢 본사 발송
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      메모
-    </label>
-
-    <textarea
-      id="memoInput"
-      placeholder="필요하면 추가 메모를 입력하세요."
-    ></textarea>
-
-  </div>
-
+       갤럭시 뒤로가기:
+       거래처 선택 화면 → STEP 2
+       ====================================================== -->
 
   <div
-    id="summary"
-    class="summary"
-  ></div>
-
-
-  <button
-    id="registerButton"
-    class="primary-button"
-    onclick="registerTransaction()"
+    id="partnerPicker"
+    class="screen hidden"
   >
 
-    🚀 최종 확인 · BoxHero 등록
+    <div class="partner-picker-header">
 
-  </button>
-
-
-  <button
-    class="secondary-button"
-    onclick="backToStep1()"
-  >
-
-    ← 입력 화면으로
-
-  </button>
+      <button
+        type="button"
+        class="partner-picker-back"
+        onclick="closePartnerPicker()"
+        aria-label="뒤로가기"
+      >
+        ←
+      </button>
 
 
-</div>
-```
+      <div class="partner-picker-title-wrap">
+
+        <div class="partner-picker-title">
+          거래처 선택
+        </div>
+
+        <div class="partner-picker-subtitle">
+          BoxHero 거래처를 가나다순으로 선택하세요.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="partner-picker-search-wrap">
+
+      <span class="partner-picker-search-icon">
+        🔍
+      </span>
+
+      <input
+        id="partnerPickerSearch"
+        type="text"
+        placeholder="거래처 이름을 검색하세요."
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <div
+      id="partnerPickerCount"
+      class="partner-picker-count"
+    ></div>
+
+
+    <div
+      id="partnerPickerCandidates"
+    ></div>
 
   </div>
+
 
   <!-- =====================================================
        LOADING
@@ -2617,21 +2822,18 @@ content="#05070b"
     class="card hidden"
   >
 
-```
-<div class="loading">
+    <div class="loading">
 
-  <div class="spinner"></div>
+      <div class="spinner"></div>
 
-  <div id="loadingText">
+      <div id="loadingText">
+        처리 중입니다.
+      </div>
 
-    처리 중입니다.
-
-  </div>
-
-</div>
-```
+    </div>
 
   </div>
+
 
   <!-- =====================================================
        STEP 3
@@ -2642,57 +2844,52 @@ content="#05070b"
     class="card hidden"
   >
 
-```
-<div class="step-indicator">
+    <div class="step-indicator">
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot active"></div>
+      <div class="step-dot active"></div>
 
-</div>
-
-
-<div class="result">
-
-  <div class="result-icon">
-    🎉
-  </div>
+    </div>
 
 
-  <div class="result-title">
+    <div class="result">
 
-    BoxHero 등록 완료!
-
-  </div>
-
-
-  <div
-    id="resultText"
-    class="result-text"
-  ></div>
+      <div class="result-icon">
+        🎉
+      </div>
 
 
-  <button
-    class="primary-button"
-    onclick="resetApp()"
-  >
+      <div class="result-title">
+        BoxHero 등록 완료!
+      </div>
 
-    🎙️ 새 입출고 입력
 
-  </button>
+      <div
+        id="resultText"
+        class="result-text"
+      ></div>
 
-</div>
-```
+
+      <button
+        class="primary-button"
+        onclick="resetApp()"
+      >
+        🎙️ 새 입출고 입력
+      </button>
+
+    </div>
 
   </div>
 
 </div>
+
 
 <script>
 
@@ -2881,7 +3078,6 @@ let transactionTime =
   '';
 
 
-
 /*
  * ==========================================================
  * 🎙️ 마이크 권한 상태
@@ -2893,6 +3089,14 @@ let microphoneReady =
 
 
 let microphonePermissionDenied =
+  false;
+
+
+/* ==========================================================
+   ⭐ 거래처 선택 화면 상태
+   ========================================================== */
+
+let partnerPickerOpen =
   false;
 
 
@@ -3049,6 +3253,31 @@ window.addEventListener(
 
 
     setupPartnerSearch();
+
+
+    /* =====================================================
+       ⭐ 브라우저/갤럭시 뒤로가기 처리
+
+       거래처 선택 화면에서 뒤로가기 하면
+       STEP 2로 돌아갑니다.
+       ===================================================== */
+
+    window.addEventListener(
+      'popstate',
+      function() {
+
+        if (
+          partnerPickerOpen
+        ) {
+
+          closePartnerPicker(
+            true
+          );
+
+        }
+
+      }
+    );
 
   }
 );
@@ -5699,16 +5928,6 @@ function showDirectInput() {
 
   document
     .getElementById(
-      'partnerSearchButton'
-    )
-    .classList
-    .remove(
-      'active'
-    );
-
-
-  document
-    .getElementById(
       'partnerSelectButton'
     )
     .classList
@@ -5967,9 +6186,6 @@ function showStep2() {
   /*
    * ======================================================
    * ⭐ STEP 2
-   *
-   * Fenomeno.png 배경은 그대로 유지하고
-   * STEP 2 자체를 흰색 플로팅 패널로 보여줍니다.
    * ======================================================
    */
 
@@ -5999,6 +6215,20 @@ function showStep2() {
     .remove(
       'hidden'
     );
+
+
+  document
+    .getElementById(
+      'partnerPicker'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  partnerPickerOpen =
+    false;
 
 
   updateSelectedClient();
@@ -6033,6 +6263,15 @@ function backToStep1() {
    * ======================================================
    */
 
+  if (
+    partnerPickerOpen
+  ) {
+
+    closePartnerPicker();
+
+  }
+
+
   document
     .body
     .classList
@@ -6044,6 +6283,16 @@ function backToStep1() {
   document
     .getElementById(
       'step2'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'partnerPicker'
     )
     .classList
     .add(
@@ -6085,7 +6334,534 @@ function backToStep1() {
 
 
 // ==========================================================
-// 🔍 거래처 검색 초기화
+// ⭐ 거래처 선택 화면 열기
+//
+// STEP 2 → 별도 화면
+//
+// history.pushState를 사용하기 때문에
+// 갤럭시 뒤로가기 버튼을 누르면 STEP 2로 돌아옵니다.
+// ==========================================================
+
+function openPartnerPicker() {
+
+  if (
+    partnerPickerOpen
+  ) {
+
+    return;
+
+  }
+
+
+  partnerPickerOpen =
+    true;
+
+
+  /*
+   * 현재 STEP 2 상태 위에
+   * 거래처 선택 화면이라는 history entry를 하나 추가합니다.
+   */
+
+  history.pushState(
+    {
+      partnerPicker:
+        true
+    },
+    '',
+    '#partner-picker'
+  );
+
+
+  document
+    .getElementById(
+      'step2'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'partnerPicker'
+    )
+    .classList
+    .remove(
+      'hidden'
+    );
+
+
+  document
+    .body
+    .classList
+    .add(
+      'step2-mode'
+    );
+
+
+  renderPartnerPickerCandidates(
+    ''
+  );
+
+
+  const search =
+    document
+      .getElementById(
+        'partnerPickerSearch'
+      );
+
+
+  if (
+    search
+  ) {
+
+    search.value =
+      '';
+
+
+    /*
+     * 화면이 열린 다음 포커스를 줍니다.
+     * 모바일 키보드가 자동으로 튀어나오는 것을
+     * 막기 위해 setTimeout 없이 focus하지 않습니다.
+     */
+
+  }
+
+
+  window.scrollTo({
+
+    top:
+      0,
+
+    behavior:
+      'instant'
+
+  });
+
+}
+
+
+// ==========================================================
+// ⭐ 거래처 선택 화면 닫기
+//
+// fromPopState = true
+// → 갤럭시 뒤로가기 때문에 호출된 경우
+//
+// fromPopState = false
+// → 화면의 ← 버튼을 눌렀거나 코드에서 직접 닫은 경우
+// ==========================================================
+
+function closePartnerPicker(
+  fromPopState
+) {
+
+  if (
+    !partnerPickerOpen
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+   * 화면의 ← 버튼을 눌렀을 경우에는
+   * 현재 history entry를 직접 뒤로 이동합니다.
+   *
+   * 그러면 popstate가 발생하고
+   * 아래 로직이 다시 실행됩니다.
+   */
+
+  if (
+    !fromPopState
+  ) {
+
+    partnerPickerOpen =
+      false;
+
+
+    history.back();
+
+    return;
+
+  }
+
+
+  partnerPickerOpen =
+    false;
+
+
+  document
+    .getElementById(
+      'partnerPicker'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'step2'
+    )
+    .classList
+    .remove(
+      'hidden'
+    );
+
+
+  document
+    .body
+    .classList
+    .add(
+      'step2-mode'
+    );
+
+
+  updateSelectedClient();
+
+  updatePartnerSearchText();
+
+  updateSummary();
+
+
+  window.scrollTo({
+
+    top:
+      0,
+
+    behavior:
+      'instant'
+
+  });
+
+}
+
+
+// ==========================================================
+// ⭐ 새로운 거래처 선택 화면 검색 초기화
+// ==========================================================
+
+function setupPartnerPickerSearch() {
+
+  const input =
+    document
+      .getElementById(
+        'partnerPickerSearch'
+      );
+
+
+  if (
+    !input
+  ) {
+
+    return;
+
+  }
+
+
+  input.addEventListener(
+    'input',
+    function() {
+
+      renderPartnerPickerCandidates(
+        input.value
+      );
+
+    }
+  );
+
+}
+
+
+// ==========================================================
+// ⭐ 새로운 거래처 선택 화면 거래처 목록
+// ==========================================================
+
+function renderPartnerPickerCandidates(
+  keyword
+) {
+
+  const container =
+    document
+      .getElementById(
+        'partnerPickerCandidates'
+      );
+
+
+  const count =
+    document
+      .getElementById(
+        'partnerPickerCount'
+      );
+
+
+  if (
+    !container
+  ) {
+
+    return;
+
+  }
+
+
+  const normalized =
+    String(
+      keyword || ''
+    )
+      .trim()
+      .toLowerCase();
+
+
+  const currentPartnerId =
+    document
+      .getElementById(
+        'partnerSelect'
+      )
+      .value;
+
+
+  const partners =
+    [...masterData.partners]
+      .filter(
+        function(partner) {
+
+          if (
+            !normalized
+          ) {
+
+            return true;
+
+          }
+
+
+          return String(
+            partner.name || ''
+          )
+            .toLowerCase()
+            .includes(
+              normalized
+            );
+
+        }
+      )
+      .sort(
+        function(a, b) {
+
+          return String(
+            a.name
+          ).localeCompare(
+            String(
+              b.name
+            ),
+            'ko'
+          );
+
+        }
+      );
+
+
+  container.innerHTML =
+    '';
+
+
+  if (
+    count
+  ) {
+
+    count.textContent =
+      partners.length +
+      '개 거래처';
+
+  }
+
+
+  if (
+    partners.length === 0
+  ) {
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+
+    empty.className =
+      'partner-picker-empty';
+
+
+    empty.textContent =
+      '검색되는 거래처가 없습니다.';
+
+
+    container.appendChild(
+      empty
+    );
+
+
+    return;
+
+  }
+
+
+  partners.forEach(
+    function(partner) {
+
+      const button =
+        document.createElement(
+          'button'
+        );
+
+
+      button.type =
+        'button';
+
+
+      button.className =
+        'partner-picker-candidate';
+
+
+      if (
+        String(
+          partner.id
+        ) ===
+        String(
+          currentPartnerId
+        )
+      ) {
+
+        button.classList.add(
+          'selected'
+        );
+
+      }
+
+
+      button.textContent =
+        partner.name;
+
+
+      button.addEventListener(
+        'click',
+        function() {
+
+          selectPartnerFromPicker(
+            partner.id
+          );
+
+        }
+      );
+
+
+      container.appendChild(
+        button
+      );
+
+    }
+  );
+
+}
+
+
+// ==========================================================
+// ⭐ 새로운 거래처 선택 화면에서 거래처 선택
+// ==========================================================
+
+function selectPartnerFromPicker(
+  partnerId
+) {
+
+  document
+    .getElementById(
+      'partnerSelect'
+    )
+    .value =
+      partnerId;
+
+
+  updateSelectedClient();
+
+  updatePartnerSearchText();
+
+  updateSummary();
+
+
+  /*
+   * 거래처를 선택했으므로
+   * 거래처 선택 화면을 닫고 STEP 2로 돌아갑니다.
+   *
+   * history.back()을 사용하지 않고
+   * history 상태를 정리한 뒤 STEP 2로 돌아갑니다.
+   */
+
+  partnerPickerOpen =
+    false;
+
+
+  /*
+   * 현재 #partner-picker history entry 제거
+   *
+   * replaceState를 사용하여
+   * 불필요한 hash가 남지 않도록 합니다.
+   */
+
+  history.replaceState(
+    null,
+    '',
+    window.location.pathname +
+    window.location.search
+  );
+
+
+  document
+    .getElementById(
+      'partnerPicker'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'step2'
+    )
+    .classList
+    .remove(
+      'hidden'
+    );
+
+
+  document
+    .body
+    .classList
+    .add(
+      'step2-mode'
+    );
+
+
+  window.scrollTo({
+
+    top:
+      0,
+
+    behavior:
+      'instant'
+
+  });
+
+}
+
+
+// ==========================================================
+// 🔍 기존 거래처 검색 초기화
+//
+// 기존 함수는 유지합니다.
+// STEP 2에서는 후보 목록을 보여주지 않고
+// 거래처 선택 화면을 사용합니다.
 // ==========================================================
 
 function setupPartnerSearch() {
@@ -6095,6 +6871,14 @@ function setupPartnerSearch() {
       .getElementById(
         'partnerSearch'
       );
+
+
+  /*
+   * 새로운 거래처 선택 화면 검색창도
+   * 함께 초기화합니다.
+   */
+
+  setupPartnerPickerSearch();
 
 
   if (
@@ -6133,146 +6917,37 @@ function setupPartnerSearch() {
 
 
 // ==========================================================
-// 🔍 거래처 검색 버튼
+// 🔍 기존 거래처 검색 버튼
+//
+// 현재 UI에서는 거래처 선택 화면을 사용하므로
+// 기존 검색 기능과의 충돌을 방지합니다.
 // ==========================================================
 
 function activatePartnerSearch() {
 
-  const input =
-    document
-      .getElementById(
-        'partnerSearch'
-      );
-
-
-  const button =
-    document
-      .getElementById(
-        'partnerSearchButton'
-      );
-
-
-  if (
-    button
-  ) {
-
-    button.classList.add(
-      'active'
-    );
-
-  }
-
-
-  const selectButton =
-    document
-      .getElementById(
-        'partnerSelectButton'
-      );
-
-
-  if (
-    selectButton
-  ) {
-
-    selectButton.classList.remove(
-      'active'
-    );
-
-  }
-
-
-  if (
-    input
-  ) {
-
-    input.focus();
-
-    renderPartnerCandidates(
-      input.value
-    );
-
-  }
+  openPartnerPicker();
 
 }
 
 
 // ==========================================================
-// ☑️ 거래처 선택 버튼
+// ☑️ 기존 거래처 선택 버튼
+//
+// ⭐ 이제 이 함수도 새로운 화면을 엽니다.
 // ==========================================================
 
 function showAllPartnerCandidates() {
 
-  const searchButton =
-    document
-      .getElementById(
-        'partnerSearchButton'
-      );
-
-
-  const selectButton =
-    document
-      .getElementById(
-        'partnerSelectButton'
-      );
-
-
-  if (
-    searchButton
-  ) {
-
-    searchButton.classList.remove(
-      'active'
-    );
-
-  }
-
-
-  if (
-    selectButton
-  ) {
-
-    selectButton.classList.add(
-      'active'
-    );
-
-  }
-
-
-  /*
-   * ======================================================
-   * ⭐ 거래처 선택 버튼에서는 기존 검색어를 무시
-   *
-   * BoxHero 전체 거래처를
-   * 가나다순으로 처음부터 보여줍니다.
-   * ======================================================
-   */
-
-  const input =
-    document
-      .getElementById(
-        'partnerSearch'
-      );
-
-
-  if (
-    input
-  ) {
-
-    input.value =
-      '';
-
-  }
-
-
-  renderPartnerCandidates(
-    ''
-  );
+  openPartnerPicker();
 
 }
 
 
 // ==========================================================
-// 👥 거래처 후보
+// 👥 기존 거래처 후보
+//
+// 기존 함수는 그대로 유지.
+// 현재 STEP 2에서는 표시하지 않습니다.
 // ==========================================================
 
 function renderPartnerCandidates(
@@ -6433,12 +7108,20 @@ function selectPartner(
   updateSelectedClient();
 
 
-  document
-    .getElementById(
+  const clientCandidates =
+    document.getElementById(
       'clientCandidates'
-    )
-    .innerHTML =
+    );
+
+
+  if (
+    clientCandidates
+  ) {
+
+    clientCandidates.innerHTML =
       '';
+
+  }
 
 
   const partner =
@@ -6456,38 +7139,39 @@ function selectPartner(
     );
 
 
-  document
-    .getElementById(
+  const oldSearch =
+    document.getElementById(
       'partnerSearch'
-    )
-    .value =
+    );
+
+
+  if (
+    oldSearch
+  ) {
+
+    oldSearch.value =
       partner
         ? partner.name
         : '';
 
+  }
 
-  /*
-   * ⭐ 거래처를 선택하면 버튼 활성 상태도 초기화
-   */
 
-  document
-    .getElementById(
+  const selectButton =
+    document.getElementById(
       'partnerSelectButton'
-    )
-    .classList
-    .remove(
-      'active'
     );
 
 
-  document
-    .getElementById(
-      'partnerSearchButton'
-    )
-    .classList
-    .remove(
+  if (
+    selectButton
+  ) {
+
+    selectButton.classList.remove(
       'active'
     );
+
+  }
 
 
   updateSummary();
@@ -6514,6 +7198,15 @@ function updateSelectedClient() {
       .getElementById(
         'selectedClient'
       );
+
+
+  if (
+    !box
+  ) {
+
+    return;
+
+  }
 
 
   if (
@@ -6567,6 +7260,8 @@ function updateSelectedClient() {
 
 // ==========================================================
 // 👥 거래처 검색창 이름 갱신
+//
+// 기존 함수 유지
 // ==========================================================
 
 function updatePartnerSearchText() {
@@ -7290,12 +7985,26 @@ function showResult(
 
   document
     .getElementById(
+      'partnerPicker'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
       'result'
     )
     .classList
     .remove(
       'hidden'
     );
+
+
+  partnerPickerOpen =
+    false;
 
 
   window.scrollTo({
@@ -7379,6 +8088,31 @@ function resetApp() {
 
   /*
    * ======================================================
+   * ⭐ 거래처 선택 화면 상태 초기화
+   * ======================================================
+   */
+
+  partnerPickerOpen =
+    false;
+
+
+  if (
+    window.location.hash ===
+    '#partner-picker'
+  ) {
+
+    history.replaceState(
+      null,
+      '',
+      window.location.pathname +
+      window.location.search
+    );
+
+  }
+
+
+  /*
+   * ======================================================
    * ⭐ STEP 2 모드 해제
    * ======================================================
    */
@@ -7394,6 +8128,16 @@ function resetApp() {
   document
     .getElementById(
       'result'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'partnerPicker'
     )
     .classList
     .add(
@@ -7531,22 +8275,50 @@ function resetApp() {
 
   document
     .getElementById(
-      'partnerSearchButton'
-    )
-    .classList
-    .remove(
-      'active'
-    );
-
-
-  document
-    .getElementById(
       'partnerSelectButton'
     )
     .classList
     .remove(
       'active'
     );
+
+
+  /*
+   * ⭐ 새로운 거래처 선택 화면도 초기화
+   */
+
+  const pickerSearch =
+    document
+      .getElementById(
+        'partnerPickerSearch'
+      );
+
+
+  if (
+    pickerSearch
+  ) {
+
+    pickerSearch.value =
+      '';
+
+  }
+
+
+  const pickerCandidates =
+    document
+      .getElementById(
+        'partnerPickerCandidates'
+      );
+
+
+  if (
+    pickerCandidates
+  ) {
+
+    pickerCandidates.innerHTML =
+      '';
+
+  }
 
 
   /*

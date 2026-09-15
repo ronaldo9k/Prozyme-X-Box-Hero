@@ -3130,23 +3130,42 @@ function populateItemSelects() {
 // 📏 제품 규격
 // ==========================================================
 
+// ==========================================================
+// 📏 제품 규격
+//
+// BoxHero 실제 상품명과 음성인식 표현의 차이를 최대한 흡수합니다.
+//
+// 예:
+// 푸로찜 에스 15KG
+// 푸로찜에스 15 키로
+// 푸로찜 15키로
+// 푸로찜에스 십오키로
+//
+// → 모두 15 KG로 인식
+// ==========================================================
+
 function getProductSize(
   productName
 ) {
 
   const text =
-    String(
-      productName || ''
-    )
-      .replace(
-        /\s+/g,
-        ' '
-      );
+    normalizeSpeechText(
+      productName
+    );
 
 
+  // 숫자형 KG
   if (
-    /12\s*(kg|키로|킬로)/i.test(
+    /12(?:kg|키로|킬로)/i.test(
       text
+    ) ||
+    text.includes(
+      '12'
+    ) &&
+    (
+      text.includes('kg') ||
+      text.includes('키로') ||
+      text.includes('킬로')
     )
   ) {
 
@@ -3156,8 +3175,16 @@ function getProductSize(
 
 
   if (
-    /15\s*(kg|키로|킬로)/i.test(
+    /15(?:kg|키로|킬로)/i.test(
       text
+    ) ||
+    text.includes(
+      '15'
+    ) &&
+    (
+      text.includes('kg') ||
+      text.includes('키로') ||
+      text.includes('킬로')
     )
   ) {
 
@@ -3167,8 +3194,59 @@ function getProductSize(
 
 
   if (
-    /20\s*(kg|키로|킬로)/i.test(
+    /20(?:kg|키로|킬로)/i.test(
       text
+    ) ||
+    text.includes(
+      '20'
+    ) &&
+    (
+      text.includes('kg') ||
+      text.includes('키로') ||
+      text.includes('킬로')
+    )
+  ) {
+
+    return 20;
+
+  }
+
+
+  // 음성인식에서 한글 숫자로 들어오는 경우
+  if (
+    text.includes('십이') &&
+    (
+      text.includes('키로') ||
+      text.includes('킬로') ||
+      text.includes('kg')
+    )
+  ) {
+
+    return 12;
+
+  }
+
+
+  if (
+    text.includes('십오') &&
+    (
+      text.includes('키로') ||
+      text.includes('킬로') ||
+      text.includes('kg')
+    )
+  ) {
+
+    return 15;
+
+  }
+
+
+  if (
+    text.includes('이십') &&
+    (
+      text.includes('키로') ||
+      text.includes('킬로') ||
+      text.includes('kg')
     )
   ) {
 
@@ -4333,6 +4411,28 @@ function finalizeRecording() {
 // 🧠 주문 분석
 // ==========================================================
 
+// ==========================================================
+// 🧠 주문 분석
+//
+// ⭐ 중요
+//
+// 음성인식 결과를 단순 문자열 includes()로 판단하지 않고
+// BoxHero에서 실제 받아온 거래처명 / 제품명을 기준으로
+// 최대한 정확하게 매칭합니다.
+//
+// 또한 메모에는 음성 전체 내용을 넣지 않습니다.
+//
+// 납품형태가 인식된 경우에만
+//
+//   택배 발송
+//   또는
+//   본사 발송
+//
+// 을 메모에 먼저 넣습니다.
+//
+// 이후 사용자가 직접 메모를 추가할 수 있습니다.
+// ==========================================================
+
 function parseOrderText(
   text
 ) {
@@ -4354,13 +4454,6 @@ function parseOrderText(
     date:
       getTodayLocal(),
 
-    /*
-     * 음성 전체를 메모로 넣지 않습니다.
-     *
-     * 아래에서 납품형태를 찾아
-     * "납품형태 / 추가 내용" 형태로 만듭니다.
-     */
-
     memo:
       '',
 
@@ -4371,15 +4464,14 @@ function parseOrderText(
 
 
   const normalized =
-    String(
+    normalizeSpeechText(
       text
-    )
-      .replace(
-        /\s+/g,
-        ' '
-      )
-      .trim();
+    );
 
+
+  // ========================================================
+  // 📥📤 입출고
+  // ========================================================
 
   if (
     /입고|입고해|받아|들어|입고로/i
@@ -4407,9 +4499,13 @@ function parseOrderText(
   }
 
 
+  // ========================================================
+  // 🔢 수량
+  // ========================================================
+
   const quantityMatch =
     normalized.match(
-      /(\d+)\s*(개|박스|box|BOX)?/
+      /(\d+)\s*(개|박스|box)?/i
     );
 
 
@@ -4435,47 +4531,16 @@ function parseOrderText(
   }
 
 
-  let itemMatch =
-    null;
+  // ========================================================
+  // 📦 제품
+  //
+  // BoxHero 실제 상품명 기준으로 찾습니다.
+  // ========================================================
 
-
-  if (
-    /15\s*(kg|KG|키로|킬로)/i
-      .test(
-        normalized
-      )
-  ) {
-
-    itemMatch =
-      findItemByKeyword(
-        '15'
-      );
-
-  } else if (
-    /12\s*(kg|KG|키로|킬로)/i
-      .test(
-        normalized
-      )
-  ) {
-
-    itemMatch =
-      findItemByKeyword(
-        '12'
-      );
-
-  } else if (
-    /20\s*(kg|KG|키로|킬로)/i
-      .test(
-        normalized
-      )
-  ) {
-
-    itemMatch =
-      findItemByKeyword(
-        '20'
-      );
-
-  }
+  const itemMatch =
+    findBestItemFromSpeech(
+      normalized
+    );
 
 
   if (
@@ -4488,45 +4553,117 @@ function parseOrderText(
   }
 
 
-  let bestPartner =
-    null;
+  // ========================================================
+  // 🏢 거래처
+  //
+  // BoxHero 실제 거래처명 기준으로 찾습니다.
+  //
+  // 띄어쓰기 차이:
+  //   강남 푸드
+  //   강남푸드
+  //
+  // 음성인식 차이:
+  //   강남푸드에
+  //   강남푸드로
+  //
+  // 등을 최대한 흡수합니다.
+  // ========================================================
 
-
-  masterData.partners.forEach(
-    function(partner) {
-
-      if (
-        normalized.includes(
-          partner.name
-        )
-      ) {
-
-        if (
-          !bestPartner ||
-          partner.name.length >
-          bestPartner.name.length
-        ) {
-
-          bestPartner =
-            partner;
-
-        }
-
-      }
-
-    }
-  );
+  const partnerMatch =
+    findBestPartnerFromSpeech(
+      normalized
+    );
 
 
   if (
-    bestPartner
+    partnerMatch
   ) {
 
     result.partnerId =
-      bestPartner.id;
+      partnerMatch.id;
 
   }
 
+
+  // ========================================================
+  // 🚚 납품형태
+  //
+  // 오직 BoxHero에서 사용할 두 값으로 통일
+  //
+  // 택배 / 택배로 / 택배 보내줘
+  // → 택배 발송
+  //
+  // 본사 / 본사에서 / 본사 발송
+  // → 본사 발송
+  // ========================================================
+
+  let deliveryType =
+    '';
+
+
+  if (
+    /택배/.test(
+      normalized
+    )
+  ) {
+
+    deliveryType =
+      '택배 발송';
+
+  } else if (
+    /본사/.test(
+      normalized
+    )
+  ) {
+
+    deliveryType =
+      '본사 발송';
+
+  }
+
+
+  result.deliveryType =
+    deliveryType;
+
+
+  // ========================================================
+  // 📝 메모
+  //
+  // ⭐ 매우 중요
+  //
+  // 음성인식 전체 문장을 메모로 넣지 않습니다.
+  //
+  // 납품형태가 있을 때만
+  //
+  //   택배 발송
+  //   또는
+  //   본사 발송
+  //
+  // 을 메모에 넣습니다.
+  //
+  // 그 뒤의 음성 문장은 자동으로 메모에 넣지 않습니다.
+  //
+  // 이후 사용자가 STEP 2에서 직접 추가합니다.
+  // ========================================================
+
+  if (
+    deliveryType
+  ) {
+
+    result.memo =
+      deliveryType;
+
+  } else {
+
+    result.memo =
+      '';
+
+  }
+
+
+  return result;
+
+}
 
   // ==========================================================
   // 🚚 납품형태 분석
@@ -4725,7 +4862,725 @@ function parseOrderText(
 
 }
 
+// ==========================================================
+// 🧹 음성인식 문자열 정규화
+//
+// 띄어쓰기 / 특수문자 / 대소문자 차이를 줄여서
+// BoxHero 실제 이름과 비교하기 쉽게 만듭니다.
+//
+// 예:
+// "강남 푸드"
+// "강남푸드"
+// → 같은 문자열로 비교
+// ==========================================================
 
+function normalizeSpeechText(
+  text
+) {
+
+  return String(
+    text || ''
+  )
+    .toLowerCase()
+    .replace(
+      /[\s\-_.,/()[\]{}:;!?~'"`]+/g,
+      ''
+    )
+    .trim();
+
+}
+
+
+// ==========================================================
+// 🔤 문자열 유사도
+//
+// 음성인식이 거래처 이름을 약간 틀리게 인식해도
+// 너무 쉽게 엉뚱한 거래처를 선택하지 않도록
+// 간단한 편집거리 기반 점수를 사용합니다.
+// ==========================================================
+
+function getStringSimilarity(
+  a,
+  b
+) {
+
+  const first =
+    normalizeSpeechText(
+      a
+    );
+
+  const second =
+    normalizeSpeechText(
+      b
+    );
+
+
+  if (
+    !first ||
+    !second
+  ) {
+
+    return 0;
+
+  }
+
+
+  if (
+    first ===
+    second
+  ) {
+
+    return 1;
+
+  }
+
+
+  if (
+    first.includes(
+      second
+    ) ||
+    second.includes(
+      first
+    )
+  ) {
+
+    const shorter =
+      Math.min(
+        first.length,
+        second.length
+      );
+
+    const longer =
+      Math.max(
+        first.length,
+        second.length
+      );
+
+
+    return (
+      shorter /
+      longer
+    );
+
+  }
+
+
+  const distance =
+    levenshteinDistance(
+      first,
+      second
+    );
+
+
+  const maxLength =
+    Math.max(
+      first.length,
+      second.length
+    );
+
+
+  if (
+    !maxLength
+  ) {
+
+    return 0;
+
+  }
+
+
+  return (
+    1 -
+    (
+      distance /
+      maxLength
+    )
+  );
+
+}
+
+
+// ==========================================================
+// 🔢 편집거리
+// ==========================================================
+
+function levenshteinDistance(
+  a,
+  b
+) {
+
+  const first =
+    String(
+      a || ''
+    );
+
+  const second =
+    String(
+      b || ''
+    );
+
+
+  const matrix =
+    [];
+
+
+  for (
+    let i = 0;
+
+    i <= first.length;
+
+    i++
+  ) {
+
+    matrix[i] =
+      [i];
+
+  }
+
+
+  for (
+    let j = 0;
+
+    j <= second.length;
+
+    j++
+  ) {
+
+    matrix[0][j] =
+      j;
+
+  }
+
+
+  for (
+    let i = 1;
+
+    i <= first.length;
+
+    i++
+  ) {
+
+    for (
+      let j = 1;
+
+      j <= second.length;
+
+      j++
+    ) {
+
+      const cost =
+        first[i - 1] ===
+        second[j - 1]
+          ? 0
+          : 1;
+
+
+      matrix[i][j] =
+        Math.min(
+
+          matrix[i - 1][j] + 1,
+
+          matrix[i][j - 1] + 1,
+
+          matrix[i - 1][j - 1] +
+          cost
+
+        );
+
+    }
+
+  }
+
+
+  return (
+    matrix[first.length][second.length]
+  );
+
+}
+
+
+// ==========================================================
+// 👥 BoxHero 거래처 음성 매칭
+//
+// ⭐ 실제 masterData.partners의 이름을 기준으로 판단
+// ==========================================================
+
+function findBestPartnerFromSpeech(
+  speechText
+) {
+
+  const speech =
+    normalizeSpeechText(
+      speechText
+    );
+
+
+  if (
+    !speech
+  ) {
+
+    return null;
+
+  }
+
+
+  let bestPartner =
+    null;
+
+  let bestScore =
+    0;
+
+
+  masterData.partners.forEach(
+    function(partner) {
+
+      const name =
+        String(
+          partner.name || ''
+        )
+          .trim();
+
+
+      if (
+        !name
+      ) {
+
+        return;
+
+      }
+
+
+      const normalizedName =
+        normalizeSpeechText(
+          name
+        );
+
+
+      if (
+        !normalizedName
+      ) {
+
+        return;
+
+      }
+
+
+      let score =
+        0;
+
+
+      // ------------------------------------------------------
+      // 1. 정확히 일치
+      // ------------------------------------------------------
+
+      if (
+        speech ===
+        normalizedName
+      ) {
+
+        score =
+          1.0;
+
+      }
+
+
+      // ------------------------------------------------------
+      // 2. 음성문장 안에 거래처명이 그대로 존재
+      // ------------------------------------------------------
+
+      else if (
+        speech.includes(
+          normalizedName
+        )
+      ) {
+
+        score =
+          0.98;
+
+      }
+
+
+      // ------------------------------------------------------
+      // 3. 거래처명이 음성인식 결과의 일부인 경우
+      // ------------------------------------------------------
+
+      else if (
+        normalizedName.includes(
+          speech
+        ) &&
+        speech.length >= 2
+      ) {
+
+        score =
+          0.90;
+
+      }
+
+
+      // ------------------------------------------------------
+      // 4. 유사도
+      // ------------------------------------------------------
+
+      else {
+
+        score =
+          getStringSimilarity(
+            speech,
+            normalizedName
+          );
+
+      }
+
+
+      /*
+       * 거래처명은 짧을수록 오인식 가능성이 높습니다.
+       *
+       * 따라서 두 글자 이하 이름은
+       * 유사도만으로 선택하지 않습니다.
+       */
+
+      if (
+        normalizedName.length <= 2 &&
+        score < 1
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        score >
+        bestScore
+      ) {
+
+        bestScore =
+          score;
+
+        bestPartner =
+          partner;
+
+      }
+
+    }
+  );
+
+
+  /*
+   * 너무 낮은 유사도는
+   * 엉뚱한 거래처가 자동 선택되는 것을 막습니다.
+   */
+
+  if (
+    bestScore < 0.72
+  ) {
+
+    return null;
+
+  }
+
+
+  return bestPartner;
+
+}
+
+
+// ==========================================================
+// 📦 BoxHero 상품 음성 매칭
+//
+// 실제 BoxHero 상품명을 기준으로 판단합니다.
+//
+// 특히 12 / 15 / 20 KG를 음성 표현까지 고려합니다.
+// ==========================================================
+
+function findBestItemFromSpeech(
+  speechText
+) {
+
+  const speech =
+    normalizeSpeechText(
+      speechText
+    );
+
+
+  if (
+    !speech
+  ) {
+
+    return null;
+
+  }
+
+
+  /*
+   * 먼저 푸로찜 관련 상품만 대상으로 합니다.
+   */
+
+  const items =
+    masterData.items.filter(
+      function(item) {
+
+        const name =
+          String(
+            item.name || ''
+          );
+
+
+        return (
+          name.includes(
+            '푸로찜'
+          ) &&
+          (
+            getProductSize(
+              name
+            ) === 12 ||
+            getProductSize(
+              name
+            ) === 15 ||
+            getProductSize(
+              name
+            ) === 20
+          )
+        );
+
+      }
+    );
+
+
+  let requestedSize =
+    getSpokenProductSize(
+      speech
+    );
+
+
+  /*
+   * 제품 규격을 찾지 못했다면
+   * 일반적인 BoxHero 상품명 유사도 비교를 합니다.
+   */
+
+  let bestItem =
+    null;
+
+  let bestScore =
+    0;
+
+
+  items.forEach(
+    function(item) {
+
+      const itemName =
+        String(
+          item.name || ''
+        );
+
+
+      const normalizedItemName =
+        normalizeSpeechText(
+          itemName
+        );
+
+
+      const itemSize =
+        getProductSize(
+          itemName
+        );
+
+
+      let score =
+        getStringSimilarity(
+          speech,
+          normalizedItemName
+        );
+
+
+      // ------------------------------------------------------
+      // 규격이 명확하게 인식된 경우
+      // 해당 규격 상품을 강하게 우선합니다.
+      // ------------------------------------------------------
+
+      if (
+        requestedSize &&
+        itemSize ===
+        requestedSize
+      ) {
+
+        score +=
+          0.35;
+
+      }
+
+
+      /*
+       * 다른 규격이면 자동 선택하지 않도록
+       * 점수를 크게 낮춥니다.
+       */
+
+      if (
+        requestedSize &&
+        itemSize &&
+        itemSize !==
+        requestedSize
+      ) {
+
+        score -=
+          0.50;
+
+      }
+
+
+      if (
+        score >
+        bestScore
+      ) {
+
+        bestScore =
+          score;
+
+        bestItem =
+          item;
+
+      }
+
+    }
+  );
+
+
+  /*
+   * 규격이 명확한 경우에는
+   * 해당 규격의 BoxHero 상품을 우선합니다.
+   */
+
+  if (
+    requestedSize
+  ) {
+
+    const sizeItems =
+      items.filter(
+        function(item) {
+
+          return (
+            getProductSize(
+              item.name
+            ) ===
+            requestedSize
+          );
+
+        }
+      );
+
+
+    if (
+      sizeItems.length === 1
+    ) {
+
+      return sizeItems[0];
+
+    }
+
+
+    /*
+     * 동일 규격 상품이 여러 개일 경우에는
+     * 이름 유사도가 높은 상품을 사용합니다.
+     */
+
+    if (
+      bestItem &&
+      getProductSize(
+        bestItem.name
+      ) ===
+      requestedSize
+    ) {
+
+      return bestItem;
+
+    }
+
+  }
+
+
+  if (
+    bestItem &&
+    bestScore >= 0.55
+  ) {
+
+    return bestItem;
+
+  }
+
+
+  return null;
+
+}
+
+
+// ==========================================================
+// 📏 음성 제품 규격
+// ==========================================================
+
+function getSpokenProductSize(
+  text
+) {
+
+  const normalized =
+    normalizeSpeechText(
+      text
+    );
+
+
+  if (
+    /12(?:kg|키로|킬로)/i.test(
+      normalized
+    ) ||
+    normalized.includes(
+      '십이키로'
+    ) ||
+    normalized.includes(
+      '십이킬로'
+    )
+  ) {
+
+    return 12;
+
+  }
+
+
+  if (
+    /15(?:kg|키로|킬로)/i.test(
+      normalized
+    ) ||
+    normalized.includes(
+      '십오키로'
+    ) ||
+    normalized.includes(
+      '십오킬로'
+    )
+  ) {
+
+    return 15;
+
+  }
+
+
+  if (
+    /20(?:kg|키로|킬로)/i.test(
+      normalized
+    ) ||
+    normalized.includes(
+      '이십키로'
+    ) ||
+    normalized.includes(
+      '이십킬로'
+    )
+  ) {
+
+    return 20;
+
+  }
+
+
+  return '';
+
+}
+  
 // ==========================================================
 // 🔎 상품 찾기
 // ==========================================================
@@ -4774,6 +5629,23 @@ function findItemByKeyword(
 
 // ==========================================================
 // ✏️ 직접 입력
+//
+// ⭐ 기존 별도 직접입력 화면은 삭제하지 않습니다.
+//
+// 하지만 이제 "직접 입력하기"를 누르면
+// 음성입력과 동일한 STEP 2 확인 화면으로 이동합니다.
+//
+// 즉:
+//
+// 음성 입력
+//     ↓
+// STEP 2
+//
+// 직접 입력하기
+//     ↓
+// STEP 2
+//
+// 두 경로가 완전히 같은 확인 화면을 사용합니다.
 // ==========================================================
 
 function showDirectInput() {
@@ -4794,19 +5666,59 @@ function showDirectInput() {
     getCurrentTimeLocal();
 
 
+  // --------------------------------------------------------
+  // 기존 직접입력 카드가 혹시 열려 있다면 숨김
+  // --------------------------------------------------------
+
   document
     .getElementById(
       'directInputCard'
     )
     .classList
-    .remove(
+    .add(
       'hidden'
     );
 
 
+  // --------------------------------------------------------
+  // STEP 2를 새 입력 상태로 준비
+  // --------------------------------------------------------
+
   document
     .getElementById(
-      'directDate'
+      'partnerSelect'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'itemSelect'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'quantityInput'
+    )
+    .value =
+      '1';
+
+
+  document
+    .getElementById(
+      'typeSelect'
+    )
+    .value =
+      selectedType;
+
+
+  document
+    .getElementById(
+      'dateInput'
     )
     .value =
       getTodayLocal();
@@ -4814,15 +5726,89 @@ function showDirectInput() {
 
   document
     .getElementById(
-      'directInputCard'
+      'deliveryTypeSelect'
     )
-    .scrollIntoView({
-      behavior:
-        'smooth'
-    });
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'memoInput'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'partnerSearch'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'clientCandidates'
+    )
+    .innerHTML =
+      '';
+
+
+  document
+    .getElementById(
+      'selectedClient'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  // --------------------------------------------------------
+  // 검색 버튼 상태 초기화
+  // --------------------------------------------------------
+
+  document
+    .getElementById(
+      'partnerSearchButton'
+    )
+    .classList
+    .remove(
+      'active'
+    );
+
+
+  document
+    .getElementById(
+      'partnerSelectButton'
+    )
+    .classList
+    .remove(
+      'active'
+    );
+
+
+  setType(
+    selectedType
+  );
+
+
+  updateSelectedClient();
+
+  updatePartnerSearchText();
+
+  updateSummary();
+
+
+  // --------------------------------------------------------
+  // ⭐ 음성 입력과 완전히 동일한 STEP 2 표시
+  // --------------------------------------------------------
+
+  showStep2();
 
 }
-
 
 // ==========================================================
 // ✏️ 직접 입력 분석
@@ -5012,23 +5998,27 @@ function fillStep2(
       data.deliveryType || '';
 
 
+  // --------------------------------------------------------
+  // 📝 메모
+  //
+  // 음성 분석:
+  //   납품형태 있음 → 납품형태만 메모에 표시
+  //   납품형태 없음 → 빈 메모
+  //
+  // 직접 입력:
+  //   기본 빈 메모
+  // --------------------------------------------------------
+
   document
     .getElementById(
       'memoInput'
     )
     .value =
-      data.memo || '';
-
-
-  /*
-   * 음성 분석에서 납품형태를 인식했다면
-   * 메모에는 이미
-   *
-   * 택배 발송 / 추가내용
-   *
-   * 형태로 들어 있으므로
-   * 별도로 다시 추가하지 않습니다.
-   */
+      data.deliveryType
+        ? data.deliveryType
+        : (
+            data.memo || ''
+          );
 
   if (
     data.deliveryType &&
@@ -5811,16 +6801,18 @@ function updateSummary() {
 // ==========================================================
 // 🚚 납품형태 → 메모 자동 반영
 //
-// 메모의 첫 부분은 항상 납품형태.
-// 그 뒤의 추가 메모는 유지합니다.
+// ⭐ 규칙
 //
-// 예:
-// 택배 발송 / 오후 3시까지 보내주세요
+// 납품형태 없음
+// → 메모도 비워짐
 //
-// → 본사 발송으로 변경
+// 택배 발송
+// → 메모 첫 부분에 택배 발송
 //
-// 본사 발송 / 오후 3시까지 보내주세요
+// 본사 발송
+// → 메모 첫 부분에 본사 발송
 //
+// 이후 사용자가 추가한 메모는 유지합니다.
 // ==========================================================
 
 function applyDeliveryTypeToMemo() {
@@ -5847,9 +6839,9 @@ function applyDeliveryTypeToMemo() {
 
 
   /*
-   * 기존 납품형태 접두어만 제거합니다.
+   * 기존 자동 납품형태 접두어만 제거합니다.
    *
-   * 뒤의 실제 메모는 그대로 보존합니다.
+   * 사용자가 직접 입력한 뒤의 메모는 유지합니다.
    */
 
   const cleanedMemo =
@@ -5875,6 +6867,11 @@ function applyDeliveryTypeToMemo() {
       );
 
   } else {
+
+    /*
+     * 납품형태가 없으면
+     * 메모에 자동으로 넣었던 납품형태만 제거합니다.
+     */
 
     memoInput.value =
       cleanedMemo;

@@ -45,7 +45,7 @@
         #05070b;
 
       --card:
-        rgba(255,255,255,.96);
+        rgba(10,15,25,.42);
 
       --text:
         #111827;
@@ -161,10 +161,10 @@ body {
         0;
 
       background:
-        linear-gradient(
-        rgba(0,0,0,.25),
-        rgba(0,0,0,.40)
-       );
+    linear-gradient(
+      rgba(0,0,0,.12),
+      rgba(0,0,0,.22)
+    );
 
       pointer-events:
         none;
@@ -189,7 +189,7 @@ body {
       background:
         radial-gradient(
           circle at 50% 20%,
-          rgba(201,162,39,.18),
+          rgba(201,162,39,.08),
           transparent 35%
         );
 
@@ -241,99 +241,94 @@ body {
 
     .hero {
 
-      height:
-        285px;
+  height:
+    285px;
 
-      border-radius:
-        0 0 30px 30px;
+  border-radius:
+    0 0 30px 30px;
 
-      overflow:
-        hidden;
+  overflow:
+    hidden;
 
-      position:
-        relative;
+  position:
+    relative;
 
-      display:
-        flex;
+  display:
+    flex;
 
-      align-items:
-        flex-end;
+  align-items:
+    flex-end;
 
-      justify-content:
-        center;
+  justify-content:
+    center;
 
-      margin:
-        0 -14px 18px;
+  margin:
+    0 -14px 18px;
 
-      background:
-        linear-gradient(
-          180deg,
-          #111827 0%,
-          #05070b 100%
-        );
+  /*
+   * ⭐ 중요
+   * Fenomeno.png는 body 전체 배경이므로
+   * HERO 자체에는 별도 배경을 깔지 않습니다.
+   */
 
-    }
+  background:
+    transparent;
+
+}
 
 
     .hero::before {
 
-      content:
-        "";
+  content:
+    "";
 
-      position:
-        absolute;
+  position:
+    absolute;
 
-      inset:
-        0;
+  inset:
+    0;
 
-      background:
-        radial-gradient(
-          circle at 50% 35%,
-          rgba(201,162,39,.24),
-          transparent 40%
-        );
+  background:
+    transparent;
 
-    }
+}
 
 
     .hero::after {
 
-      content:
-        "";
+  content:
+    "";
 
-      position:
-        absolute;
+  position:
+    absolute;
 
-      inset:
-        0;
+  inset:
+    0;
 
-      background:
-        linear-gradient(
-          transparent 35%,
-          rgba(5,7,11,.92) 100%
-        );
+  background:
+    transparent;
 
-    }
+}
 
 
     .hero-content {
 
-      position:
-        relative;
+  position:
+    relative;
 
-      z-index:
-        2;
+  z-index:
+    2;
 
-      width:
-        100%;
+  width:
+    100%;
 
-      text-align:
-        center;
+  text-align:
+    center;
 
-      padding:
-        0 20px 27px;
+  padding:
+    0 20px 45px;
 
-    }
+}
 
 
     .hero-kicker {
@@ -446,7 +441,7 @@ body {
         50%;
 
       background:
-        #d1d5db;
+        rgba(255,255,255,.45);
 
     }
 
@@ -477,7 +472,7 @@ body {
         1px;
 
       background:
-        #d1d5db;
+        rgba(255,255,255,.45);
 
     }
 
@@ -488,64 +483,79 @@ body {
 
     .card {
 
-      background:
-        var(--card);
+  /*
+   * ⭐ Fenomeno 배경이 비쳐 보이는
+   * 반투명 유리 카드
+   */
 
-      border:
-        1px solid
-        rgba(255,255,255,.72);
+  background:
+    rgba(10,15,25,.48);
 
-      border-radius:
-        22px;
+  border:
+    1px solid
+    rgba(255,255,255,.18);
 
-      padding:
-        21px;
+  border-radius:
+    22px;
 
-      margin-bottom:
-        16px;
+  padding:
+    21px;
 
-      box-shadow:
-        0 18px 50px
-        rgba(0,0,0,.18);
+  margin-bottom:
+    16px;
 
-      backdrop-filter:
-        blur(12px);
+  box-shadow:
+    0 18px 50px
+    rgba(0,0,0,.30);
 
-    }
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
+
+}
 
 
     .card-title {
 
-      font-size:
-        19px;
+  font-size:
+    19px;
 
-      font-weight:
-        900;
+  font-weight:
+    900;
 
-      margin-bottom:
-        17px;
+  margin-bottom:
+    17px;
 
-      letter-spacing:
-        -.5px;
+  letter-spacing:
+    -.5px;
 
-    }
+  color:
+    white;
+
+  text-shadow:
+    0 2px 8px
+    rgba(0,0,0,.45);
+
+}
 
 
     .card-subtitle {
 
-      color:
-        var(--muted);
+  color:
+    rgba(255,255,255,.72);
 
-      font-size:
-        13px;
+  font-size:
+    13px;
 
-      margin:
-        -8px 0 17px;
+  margin:
+    -8px 0 17px;
 
-      line-height:
-        1.5;
+  line-height:
+    1.5;
 
-    }
+}
 
 
     /* ======================================================

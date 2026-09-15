@@ -6,17 +6,15 @@
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
->
-
-<meta
-name="theme-color"
-content="#05070b"
-
->
+  <meta
+    name="theme-color"
+    content="#05070b"
+  >
 
   <title>
     푸로찜 에스 X BoxHero
@@ -113,10 +111,6 @@ content="#05070b"
     }
 
 
-    /* ======================================================
-       🌌 배경
-       ====================================================== */
-
     body::before {
 
       content:
@@ -170,10 +164,6 @@ content="#05070b"
     }
 
 
-    /* ======================================================
-       📦 전체 컨테이너
-       ====================================================== */
-
     .container {
 
       max-width:
@@ -190,10 +180,6 @@ content="#05070b"
 
     }
 
-
-    /* ======================================================
-       🧭 화면
-       ====================================================== */
 
     .screen {
 
@@ -949,6 +935,68 @@ content="#05070b"
     }
 
 
+    .client-search-buttons {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        7px;
+
+      margin-bottom:
+        8px;
+
+    }
+
+
+    .client-search-button {
+
+      border:
+        1px solid
+        #dfe3e8;
+
+      border-radius:
+        12px;
+
+      padding:
+        11px 8px;
+
+      background:
+        white;
+
+      color:
+        #374151;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .client-search-button.active {
+
+      border-color:
+        var(--gold);
+
+      background:
+        #fffdf4;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(201,162,39,.10);
+
+    }
+
+
     .client-search-row {
 
       display:
@@ -1622,34 +1670,33 @@ content="#05070b"
 
   <div class="hero">
 
-```
-<div class="hero-content">
+    <div class="hero-content">
 
-  <div class="hero-kicker">
-    BOXHERO INVENTORY
-  </div>
+      <div class="hero-kicker">
+        BOXHERO INVENTORY
+      </div>
 
-  <div class="hero-symbol">
-    ♛
-  </div>
+      <div class="hero-symbol">
+        ♛
+      </div>
 
-  <div class="hero-title">
+      <div class="hero-title">
 
-    푸로찜 에스<br>
-    입출고 시스템
+        푸로찜 에스<br>
+        입출고 시스템
 
-  </div>
+      </div>
 
-  <div class="hero-sub">
+      <div class="hero-sub">
 
-    김경우 ♡ 박희수 ♡ 김준모 ♡ 김준석
+        김경우 ♡ 박희수 ♡ 김준모 ♡ 김준석
 
-  </div>
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
+
 
   <!-- =====================================================
        STEP 1
@@ -1660,233 +1707,232 @@ content="#05070b"
     class="screen"
   >
 
-```
-<div class="step-indicator">
+    <div class="step-indicator">
 
-  <div class="step-dot active"></div>
+      <div class="step-dot active"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-</div>
-
-
-<div class="card">
-
-  <div class="card-title">
-
-    📦 주문을 입력해주세요
-
-  </div>
-
-  <div class="card-subtitle">
-
-    음성으로 말하거나 직접 입력할 수 있습니다.
-
-  </div>
+    </div>
 
 
-  <div class="mode-buttons">
+    <div class="card">
 
-    <button
-      id="inButton"
-      class="mode-button in active"
-      onclick="setType('in')"
-    >
-      📥 입고
-    </button>
+      <div class="card-title">
 
-    <button
-      id="outButton"
-      class="mode-button out"
-      onclick="setType('out')"
-    >
-      📤 출고
-    </button>
+        📦 주문을 입력해주세요
 
-  </div>
+      </div>
+
+      <div class="card-subtitle">
+
+        음성으로 말하거나 직접 입력할 수 있습니다.
+
+      </div>
 
 
-  <div class="voice-area">
+      <div class="mode-buttons">
 
-    <div class="main-buttons">
+        <button
+          id="inButton"
+          class="mode-button in active"
+          onclick="setType('in')"
+        >
+          📥 입고
+        </button>
+
+        <button
+          id="outButton"
+          class="mode-button out"
+          onclick="setType('out')"
+        >
+          📤 출고
+        </button>
+
+      </div>
+
+
+      <div class="voice-area">
+
+        <div class="main-buttons">
+
+          <button
+            id="startButton"
+            class="main-button"
+            onclick="startVoice()"
+          >
+
+            🎙️
+            <span class="main-button-label">
+              말하기 시작
+            </span>
+
+          </button>
+
+
+          <button
+            id="finishButton"
+            class="main-button finish"
+            onclick="finishRecording()"
+            disabled
+          >
+
+            ⏹️
+            <span class="main-button-label">
+              말하기 완료
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <div
+          id="voiceStatus"
+          class="voice-status"
+        >
+
+          버튼을 누르고 주문 내용을 말씀해주세요.
+
+        </div>
+
+
+        <div
+          id="timer"
+          class="timer"
+        ></div>
+
+
+        <div
+          id="recognizedText"
+          class="recognized-text"
+        >
+
+          음성 인식 내용이 여기에 표시됩니다.
+
+        </div>
+
+      </div>
+
 
       <button
-        id="startButton"
-        class="main-button"
-        onclick="startVoice()"
+        id="directButton"
+        class="direct-button"
+        onclick="showDirectInput()"
       >
 
-        🎙️
-        <span class="main-button-label">
-          말하기 시작
-        </span>
+        ✏️ 직접 입력하기
 
       </button>
 
+    </div>
+
+
+    <div
+      id="directInputCard"
+      class="card hidden"
+    >
+
+      <div class="card-title">
+
+        ✏️ 직접 주문 입력
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          거래처
+        </label>
+
+        <select
+          id="directPartner"
+        ></select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          제품
+        </label>
+
+        <select
+          id="directItem"
+        ></select>
+
+        <div class="product-help">
+          푸로찜 15 KG → 20 KG → 12 KG
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          수량
+        </label>
+
+        <input
+          id="directQuantity"
+          type="number"
+          min="1"
+          value="1"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          날짜
+        </label>
+
+        <input
+          id="directDate"
+          type="date"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          메모
+        </label>
+
+        <textarea
+          id="directMemo"
+          placeholder="필요하면 메모를 입력하세요."
+        ></textarea>
+
+      </div>
+
 
       <button
-        id="finishButton"
-        class="main-button finish"
-        onclick="finishRecording()"
-        disabled
+        class="primary-button"
+        onclick="directInputAnalyze()"
       >
 
-        ⏹️
-        <span class="main-button-label">
-          말하기 완료
-        </span>
+        🔎 분석하고 확인하기
 
       </button>
 
     </div>
 
-
-    <div
-      id="voiceStatus"
-      class="voice-status"
-    >
-
-      버튼을 누르고 주문 내용을 말씀해주세요.
-
-    </div>
-
-
-    <div
-      id="timer"
-      class="timer"
-    ></div>
-
-
-    <div
-      id="recognizedText"
-      class="recognized-text"
-    >
-
-      음성 인식 내용이 여기에 표시됩니다.
-
-    </div>
-
   </div>
 
-
-  <button
-    id="directButton"
-    class="direct-button"
-    onclick="showDirectInput()"
-  >
-
-    ✏️ 직접 입력하기
-
-  </button>
-
-</div>
-
-
-<div
-  id="directInputCard"
-  class="card hidden"
->
-
-  <div class="card-title">
-
-    ✏️ 직접 주문 입력
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      거래처
-    </label>
-
-    <select
-      id="directPartner"
-    ></select>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      제품
-    </label>
-
-    <select
-      id="directItem"
-    ></select>
-
-    <div class="product-help">
-      푸로찜 15 KG → 20 KG → 12 KG
-    </div>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      수량
-    </label>
-
-    <input
-      id="directQuantity"
-      type="number"
-      min="1"
-      value="1"
-    >
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      날짜
-    </label>
-
-    <input
-      id="directDate"
-      type="date"
-    >
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      메모
-    </label>
-
-    <textarea
-      id="directMemo"
-      placeholder="필요하면 메모를 입력하세요."
-    ></textarea>
-
-  </div>
-
-
-  <button
-    class="primary-button"
-    onclick="directInputAnalyze()"
-  >
-
-    🔎 분석하고 확인하기
-
-  </button>
-
-</div>
-```
-
-  </div>
 
   <!-- =====================================================
        STEP 2
@@ -1897,260 +1943,295 @@ content="#05070b"
     class="screen hidden"
   >
 
-```
-<div class="step-indicator">
+    <div class="step-indicator">
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot active"></div>
+      <div class="step-dot active"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
-
-</div>
-
-
-<div class="card">
-
-
-  <div class="preview-header">
-
-    <div class="preview-actions">
-
-      <button
-        class="preview-action-button"
-        onclick="backToStep1()"
-      >
-
-        ← 입력 화면
-
-      </button>
-
-
-      <button
-        class="preview-action-button"
-        onclick="refreshMasterData()"
-      >
-
-        🔄 새로 고침
-
-      </button>
-
-
-      <div class="preview-step-label">
-
-        STEP 2
-
-      </div>
+      <div class="step-dot"></div>
 
     </div>
 
-  </div>
+
+    <div class="card">
 
 
-  <div class="card-title">
+      <div class="preview-header">
 
-    📝 등록 내용을 확인해주세요
+        <div class="preview-actions">
 
-  </div>
+          <button
+            class="preview-action-button"
+            onclick="backToStep1()"
+          >
+
+            ← 입력 화면
+
+          </button>
 
 
-  <div class="field">
+          <button
+            class="preview-action-button"
+            onclick="refreshMasterData()"
+          >
 
-    <label class="field-label">
-      거래처
-    </label>
+            🔄 새로 고침
+
+          </button>
 
 
-    <div class="client-search-wrap">
+          <div class="preview-step-label">
 
-      <div class="client-search">
+            STEP 2
 
-        <span class="client-search-icon">
-          🔍
-        </span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="card-title">
+
+        📝 등록 내용을 확인해주세요
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          거래처
+        </label>
+
+
+        <div class="client-search-wrap">
+
+          <!-- =================================================
+               👥 거래처 검색 / 선택 버튼
+               ================================================= -->
+
+          <div class="client-search-buttons">
+
+            <button
+              id="partnerSearchButton"
+              type="button"
+              class="client-search-button"
+              onclick="activatePartnerSearch()"
+            >
+
+              🔍 거래처 검색
+
+            </button>
+
+
+            <button
+              id="partnerSelectButton"
+              type="button"
+              class="client-search-button"
+              onclick="showAllPartnerCandidates()"
+            >
+
+              ☑️ 거래처 선택
+
+            </button>
+
+          </div>
+
+
+          <div class="client-search-row">
+
+            <div class="client-search">
+
+              <span class="client-search-icon">
+                🔍
+              </span>
+
+              <input
+                id="partnerSearch"
+                type="text"
+                placeholder="거래처 이름 일부를 입력하세요."
+                autocomplete="off"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="clientCandidates"
+            class="client-candidates"
+          ></div>
+
+
+          <div
+            id="selectedClient"
+            class="selected-client hidden"
+          ></div>
+
+        </div>
+
+
+        <select
+          id="partnerSelect"
+          class="hidden"
+        ></select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          제품
+        </label>
+
+        <select
+          id="itemSelect"
+        ></select>
+
+        <div class="product-help">
+          푸로찜 15 KG → 20 KG → 12 KG
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          수량
+        </label>
 
         <input
-          id="partnerSearch"
-          type="text"
-          placeholder="거래처를 검색하세요."
-          autocomplete="off"
+          id="quantityInput"
+          type="number"
+          min="1"
+          value="1"
         >
 
       </div>
 
 
-      <div
-        id="clientCandidates"
-        class="client-candidates"
-      ></div>
+      <div class="field">
+
+        <label class="field-label">
+          입출고
+        </label>
+
+        <select
+          id="typeSelect"
+        >
+
+          <option value="in">
+            📥 입고
+          </option>
+
+          <option value="out">
+            📤 출고
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          날짜
+        </label>
+
+        <input
+          id="dateInput"
+          type="date"
+        >
+
+        <div class="product-help">
+          시간은 입력을 시작한 현재 시간이 유지됩니다.
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          납품형태
+        </label>
+
+        <select
+          id="deliveryTypeSelect"
+        >
+
+          <option value="">
+            납품형태를 선택하세요
+          </option>
+
+          <option value="택배 발송">
+            📦 택배 발송
+          </option>
+
+          <option value="본사 발송">
+            🏢 본사 발송
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label class="field-label">
+          메모
+        </label>
+
+        <textarea
+          id="memoInput"
+          placeholder="필요하면 추가 메모를 입력하세요."
+        ></textarea>
+
+      </div>
 
 
       <div
-        id="selectedClient"
-        class="selected-client hidden"
+        id="summary"
+        class="summary"
       ></div>
 
-    </div>
+
+      <button
+        id="registerButton"
+        class="primary-button"
+        onclick="registerTransaction()"
+      >
+
+        🚀 최종 확인 · BoxHero 등록
+
+      </button>
 
 
-    <select
-      id="partnerSelect"
-      class="hidden"
-    ></select>
+      <button
+        class="secondary-button"
+        onclick="backToStep1()"
+      >
 
-  </div>
+        ← 입력 화면으로
 
-
-  <div class="field">
-
-    <label class="field-label">
-      제품
-    </label>
-
-    <select
-      id="itemSelect"
-    ></select>
-
-    <div class="product-help">
-      푸로찜 15 KG → 20 KG → 12 KG
-    </div>
-
-  </div>
+      </button>
 
 
-  <div class="field">
-
-    <label class="field-label">
-      수량
-    </label>
-
-    <input
-      id="quantityInput"
-      type="number"
-      min="1"
-      value="1"
-    >
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      입출고
-    </label>
-
-    <select
-      id="typeSelect"
-    >
-
-      <option value="in">
-        📥 입고
-      </option>
-
-      <option value="out">
-        📤 출고
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      날짜
-    </label>
-
-    <input
-      id="dateInput"
-      type="date"
-    >
-
-    <div class="product-help">
-      시간은 입력을 시작한 현재 시간이 유지됩니다.
     </div>
 
   </div>
 
-
-  <div class="field">
-
-    <label class="field-label">
-      납품형태
-    </label>
-
-    <select
-      id="deliveryTypeSelect"
-    >
-
-      <option value="">
-        납품형태를 선택하세요
-      </option>
-
-      <option value="택배 발송">
-        📦 택배 발송
-      </option>
-
-      <option value="본사 발송">
-        🏢 본사 발송
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <div class="field">
-
-    <label class="field-label">
-      메모
-    </label>
-
-    <textarea
-      id="memoInput"
-      placeholder="필요하면 추가 메모를 입력하세요."
-    ></textarea>
-
-  </div>
-
-
-  <div
-    id="summary"
-    class="summary"
-  ></div>
-
-
-  <button
-    id="registerButton"
-    class="primary-button"
-    onclick="registerTransaction()"
-  >
-
-    🚀 최종 확인 · BoxHero 등록
-
-  </button>
-
-
-  <button
-    class="secondary-button"
-    onclick="backToStep1()"
-  >
-
-    ← 입력 화면으로
-
-  </button>
-
-
-</div>
-```
-
-  </div>
 
   <!-- =====================================================
        LOADING
@@ -2161,21 +2242,20 @@ content="#05070b"
     class="card hidden"
   >
 
-```
-<div class="loading">
+    <div class="loading">
 
-  <div class="spinner"></div>
+      <div class="spinner"></div>
 
-  <div id="loadingText">
+      <div id="loadingText">
 
-    처리 중입니다.
+        처리 중입니다.
 
-  </div>
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
+
 
   <!-- =====================================================
        STEP 3
@@ -2186,72 +2266,62 @@ content="#05070b"
     class="card hidden"
   >
 
-```
-<div class="step-indicator">
+    <div class="step-indicator">
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot"></div>
+      <div class="step-dot"></div>
 
-  <div class="step-line"></div>
+      <div class="step-line"></div>
 
-  <div class="step-dot active"></div>
+      <div class="step-dot active"></div>
 
-</div>
-
-
-<div class="result">
-
-  <div class="result-icon">
-    🎉
-  </div>
+    </div>
 
 
-  <div class="result-title">
+    <div class="result">
 
-    BoxHero 등록 완료!
-
-  </div>
-
-
-  <div
-    id="resultText"
-    class="result-text"
-  ></div>
+      <div class="result-icon">
+        🎉
+      </div>
 
 
-  <button
-    class="primary-button"
-    onclick="resetApp()"
-  >
+      <div class="result-title">
 
-    🎙️ 새 입출고 입력
+        BoxHero 등록 완료!
 
-  </button>
+      </div>
 
-</div>
-```
+
+      <div
+        id="resultText"
+        class="result-text"
+      ></div>
+
+
+      <button
+        class="primary-button"
+        onclick="resetApp()"
+      >
+
+        🎙️ 새 입출고 입력
+
+      </button>
+
+    </div>
 
   </div>
 
 </div>
+
 
 <script>
 
 
 // ==========================================================
 // 🌐 GitHub Pages → GAS Web App
-//
-// ⚠️ 여기 한 곳에만 실제 GAS Web App /exec 주소를 넣습니다.
-//
-// 예:
-// const GAS_WEB_APP_URL =
-//   'https://script.google.com/macros/s/XXXXXXXXXXXX/exec';
-//
-// GitHub Pages에서는 google.script.run을 사용할 수 없으므로
-// 아래의 callGas() 함수가 GAS Web App으로 요청을 전달합니다.
 // ==========================================================
 
 const GAS_WEB_APP_URL =
@@ -2260,14 +2330,6 @@ const GAS_WEB_APP_URL =
 
 // ==========================================================
 // 📡 GAS Web App 호출
-// ==========================================================
-//
-// action:
-//   getBoxHeroMasterData
-//   registerBoxHeroTransaction
-//
-// data:
-//   각 GAS 함수에 전달할 객체
 // ==========================================================
 
 async function callGas(
@@ -2426,6 +2488,25 @@ let isSending =
 
 let transactionTime =
   '';
+
+
+/*
+ * ==========================================================
+ * 🎙️ 마이크 권한 상태
+ *
+ * GitHub Pages의 새로운 origin에서
+ * 음성인식을 시작할 때 브라우저가 반복적으로
+ * 마이크 접근을 요청하는 문제를 줄이기 위해
+ * 실제 마이크 권한을 먼저 확인합니다.
+ * ==========================================================
+ */
+
+let microphoneReady =
+  false;
+
+
+let microphonePermissionDenied =
+  false;
 
 
 // ==========================================================
@@ -2781,6 +2862,8 @@ function refreshMasterData() {
 
         updateSelectedClient();
 
+        updatePartnerSearchText();
+
         updateSummary();
 
         hideLoading();
@@ -2917,15 +3000,40 @@ function populateItemSelects() {
         '<option value="">제품을 선택하세요</option>';
 
 
+      /*
+       * BoxHero에서 실제 받아온 상품 중
+       * 푸로찜 상품을 규격 기준으로 정렬합니다.
+       *
+       * 기존처럼 이름에 "푸로찜"이 포함된 상품만
+       * 화면에 표시하되,
+       * 12/15/20 KG 규격 인식을 조금 더 유연하게 합니다.
+       */
+
       const items =
         [...masterData.items]
           .filter(
             function(item) {
 
-              return String(
-                item.name
-              ).includes(
-                '푸로찜'
+              const name =
+                String(
+                  item.name || ''
+                );
+
+              return (
+                name.includes(
+                  '푸로찜'
+                ) &&
+                (
+                  getProductSize(
+                    name
+                  ) === 12 ||
+                  getProductSize(
+                    name
+                  ) === 15 ||
+                  getProductSize(
+                    name
+                  ) === 20
+                )
               );
 
             }
@@ -3029,11 +3137,15 @@ function getProductSize(
   const text =
     String(
       productName || ''
-    );
+    )
+      .replace(
+        /\s+/g,
+        ' '
+      );
 
 
   if (
-    /12\s*(kg|KG|키로|킬로)/i.test(
+    /12\s*(kg|키로|킬로)/i.test(
       text
     )
   ) {
@@ -3044,7 +3156,7 @@ function getProductSize(
 
 
   if (
-    /15\s*(kg|KG|키로|킬로)/i.test(
+    /15\s*(kg|키로|킬로)/i.test(
       text
     )
   ) {
@@ -3055,7 +3167,7 @@ function getProductSize(
 
 
   if (
-    /20\s*(kg|KG|키로|킬로)/i.test(
+    /20\s*(kg|키로|킬로)/i.test(
       text
     )
   ) {
@@ -3136,14 +3248,163 @@ function setType(
 
 
 // ==========================================================
+// 🎙️ 마이크 권한 준비
+//
+// 최초 한 번 실제 마이크 권한을 확인합니다.
+//
+// 중요:
+// 브라우저 최초 권한 요청 자체는 브라우저 정책상
+// 완전히 제거할 수 없습니다.
+//
+// 권한이 허용된 뒤에는 microphoneReady=true로 유지합니다.
+// ==========================================================
+
+async function prepareMicrophone() {
+
+  if (
+    microphoneReady
+  ) {
+
+    return true;
+
+  }
+
+
+  if (
+    microphonePermissionDenied
+  ) {
+
+    alert(
+      '마이크 권한이 차단되어 있습니다.\n\n' +
+      '휴대폰 브라우저의 사이트 설정에서\n' +
+      '마이크 권한을 허용해주세요.'
+    );
+
+    return false;
+
+  }
+
+
+  if (
+    !navigator.mediaDevices ||
+    !navigator.mediaDevices.getUserMedia
+  ) {
+
+    /*
+     * 일부 브라우저에서는 getUserMedia가 없을 수 있습니다.
+     * 이 경우 기존 SpeechRecognition으로 계속 시도합니다.
+     */
+
+    return true;
+
+  }
+
+
+  try {
+
+    const stream =
+      await navigator.mediaDevices.getUserMedia({
+        audio:
+          true
+      });
+
+
+    /*
+     * 권한 확인만 하고 실제 녹음은
+     * SpeechRecognition이 담당합니다.
+     */
+
+    stream
+      .getTracks()
+      .forEach(
+        function(track) {
+
+          track.stop();
+
+        }
+      );
+
+
+    microphoneReady =
+      true;
+
+
+    return true;
+
+  } catch (error) {
+
+    console.log(
+      '마이크 권한 확인:',
+      error
+    );
+
+
+    if (
+      error &&
+      (
+        error.name ===
+        'NotAllowedError' ||
+        error.name ===
+        'PermissionDeniedError'
+      )
+    ) {
+
+      microphonePermissionDenied =
+        true;
+
+
+      alert(
+        '마이크 권한이 허용되지 않았습니다.\n\n' +
+        '휴대폰 브라우저의 사이트 설정에서\n' +
+        '마이크 권한을 허용해주세요.'
+      );
+
+
+      return false;
+
+    }
+
+
+    /*
+     * 기타 오류는 SpeechRecognition 자체에서
+     * 다시 처리할 수 있도록 진행합니다.
+     */
+
+    return true;
+
+  }
+
+}
+
+
+// ==========================================================
 // 🎙️ 음성 인식 시작
 // ==========================================================
 
-function startVoice() {
+async function startVoice() {
 
   if (
     isRecording ||
     recognitionStartPending
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+   * --------------------------------------------------------
+   * 📱 휴대폰 마이크 권한 확인
+   * --------------------------------------------------------
+   */
+
+  const microphoneOk =
+    await prepareMicrophone();
+
+
+  if (
+    !microphoneOk
   ) {
 
     return;
@@ -3408,11 +3669,17 @@ function initRecognition() {
         recognitionStartPending =
           false;
 
-        finishRequested =
-          false;
-
 
         stopRecordingTimer();
+
+
+        /*
+         * 권한이 차단된 상태에서는 계속 재시작해서
+         * 같은 권한 메시지를 반복하지 않습니다.
+         */
+
+        microphonePermissionDenied =
+          true;
 
 
         updateVoiceUI();
@@ -3447,12 +3714,20 @@ function initRecognition() {
         'no-speech'
       ) {
 
+        /*
+         * 중요:
+         * no-speech라고 해서 녹음을 끝내지 않습니다.
+         *
+         * onend에서 자동 재시작되므로
+         * 사용자가 잠깐 말을 멈춰도 계속 듣습니다.
+         */
+
         document
           .getElementById(
             'voiceStatus'
           )
           .textContent =
-            '음성이 감지되지 않았습니다. 계속 말씀해주세요.';
+            '잠시 기다리고 있습니다. 계속 말씀해주세요.';
 
       }
 
@@ -3469,6 +3744,15 @@ function initRecognition() {
       recognitionStartPending =
         false;
 
+
+      /*
+       * ------------------------------------------------------
+       * ⭐ 핵심
+       *
+       * 음성이 잠깐 끊겼거나 공백이 생겨도
+       * finishRequested가 아니면 계속 이어갑니다.
+       * ------------------------------------------------------
+       */
 
       if (
         isRecording &&
@@ -3504,6 +3788,50 @@ function initRecognition() {
                   '자동 재시작:',
                   e
                 );
+
+                /*
+                 * 이미 시작된 상태 등의 이유로 실패한 경우
+                 * 짧게 한 번 더 시도합니다.
+                 */
+
+                clearTimeout(
+                  recognitionRestartTimer
+                );
+
+
+                recognitionRestartTimer =
+                  setTimeout(
+                    function() {
+
+                      if (
+                        !isRecording ||
+                        finishRequested ||
+                        recognitionRunning
+                      ) {
+
+                        return;
+
+                      }
+
+
+                      try {
+
+                        recognition.start();
+
+                      } catch (
+                        retryError
+                      ) {
+
+                        console.log(
+                          '자동 재시작 재시도:',
+                          retryError
+                        );
+
+                      }
+
+                    },
+                    500
+                  );
 
               }
 
@@ -4026,8 +4354,18 @@ function parseOrderText(
     date:
       getTodayLocal(),
 
+    /*
+     * 음성 전체를 메모로 넣지 않습니다.
+     *
+     * 아래에서 납품형태를 찾아
+     * "납품형태 / 추가 내용" 형태로 만듭니다.
+     */
+
     memo:
-      text
+      '',
+
+    deliveryType:
+      ''
 
   };
 
@@ -4190,6 +4528,199 @@ function parseOrderText(
   }
 
 
+  // ==========================================================
+  // 🚚 납품형태 분석
+  //
+  // 택배 / 택배로 / 택배 보내줘
+  // → 택배 발송
+  //
+  // 본사 / 본사에서 / 본사 발송
+  // → 본사 발송
+  // ==========================================================
+
+  let deliveryType =
+    '';
+
+
+  let deliveryMatch =
+    normalized.match(
+      /(택배(?:로|를)?(?:\s*보내|발송)?|택배\s*발송)/i
+    );
+
+
+  if (
+    deliveryMatch
+  ) {
+
+    deliveryType =
+      '택배 발송';
+
+  } else {
+
+    deliveryMatch =
+      normalized.match(
+        /(본사(?:에서|로|를)?(?:\s*보내|발송)?|본사\s*발송)/i
+      );
+
+
+    if (
+      deliveryMatch
+    ) {
+
+      deliveryType =
+        '본사 발송';
+
+    }
+
+  }
+
+
+  result.deliveryType =
+    deliveryType;
+
+
+  // ==========================================================
+  // 📝 추가 메모
+  //
+  // 구조화 정보 전체를 메모로 넣지 않습니다.
+  //
+  // 납품형태가 있으면
+  //
+  //   납품형태 / 그 뒤의 추가 내용
+  //
+  // 으로 만듭니다.
+  // ==========================================================
+
+  let extraMemo =
+    normalized;
+
+
+  /*
+   * 거래처 이름 제거
+   */
+
+  if (
+    bestPartner
+  ) {
+
+    extraMemo =
+      extraMemo
+        .replace(
+          bestPartner.name,
+          ''
+        );
+
+  }
+
+
+  /*
+   * 제품 규격 제거
+   */
+
+  extraMemo =
+    extraMemo
+      .replace(
+        /\b(?:12|15|20)\s*(kg|KG|키로|킬로)\b/gi,
+        ''
+      );
+
+
+  /*
+   * 수량 제거
+   */
+
+  extraMemo =
+    extraMemo
+      .replace(
+        /\b\d+\s*(개|박스|box|BOX)?\b/gi,
+        ''
+      );
+
+
+  /*
+   * 입출고 표현 제거
+   */
+
+  extraMemo =
+    extraMemo
+      .replace(
+        /입고(?:해|로)?/gi,
+        ''
+      )
+      .replace(
+        /출고(?:해|로)?/gi,
+        ''
+      )
+      .replace(
+        /출하/gi,
+        ''
+      );
+
+
+  /*
+   * 납품형태 및 기본 명령어 제거
+   */
+
+  if (
+    deliveryMatch
+  ) {
+
+    extraMemo =
+      extraMemo
+        .replace(
+          deliveryMatch[0],
+          ''
+        );
+
+  }
+
+
+  extraMemo =
+    extraMemo
+      .replace(
+        /납품/gi,
+        ''
+      )
+      .replace(
+        /보내(?:줘|주세요)?/gi,
+        ''
+      )
+      .replace(
+        /발송(?:해|해주세요)?/gi,
+        ''
+      )
+      .replace(
+        /출하(?:해|해주세요)?/gi,
+        ''
+      )
+      .replace(
+        /\s+/g,
+        ' '
+      )
+      .trim();
+
+
+  if (
+    deliveryType
+  ) {
+
+    result.memo =
+      deliveryType +
+      (
+        extraMemo
+          ? ' / ' +
+            extraMemo
+          : ''
+      );
+
+  } else {
+
+    result.memo =
+      extraMemo;
+
+  }
+
+
   return result;
 
 }
@@ -4203,20 +4734,35 @@ function findItemByKeyword(
   keyword
 ) {
 
+  const targetSize =
+    Number(
+      keyword
+    );
+
+
   const items =
     masterData.items
       .filter(
         function(item) {
 
-          return String(
-            item.name
-          ).includes(
-            keyword
+          const size =
+            getProductSize(
+              item.name
+            );
+
+
+          return (
+            size ===
+            targetSize
           );
 
         }
       );
 
+
+  /*
+   * 기존처럼 첫 번째 BoxHero 상품을 사용합니다.
+   */
 
   return (
     items[0] ||
@@ -4387,7 +4933,7 @@ function directInputAnalyze() {
 
     memo:
       memo ||
-      '직접 입력'
+      ''
 
   });
 
@@ -4463,7 +5009,7 @@ function fillStep2(
       'deliveryTypeSelect'
     )
     .value =
-      '';
+      data.deliveryType || '';
 
 
   document
@@ -4474,7 +5020,34 @@ function fillStep2(
       data.memo || '';
 
 
+  /*
+   * 음성 분석에서 납품형태를 인식했다면
+   * 메모에는 이미
+   *
+   * 택배 발송 / 추가내용
+   *
+   * 형태로 들어 있으므로
+   * 별도로 다시 추가하지 않습니다.
+   */
+
+  if (
+    data.deliveryType &&
+    !data.memo
+  ) {
+
+    document
+      .getElementById(
+        'memoInput'
+      )
+      .value =
+        data.deliveryType;
+
+  }
+
+
   updateSelectedClient();
+
+  updatePartnerSearchText();
 
   updateSummary();
 
@@ -4508,6 +5081,8 @@ function showStep2() {
 
 
   updateSelectedClient();
+
+  updatePartnerSearchText();
 
   updateSummary();
 
@@ -4575,7 +5150,7 @@ function backToStep1() {
 
 
 // ==========================================================
-// 🔍 거래처 검색
+// 🔍 거래처 검색 초기화
 // ==========================================================
 
 function setupPartnerSearch() {
@@ -4612,11 +5187,127 @@ function setupPartnerSearch() {
     'focus',
     function() {
 
+      /*
+       * 입력창에 직접 포커스했을 때도
+       * 현재 입력값 기준 후보를 표시합니다.
+       */
+
       renderPartnerCandidates(
         input.value
       );
 
     }
+  );
+
+}
+
+
+// ==========================================================
+// 🔍 거래처 검색 버튼
+// ==========================================================
+
+function activatePartnerSearch() {
+
+  const input =
+    document
+      .getElementById(
+        'partnerSearch'
+      );
+
+
+  const button =
+    document
+      .getElementById(
+        'partnerSearchButton'
+      );
+
+
+  if (
+    button
+  ) {
+
+    button.classList.add(
+      'active'
+    );
+
+  }
+
+
+  if (
+    input
+  ) {
+
+    input.focus();
+
+    renderPartnerCandidates(
+      input.value
+    );
+
+  }
+
+}
+
+
+// ==========================================================
+// ☑️ 거래처 선택 버튼
+//
+// 버튼을 누르면 전체 거래처 후보를 보여줍니다.
+// ==========================================================
+
+function showAllPartnerCandidates() {
+
+  const searchButton =
+    document
+      .getElementById(
+        'partnerSearchButton'
+      );
+
+
+  const selectButton =
+    document
+      .getElementById(
+        'partnerSelectButton'
+      );
+
+
+  if (
+    searchButton
+  ) {
+
+    searchButton.classList.remove(
+      'active'
+    );
+
+  }
+
+
+  if (
+    selectButton
+  ) {
+
+    selectButton.classList.add(
+      'active'
+    );
+
+  }
+
+
+  const input =
+    document
+      .getElementById(
+        'partnerSearch'
+      );
+
+
+  /*
+   * 검색어가 있으면 그 검색어 기준,
+   * 없으면 전체 거래처를 표시합니다.
+   */
+
+  renderPartnerCandidates(
+    input
+      ? input.value
+      : ''
   );
 
 }
@@ -4700,6 +5391,34 @@ function renderPartnerCandidates(
 
   container.innerHTML =
     '';
+
+
+  if (
+    partners.length === 0
+  ) {
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+
+    empty.className =
+      'client-candidate';
+
+
+    empty.textContent =
+      '검색되는 거래처가 없습니다.';
+
+
+    container.appendChild(
+      empty
+    );
+
+
+    return;
+
+  }
 
 
   partners.forEach(
@@ -4864,6 +5583,59 @@ function updateSelectedClient() {
     );
 
   }
+
+}
+
+
+// ==========================================================
+// 👥 거래처 검색창 이름 갱신
+// ==========================================================
+
+function updatePartnerSearchText() {
+
+  const input =
+    document
+      .getElementById(
+        'partnerSearch'
+      );
+
+
+  const partnerSelect =
+    document
+      .getElementById(
+        'partnerSelect'
+      );
+
+
+  if (
+    !input ||
+    !partnerSelect
+  ) {
+
+    return;
+
+  }
+
+
+  const partner =
+    masterData.partners.find(
+      function(item) {
+
+        return String(
+          item.id
+        ) ===
+        String(
+          partnerSelect.value
+        );
+
+      }
+    );
+
+
+  input.value =
+    partner
+      ? partner.name
+      : '';
 
 }
 
@@ -5038,6 +5810,17 @@ function updateSummary() {
 
 // ==========================================================
 // 🚚 납품형태 → 메모 자동 반영
+//
+// 메모의 첫 부분은 항상 납품형태.
+// 그 뒤의 추가 메모는 유지합니다.
+//
+// 예:
+// 택배 발송 / 오후 3시까지 보내주세요
+//
+// → 본사 발송으로 변경
+//
+// 본사 발송 / 오후 3시까지 보내주세요
+//
 // ==========================================================
 
 function applyDeliveryTypeToMemo() {
@@ -5063,15 +5846,17 @@ function applyDeliveryTypeToMemo() {
       .trim();
 
 
+  /*
+   * 기존 납품형태 접두어만 제거합니다.
+   *
+   * 뒤의 실제 메모는 그대로 보존합니다.
+   */
+
   const cleanedMemo =
     currentMemo
       .replace(
-        /(^|\s|\n)(택배 발송|본사 발송)(?=\s|\n|$)/g,
-        ' '
-      )
-      .replace(
-        /\s{2,}/g,
-        ' '
+        /^(택배 발송|본사 발송)\s*(\/\s*)?/,
+        ''
       )
       .trim();
 
@@ -5116,6 +5901,8 @@ document.addEventListener(
     ) {
 
       updateSelectedClient();
+
+      updatePartnerSearchText();
 
       updateSummary();
 
@@ -5229,7 +6016,7 @@ function registerTransaction() {
       .value;
 
 
-  const memo =
+  let memo =
     document
       .getElementById(
         'memoInput'
@@ -5314,17 +6101,39 @@ function registerTransaction() {
     );
 
 
+  /*
+   * --------------------------------------------------------
+   * 📝 최종 메모
+   *
+   * 메모 안에 이미 납품형태가 들어있다면
+   * 다시 앞에 붙이지 않습니다.
+   *
+   * 결과:
+   *
+   * 푸로찜 에스 음성입출고 /
+   * 날짜=2026-09-15 11:20:30 /
+   * 메모=택배 발송 / 오후에 보내주세요
+   *
+   * --------------------------------------------------------
+   */
+
+  if (
+    deliveryType &&
+    !memo
+  ) {
+
+    memo =
+      deliveryType;
+
+  }
+
+
   const finalMemo =
     [
       '푸로찜 에스 음성입출고',
 
       '날짜=' +
       transactionDateTime,
-
-      deliveryType
-        ? '납품형태=' +
-          deliveryType
-        : '',
 
       memo
         ? '메모=' +
@@ -5552,7 +6361,7 @@ function showResult(
     behavior:
       'smooth'
 
-  });
+  );
 
 }
 
@@ -5758,6 +6567,26 @@ function resetApp() {
     .classList
     .add(
       'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'partnerSearchButton'
+    )
+    .classList
+    .remove(
+      'active'
+    );
+
+
+  document
+    .getElementById(
+      'partnerSelectButton'
+    )
+    .classList
+    .remove(
+      'active'
     );
 
 

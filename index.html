@@ -151,55 +151,51 @@ body {
 
     body::before {
 
-      content:
-        "";
+  content:
+    "";
 
-      position:
-        fixed;
+  position:
+    fixed;
 
-      inset:
-        0;
+  inset:
+    0;
 
-      background:
+  background:
     linear-gradient(
       rgba(0,0,0,.12),
       rgba(0,0,0,.22)
     );
 
-      pointer-events:
-        none;
+  pointer-events:
+    none;
 
-      z-index:
-        0;
+  z-index:
+    0;
 
-    }
+}
 
 
     body::after {
 
-      content:
-        "";
+  content:
+    "";
 
-      position:
-        fixed;
+  position:
+    fixed;
 
-      inset:
-        0;
+  inset:
+    0;
 
-      background:
-        radial-gradient(
-          circle at 50% 20%,
-          rgba(201,162,39,.08),
-          transparent 35%
-        );
+  background:
+    transparent;
 
-      pointer-events:
-        none;
+  pointer-events:
+    none;
 
-      z-index:
-        0;
+  z-index:
+    0;
 
-    }
+}
 
 
     .container {
@@ -239,7 +235,11 @@ body {
        🏆 HERO
        ====================================================== */
 
-    .hero {
+    /* ======================================================
+   🏆 HERO
+   ====================================================== */
+
+.hero {
 
   height:
     285px;
@@ -267,12 +267,20 @@ body {
 
   /*
    * ⭐ 중요
-   * Fenomeno.png는 body 전체 배경이므로
-   * HERO 자체에는 별도 배경을 깔지 않습니다.
+   * HERO에는 어떤 배경도 깔지 않습니다.
+   * Fenomeno.png가 body 전체 배경으로
+   * 그대로 보이도록 완전 투명하게 유지합니다.
    */
 
   background:
     transparent;
+
+  /*
+   * ⭐ 검은색 영역이 생기는 것을 방지
+   */
+
+  box-shadow:
+    none;
 
 }
 
@@ -291,10 +299,13 @@ body {
   background:
     transparent;
 
+  pointer-events:
+    none;
+
 }
 
 
-    .hero::after {
+.hero::after {
 
   content:
     "";
@@ -307,6 +318,9 @@ body {
 
   background:
     transparent;
+
+  pointer-events:
+    none;
 
 }
 

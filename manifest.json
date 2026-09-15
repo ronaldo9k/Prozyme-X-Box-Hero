@@ -1,17 +1,19 @@
 {
-  "name": "푸로찜 에스 X 박스히어로",
+  "name": "푸로찜에스 X 박스히어로",
   "short_name": "X 박스히어로",
-  "description": "푸로찜 에스 음성 주문 및 BoxHero 자동 등록 시스템",
+  "description": "푸로찜 에스 입출고 및 BoxHero 재고 등록 시스템",
+  "lang": "ko-KR",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#05070b",
+  "orientation": "portrait",
   "theme_color": "#05070b",
+  "background_color": "#05070b",
   "icons": [
     {
       "src": "./Ronaldo.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "sizes": "any",
+      "type": "image/png"
     }
   ]
 }

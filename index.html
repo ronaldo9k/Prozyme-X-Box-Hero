@@ -91,48 +91,61 @@
     }
 
 
-    body {
+body {
 
-      margin:
-        0;
+  margin:
+    0;
 
-  background-image: url('./Fenomeno.png');
+  /*
+   * ======================================================
+   * 🐐 Fenomeno.png 전체 배경화면
+   *
+   * GitHub 저장소의 index.html과 같은 위치에
+   * Fenomeno.png가 있으므로 ./Fenomeno.png 사용
+   * ======================================================
+   */
 
-  background-size: cover;
+  background-color:
+    #05070b;
 
-  background-position: center;
+  background-image:
+    url('./Fenomeno.png');
 
-  background-repeat: no-repeat;
+  background-size:
+    cover;
 
-  background-attachment: fixed;
-      
-      padding:
-        0 14px 30px;
+  background-position:
+    center;
 
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans KR",
-        sans-serif;
+  background-repeat:
+    no-repeat;
 
-      color:
-        var(--text);
+  background-attachment:
+    fixed;
 
-      min-height:
-        100vh;
+  padding:
+    0 14px 30px;
 
-      position:
-        relative;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans KR",
+    sans-serif;
 
-      overflow-x:
-        hidden;
+  color:
+    var(--text);
 
-      background:
-        #05070b;
+  min-height:
+    100vh;
 
-    }
+  position:
+    relative;
 
+  overflow-x:
+    hidden;
+
+}
 
     body::before {
 

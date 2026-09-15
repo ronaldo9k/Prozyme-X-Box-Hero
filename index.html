@@ -6,19 +6,22 @@
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-  <meta
-    name="theme-color"
-    content="#05070b"
-  >
+>
+
+<meta
+name="theme-color"
+content="#05070b"
+
+>
 
 <link rel="manifest" href="./manifest.json">
 
   <!-- 🐐 Ronaldo 앱 아이콘 -->
+
   <link
     rel="icon"
     type="image/png"
@@ -29,7 +32,7 @@
     rel="apple-touch-icon"
     href="./Ronaldo.png"
   >
-  
+
   <title>
     푸로찜에스 X 박스히어로
   </title>
@@ -1325,16 +1328,29 @@
     }
 
 
+    /*
+     * ======================================================
+     * ⭐ 거래처 전체 선택 목록
+     *
+     * 기존 180px 제한 제거
+     * BoxHero의 전체 거래처가 가나다순으로
+     * 화면 아래로 모두 펼쳐집니다.
+     * ======================================================
+     */
+
     .client-candidates {
 
       margin-top:
         7px;
 
       max-height:
-        180px;
+        none;
+
+      height:
+        auto;
 
       overflow-y:
-        auto;
+        visible;
 
       border-radius:
         13px;
@@ -1345,7 +1361,7 @@
     .client-candidate {
 
       padding:
-        11px 13px;
+        13px 13px;
 
       border:
         1px solid
@@ -1362,6 +1378,18 @@
 
       font-size:
         14px;
+
+      line-height:
+        1.4;
+
+      min-height:
+        45px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
 
     }
 
@@ -1946,6 +1974,33 @@
 
       }
 
+
+      /*
+       * ⭐ 모바일에서도 전체 거래처 목록을
+       * 잘리지 않고 전부 표시
+       */
+
+      .client-candidates {
+
+        max-height:
+          none;
+
+        overflow-y:
+          visible;
+
+      }
+
+
+      .client-candidate {
+
+        min-height:
+          46px;
+
+        padding:
+          13px 12px;
+
+      }
+
     }
 
 
@@ -1989,28 +2044,29 @@
 
   <div class="hero">
 
-    <div class="hero-content">
+```
+<div class="hero-content">
 
-      <div class="hero-symbol">
-        ♛
-      </div>
+  <div class="hero-symbol">
+    ♛
+  </div>
 
-      <div class="hero-title">
+  <div class="hero-title">
 
-        푸로찜 에스 X 박스 히어로
-
-      </div>
-
-      <div class="hero-sub">
-
-        김경우 ♡ 박희수 ♡ 김준모 ♡ 김준석
-
-      </div>
-
-    </div>
+    푸로찜 에스 X 박스 히어로
 
   </div>
 
+  <div class="hero-sub">
+
+    김경우 ♡ 박희수 ♡ 김준모 ♡ 김준석
+
+  </div>
+
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        STEP 1
@@ -2021,127 +2077,87 @@
     class="screen"
   >
 
-    <div class="step-indicator">
+```
+<div class="step-indicator">
 
-      <div class="step-dot active"></div>
+  <div class="step-dot active"></div>
 
-      <div class="step-line"></div>
+  <div class="step-line"></div>
 
-      <div class="step-dot"></div>
+  <div class="step-dot"></div>
 
-      <div class="step-line"></div>
+  <div class="step-line"></div>
 
-      <div class="step-dot"></div>
+  <div class="step-dot"></div>
 
-    </div>
-
-
-    <div class="card">
-
-      <div class="card-title">
-
-        📦 입고/출고 내용을 입력해주세요
-
-      </div>
-
-      <div class="card-subtitle">
-
-        음성으로 말하거나 직접 입력할 수 있습니다.
-
-      </div>
+</div>
 
 
-      <div class="mode-buttons">
+<div class="card">
 
-        <button
-          id="inButton"
-          class="mode-button in"
-          onclick="setType('in')"
-        >
-          📥 입고
-        </button>
+  <div class="card-title">
 
-        <button
-          id="outButton"
-          class="mode-button out active"
-          onclick="setType('out')"
-        >
-          📤 출고
-        </button>
+    📦 입고/출고 내용을 입력해주세요
 
-      </div>
+  </div>
+
+  <div class="card-subtitle">
+
+    음성으로 말하거나 직접 입력할 수 있습니다.
+
+  </div>
 
 
-      <div class="voice-area">
+  <div class="mode-buttons">
 
-        <div class="main-buttons">
+    <button
+      id="inButton"
+      class="mode-button in"
+      onclick="setType('in')"
+    >
+      📥 입고
+    </button>
 
-          <button
-            id="startButton"
-            class="main-button"
-            onclick="startVoice()"
-          >
+    <button
+      id="outButton"
+      class="mode-button out active"
+      onclick="setType('out')"
+    >
+      📤 출고
+    </button>
 
-            🎙️
-            <span class="main-button-label">
-              말하기 시작
-            </span>
-
-          </button>
-
-
-          <button
-            id="finishButton"
-            class="main-button finish"
-            onclick="finishRecording()"
-            disabled
-          >
-
-            ⏹️
-            <span class="main-button-label">
-              말하기 완료
-            </span>
-
-          </button>
-
-        </div>
+  </div>
 
 
-        <div
-          id="voiceStatus"
-          class="voice-status"
-        >
+  <div class="voice-area">
 
-          버튼을 누르고 주문 내용을 말씀해주세요.
+    <div class="main-buttons">
 
-        </div>
+      <button
+        id="startButton"
+        class="main-button"
+        onclick="startVoice()"
+      >
 
+        🎙️
+        <span class="main-button-label">
+          말하기 시작
+        </span>
 
-        <div
-          id="timer"
-          class="timer"
-        ></div>
-
-
-        <div
-          id="recognizedText"
-          class="recognized-text"
-        >
-
-          음성 인식 내용이 여기에 표시됩니다.
-
-        </div>
-
-      </div>
+      </button>
 
 
       <button
-        id="directButton"
-        class="direct-button"
-        onclick="showDirectInput()"
+        id="finishButton"
+        class="main-button finish"
+        onclick="finishRecording()"
+        disabled
       >
 
-        ✏️ 직접 입력하기
+        ⏹️
+        <span class="main-button-label">
+          말하기 완료
+        </span>
 
       </button>
 
@@ -2149,104 +2165,145 @@
 
 
     <div
-      id="directInputCard"
-      class="card hidden"
+      id="voiceStatus"
+      class="voice-status"
     >
 
-      <div class="card-title">
+      버튼을 누르고 주문 내용을 말씀해주세요.
 
-        ✏️ 직접 주문 입력
-
-      </div>
+    </div>
 
 
-      <div class="field">
-
-        <label class="field-label">
-          거래처
-        </label>
-
-        <select
-          id="directPartner"
-        ></select>
-
-      </div>
+    <div
+      id="timer"
+      class="timer"
+    ></div>
 
 
-      <div class="field">
+    <div
+      id="recognizedText"
+      class="recognized-text"
+    >
 
-        <label class="field-label">
-          제품
-        </label>
-
-        <select
-          id="directItem"
-        ></select>
-
-        <div class="product-help">
-          푸로찜 15 KG → 20 KG → 12 KG
-        </div>
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          수량
-        </label>
-
-        <input
-          id="directQuantity"
-          type="number"
-          min="1"
-          value="1"
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          날짜
-        </label>
-
-        <input
-          id="directDate"
-          type="date"
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          메모
-        </label>
-
-        <textarea
-          id="directMemo"
-          placeholder="필요하면 메모를 입력하세요."
-        ></textarea>
-
-      </div>
-
-
-      <button
-        class="primary-button"
-        onclick="directInputAnalyze()"
-      >
-
-        🔎 분석하고 확인하기
-
-      </button>
+      음성 인식 내용이 여기에 표시됩니다.
 
     </div>
 
   </div>
 
+
+  <button
+    id="directButton"
+    class="direct-button"
+    onclick="showDirectInput()"
+  >
+
+    ✏️ 직접 입력하기
+
+  </button>
+
+</div>
+
+
+<div
+  id="directInputCard"
+  class="card hidden"
+>
+
+  <div class="card-title">
+
+    ✏️ 직접 주문 입력
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      거래처
+    </label>
+
+    <select
+      id="directPartner"
+    ></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      제품
+    </label>
+
+    <select
+      id="directItem"
+    ></select>
+
+    <div class="product-help">
+      푸로찜 15 KG → 20 KG → 12 KG
+    </div>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      수량
+    </label>
+
+    <input
+      id="directQuantity"
+      type="number"
+      min="1"
+      value="1"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      날짜
+    </label>
+
+    <input
+      id="directDate"
+      type="date"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      메모
+    </label>
+
+    <textarea
+      id="directMemo"
+      placeholder="필요하면 메모를 입력하세요."
+    ></textarea>
+
+  </div>
+
+
+  <button
+    class="primary-button"
+    onclick="directInputAnalyze()"
+  >
+
+    🔎 분석하고 확인하기
+
+  </button>
+
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        STEP 2
@@ -2257,298 +2314,299 @@
     class="screen hidden"
   >
 
-    <div class="step-indicator">
+```
+<div class="step-indicator">
 
-      <div class="step-dot"></div>
+  <div class="step-dot"></div>
 
-      <div class="step-line"></div>
+  <div class="step-line"></div>
 
-      <div class="step-dot active"></div>
+  <div class="step-dot active"></div>
 
-      <div class="step-line"></div>
+  <div class="step-line"></div>
 
-      <div class="step-dot"></div>
+  <div class="step-dot"></div>
 
-    </div>
+</div>
 
 
-    <div class="card">
+<div class="card">
 
 
-      <div class="preview-header">
+  <div class="preview-header">
 
-        <div class="preview-actions">
-
-          <button
-            class="preview-action-button"
-            onclick="backToStep1()"
-          >
-
-            ← 입력 화면
-
-          </button>
-
-
-          <button
-            class="preview-action-button"
-            onclick="refreshMasterData()"
-          >
-
-            🔄 새로 고침
-
-          </button>
-
-
-          <button
-            class="preview-action-button"
-            onclick="openBoxHero()"
-          >
-
-            📦 박스히어로
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <div class="card-title">
-
-        📝 등록 내용을 확인해주세요
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          거래처
-        </label>
-
-
-        <div class="client-search-wrap">
-
-          <!-- =================================================
-               👥 거래처 검색 / 선택 버튼
-               ================================================= -->
-
-          <div class="client-search-buttons">
-
-            <button
-              id="partnerSearchButton"
-              type="button"
-              class="client-search-button"
-              onclick="activatePartnerSearch()"
-            >
-
-              🔍 거래처 검색
-
-            </button>
-
-
-            <button
-              id="partnerSelectButton"
-              type="button"
-              class="client-search-button"
-              onclick="showAllPartnerCandidates()"
-            >
-
-              ☑️ 거래처 선택
-
-            </button>
-
-          </div>
-
-
-          <div class="client-search-row">
-
-            <div class="client-search">
-
-              <span class="client-search-icon">
-                🔍
-              </span>
-
-              <input
-                id="partnerSearch"
-                type="text"
-                placeholder="거래처 이름 일부를 입력하세요."
-                autocomplete="off"
-              >
-
-            </div>
-
-          </div>
-
-
-          <div
-            id="clientCandidates"
-            class="client-candidates"
-          ></div>
-
-
-          <div
-            id="selectedClient"
-            class="selected-client hidden"
-          ></div>
-
-        </div>
-
-
-        <select
-          id="partnerSelect"
-          class="hidden"
-        ></select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          제품
-        </label>
-
-        <select
-          id="itemSelect"
-        ></select>
-
-        <div class="product-help">
-          푸로찜 15 KG → 20 KG → 12 KG
-        </div>
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          수량
-        </label>
-
-        <input
-          id="quantityInput"
-          type="number"
-          min="1"
-          value="1"
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          입출고
-        </label>
-
-        <select
-          id="typeSelect"
-        >
-
-          <option value="in">
-            📥 입고
-          </option>
-
-          <option value="out">
-            📤 출고
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          날짜
-        </label>
-
-        <input
-          id="dateInput"
-          type="date"
-        >
-
-        <div class="product-help">
-          시간은 입력을 시작한 현재 시간이 유지됩니다.
-        </div>
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          납품형태
-        </label>
-
-        <select
-          id="deliveryTypeSelect"
-        >
-
-          <option value="">
-            납품형태를 선택하세요
-          </option>
-
-          <option value="택배 발송">
-            📦 택배 발송
-          </option>
-
-          <option value="본사 발송">
-            🏢 본사 발송
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label class="field-label">
-          메모
-        </label>
-
-        <textarea
-          id="memoInput"
-          placeholder="필요하면 추가 메모를 입력하세요."
-        ></textarea>
-
-      </div>
-
-
-      <div
-        id="summary"
-        class="summary"
-      ></div>
-
+    <div class="preview-actions">
 
       <button
-        id="registerButton"
-        class="primary-button"
-        onclick="registerTransaction()"
-      >
-
-        🚀 최종 확인 · BoxHero 등록
-
-      </button>
-
-
-      <button
-        class="secondary-button"
+        class="preview-action-button"
         onclick="backToStep1()"
       >
 
-        ← 입력 화면으로
+        ← 입력 화면
 
       </button>
 
+
+      <button
+        class="preview-action-button"
+        onclick="refreshMasterData()"
+      >
+
+        🔄 새로 고침
+
+      </button>
+
+
+      <button
+        class="preview-action-button"
+        onclick="openBoxHero()"
+      >
+
+        📦 박스히어로
+
+      </button>
 
     </div>
 
   </div>
 
+
+  <div class="card-title">
+
+    📝 등록 내용을 확인해주세요
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      거래처
+    </label>
+
+
+    <div class="client-search-wrap">
+
+      <!-- =================================================
+           👥 거래처 검색 / 선택 버튼
+           ================================================= -->
+
+      <div class="client-search-buttons">
+
+        <button
+          id="partnerSearchButton"
+          type="button"
+          class="client-search-button"
+          onclick="activatePartnerSearch()"
+        >
+
+          🔍 거래처 검색
+
+        </button>
+
+
+        <button
+          id="partnerSelectButton"
+          type="button"
+          class="client-search-button"
+          onclick="showAllPartnerCandidates()"
+        >
+
+          ☑️ 거래처 선택
+
+        </button>
+
+      </div>
+
+
+      <div class="client-search-row">
+
+        <div class="client-search">
+
+          <span class="client-search-icon">
+            🔍
+          </span>
+
+          <input
+            id="partnerSearch"
+            type="text"
+            placeholder="거래처 이름 일부를 입력하세요."
+            autocomplete="off"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="clientCandidates"
+        class="client-candidates"
+      ></div>
+
+
+      <div
+        id="selectedClient"
+        class="selected-client hidden"
+      ></div>
+
+    </div>
+
+
+    <select
+      id="partnerSelect"
+      class="hidden"
+    ></select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      제품
+    </label>
+
+    <select
+      id="itemSelect"
+    ></select>
+
+    <div class="product-help">
+      푸로찜 15 KG → 20 KG → 12 KG
+    </div>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      수량
+    </label>
+
+    <input
+      id="quantityInput"
+      type="number"
+      min="1"
+      value="1"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      입출고
+    </label>
+
+    <select
+      id="typeSelect"
+    >
+
+      <option value="in">
+        📥 입고
+      </option>
+
+      <option value="out">
+        📤 출고
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      날짜
+    </label>
+
+    <input
+      id="dateInput"
+      type="date"
+    >
+
+    <div class="product-help">
+      시간은 입력을 시작한 현재 시간이 유지됩니다.
+    </div>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      납품형태
+    </label>
+
+    <select
+      id="deliveryTypeSelect"
+    >
+
+      <option value="">
+        납품형태를 선택하세요
+      </option>
+
+      <option value="택배 발송">
+        📦 택배 발송
+      </option>
+
+      <option value="본사 발송">
+        🏢 본사 발송
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label class="field-label">
+      메모
+    </label>
+
+    <textarea
+      id="memoInput"
+      placeholder="필요하면 추가 메모를 입력하세요."
+    ></textarea>
+
+  </div>
+
+
+  <div
+    id="summary"
+    class="summary"
+  ></div>
+
+
+  <button
+    id="registerButton"
+    class="primary-button"
+    onclick="registerTransaction()"
+  >
+
+    🚀 최종 확인 · BoxHero 등록
+
+  </button>
+
+
+  <button
+    class="secondary-button"
+    onclick="backToStep1()"
+  >
+
+    ← 입력 화면으로
+
+  </button>
+
+
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        LOADING
@@ -2559,20 +2617,21 @@
     class="card hidden"
   >
 
-    <div class="loading">
+```
+<div class="loading">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div id="loadingText">
+  <div id="loadingText">
 
-        처리 중입니다.
-
-      </div>
-
-    </div>
+    처리 중입니다.
 
   </div>
 
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        STEP 3
@@ -2583,56 +2642,57 @@
     class="card hidden"
   >
 
-    <div class="step-indicator">
+```
+<div class="step-indicator">
 
-      <div class="step-dot"></div>
+  <div class="step-dot"></div>
 
-      <div class="step-line"></div>
+  <div class="step-line"></div>
 
-      <div class="step-dot"></div>
+  <div class="step-dot"></div>
 
-      <div class="step-line"></div>
+  <div class="step-line"></div>
 
-      <div class="step-dot active"></div>
+  <div class="step-dot active"></div>
 
-    </div>
-
-
-    <div class="result">
-
-      <div class="result-icon">
-        🎉
-      </div>
+</div>
 
 
-      <div class="result-title">
+<div class="result">
 
-        BoxHero 등록 완료!
-
-      </div>
-
-
-      <div
-        id="resultText"
-        class="result-text"
-      ></div>
+  <div class="result-icon">
+    🎉
+  </div>
 
 
-      <button
-        class="primary-button"
-        onclick="resetApp()"
-      >
+  <div class="result-title">
 
-        🎙️ 새 입출고 입력
+    BoxHero 등록 완료!
 
-      </button>
+  </div>
 
-    </div>
+
+  <div
+    id="resultText"
+    class="result-text"
+  ></div>
+
+
+  <button
+    class="primary-button"
+    onclick="resetApp()"
+  >
+
+    🎙️ 새 입출고 입력
+
+  </button>
+
+</div>
+```
 
   </div>
 
 </div>
-
 
 <script>
 
@@ -2819,6 +2879,7 @@ let isSending =
 
 let transactionTime =
   '';
+
 
 
 /*
@@ -6102,6 +6163,24 @@ function activatePartnerSearch() {
   }
 
 
+  const selectButton =
+    document
+      .getElementById(
+        'partnerSelectButton'
+      );
+
+
+  if (
+    selectButton
+  ) {
+
+    selectButton.classList.remove(
+      'active'
+    );
+
+  }
+
+
   if (
     input
   ) {
@@ -6159,6 +6238,15 @@ function showAllPartnerCandidates() {
   }
 
 
+  /*
+   * ======================================================
+   * ⭐ 거래처 선택 버튼에서는 기존 검색어를 무시
+   *
+   * BoxHero 전체 거래처를
+   * 가나다순으로 처음부터 보여줍니다.
+   * ======================================================
+   */
+
   const input =
     document
       .getElementById(
@@ -6166,10 +6254,18 @@ function showAllPartnerCandidates() {
       );
 
 
-  renderPartnerCandidates(
+  if (
     input
-      ? input.value
-      : ''
+  ) {
+
+    input.value =
+      '';
+
+  }
+
+
+  renderPartnerCandidates(
+    ''
   );
 
 }
@@ -6244,10 +6340,6 @@ function renderPartnerCandidates(
           );
 
         }
-      )
-      .slice(
-        0,
-        30
       );
 
 
@@ -6372,6 +6464,30 @@ function selectPartner(
       partner
         ? partner.name
         : '';
+
+
+  /*
+   * ⭐ 거래처를 선택하면 버튼 활성 상태도 초기화
+   */
+
+  document
+    .getElementById(
+      'partnerSelectButton'
+    )
+    .classList
+    .remove(
+      'active'
+    );
+
+
+  document
+    .getElementById(
+      'partnerSearchButton'
+    )
+    .classList
+    .remove(
+      'active'
+    );
 
 
   updateSummary();

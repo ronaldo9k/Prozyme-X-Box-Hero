@@ -2106,7 +2106,11 @@
         12px;
 
       color:
-        #6b7280;
+        #ffffff;
+
+      text-shadow:
+        0 2px 10px
+        rgba(0,0,0,.80);
 
       line-height:
         1.85;
@@ -2841,6 +2845,10 @@
             🏢 본사 발송
           </option>
 
+          <option value="창고 수령">
+            🏭 창고 수령
+          </option>
+
         </select>
 
       </div>
@@ -3053,8 +3061,152 @@ const GAS_WEB_APP_URL =
 
 function openBoxHero() {
 
+  /*
+   * ======================================================
+   * 📦 BoxHero 모바일 앱 우선 실행
+   *
+   * Android:
+   *   BoxHero 공식 Google Play 패키지
+   *   com.bgpworks.boxhero
+   *
+   * iPhone/iPad:
+   *   BoxHero 앱 호출용 URL을 먼저 시도하고
+   *   앱이 열리지 않으면 웹으로 이동합니다.
+   *
+   * PC:
+   *   기존처럼 BoxHero 웹을 엽니다.
+   * ======================================================
+   */
+
+  const webUrl =
+    'https://app.boxhero.io/';
+
+  const userAgent =
+    String(
+      navigator.userAgent ||
+      ''
+    ).toLowerCase();
+
+  const isAndroid =
+    userAgent.includes(
+      'android'
+    );
+
+  const isIOS =
+    /iphone|ipad|ipod/.test(
+      userAgent
+    );
+
+  if (
+    isAndroid
+  ) {
+
+    const intentUrl =
+      'intent://#Intent;' +
+      'scheme=boxhero;' +
+      'package=com.bgpworks.boxhero;' +
+      'end';
+
+    let androidAppOpened =
+      false;
+
+    const markAndroidOpened =
+      function() {
+
+        androidAppOpened =
+          true;
+
+      };
+
+    document.addEventListener(
+      'visibilitychange',
+      markAndroidOpened,
+      {
+        once:
+          true
+      }
+    );
+
+    setTimeout(
+      function() {
+
+        if (
+          !androidAppOpened &&
+          document.visibilityState ===
+            'visible'
+        ) {
+
+          window.open(
+            webUrl,
+            '_blank'
+          );
+
+        }
+
+      },
+      1500
+    );
+
+    window.location.href =
+      intentUrl;
+
+    return;
+
+  }
+
+  if (
+    isIOS
+  ) {
+
+    let appOpened =
+      false;
+
+    const markOpened =
+      function() {
+
+        appOpened =
+          true;
+
+      };
+
+    document.addEventListener(
+      'visibilitychange',
+      markOpened,
+      {
+        once:
+          true
+      }
+    );
+
+    window.location.href =
+      'boxhero://';
+
+    setTimeout(
+      function() {
+
+        if (
+          !appOpened &&
+          document.visibilityState ===
+            'visible'
+        ) {
+
+          window.open(
+            webUrl,
+            '_blank'
+          );
+
+        }
+
+      },
+      1500
+    );
+
+    return;
+
+  }
+
   window.open(
-    'https://app.boxhero.io/',
+    webUrl,
     '_blank'
   );
 
@@ -3619,6 +3771,65 @@ function refreshMasterData() {
             oldDeliveryType;
 
 
+        /*
+         * ⭐ 새로고침 후에도 비어 있으면
+         * 기본 제품 15Kg / 입고 거래처 현대바이오랜드 적용
+         */
+        if (
+          !document
+            .getElementById(
+              'itemSelect'
+            )
+            .value
+        ) {
+
+          const defaultItem =
+            findDefault15KgItem();
+
+          if (
+            defaultItem
+          ) {
+
+            document
+              .getElementById(
+                'itemSelect'
+              )
+              .value =
+                defaultItem.id;
+
+          }
+
+        }
+
+
+        if (
+          oldType === 'in' &&
+          !document
+            .getElementById(
+              'partnerSelect'
+            )
+            .value
+        ) {
+
+          const defaultPartner =
+            findDefaultInboundPartner();
+
+          if (
+            defaultPartner
+          ) {
+
+            document
+              .getElementById(
+                'partnerSelect'
+              )
+              .value =
+                defaultPartner.id;
+
+          }
+
+        }
+
+
         selectedType =
           oldType;
 
@@ -3729,7 +3940,100 @@ function populatePartnerSelects() {
         }
       );
 
+
+      /*
+       * ⭐ 마스터 데이터가 늦게 도착한 경우에도
+       * 입고 기본 거래처를 적용합니다.
+       */
+      if (
+        selectedType === 'in' &&
+        !select.value
+      ) {
+
+        const defaultPartner =
+          findDefaultInboundPartner();
+
+        if (
+          defaultPartner
+        ) {
+
+          select.value =
+            defaultPartner.id;
+
+        }
+
+      }
+
     }
+  );
+
+}
+
+
+// ==========================================================
+// ⭐ 기본 거래처 찾기
+// ==========================================================
+
+function findDefaultInboundPartner() {
+
+  const partners =
+    Array.isArray(
+      masterData.partners
+    )
+      ? masterData.partners
+      : [];
+
+  return (
+    partners.find(
+      function(partner) {
+
+        return String(
+          partner.name ||
+          ''
+        ).includes(
+          '현대바이오랜드'
+        );
+
+      }
+    ) ||
+    null
+  );
+
+}
+
+
+// ==========================================================
+// ⭐ 기본 제품 찾기 = 푸로찜 에스 15Kg
+// ==========================================================
+
+function findDefault15KgItem() {
+
+  const items =
+    Array.isArray(
+      masterData.items
+    )
+      ? masterData.items
+      : [];
+
+  return (
+    items.find(
+      function(item) {
+
+        return (
+          getProductSize(
+            item.name
+          ) === 15 &&
+          String(
+            item.name ||
+            ''
+          ).includes(
+            '푸로찜'
+          )
+        );
+
+      }
+    ) ||
+    null
   );
 
 }
@@ -3879,6 +4183,31 @@ function populateItemSelects() {
         }
       );
 
+
+      /*
+       * ⭐ 기본 제품 = 푸로찜 에스 15Kg
+       *
+       * 기존 선택값이 있으면 그대로 유지하고,
+       * 비어 있을 때만 15Kg을 기본 선택합니다.
+       */
+      if (
+        !select.value
+      ) {
+
+        const defaultItem =
+          findDefault15KgItem();
+
+        if (
+          defaultItem
+        ) {
+
+          select.value =
+            defaultItem.id;
+
+        }
+
+      }
+
     }
   );
 
@@ -3900,7 +4229,7 @@ function getProductSize(
 
 
   if (
-    /12(?:kg|키로|킬로)/i.test(
+    /12(?:kg|키로|킬로|키로그램|킬로그램)/i.test(
       text
     ) ||
     text.includes(
@@ -3909,7 +4238,9 @@ function getProductSize(
     (
       text.includes('kg') ||
       text.includes('키로') ||
-      text.includes('킬로')
+      text.includes('킬로') ||
+       text.includes('킬로그램') ||
+       text.includes('키로그램')
     )
   ) {
 
@@ -3919,7 +4250,7 @@ function getProductSize(
 
 
   if (
-    /15(?:kg|키로|킬로)/i.test(
+    /15(?:kg|키로|킬로|키로그램|킬로그램)/i.test(
       text
     ) ||
     text.includes(
@@ -3928,7 +4259,9 @@ function getProductSize(
     (
       text.includes('kg') ||
       text.includes('키로') ||
-      text.includes('킬로')
+      text.includes('킬로') ||
+       text.includes('킬로그램') ||
+       text.includes('키로그램')
     )
   ) {
 
@@ -3938,7 +4271,7 @@ function getProductSize(
 
 
   if (
-    /20(?:kg|키로|킬로)/i.test(
+    /20(?:kg|키로|킬로|키로그램|킬로그램)/i.test(
       text
     ) ||
     text.includes(
@@ -3947,7 +4280,9 @@ function getProductSize(
     (
       text.includes('kg') ||
       text.includes('키로') ||
-      text.includes('킬로')
+      text.includes('킬로') ||
+       text.includes('킬로그램') ||
+       text.includes('키로그램')
     )
   ) {
 
@@ -3961,6 +4296,8 @@ function getProductSize(
     (
       text.includes('키로') ||
       text.includes('킬로') ||
+       text.includes('킬로그램') ||
+       text.includes('키로그램') ||
       text.includes('kg')
     )
   ) {
@@ -3975,6 +4312,8 @@ function getProductSize(
     (
       text.includes('키로') ||
       text.includes('킬로') ||
+       text.includes('킬로그램') ||
+       text.includes('키로그램') ||
       text.includes('kg')
     )
   ) {
@@ -3989,6 +4328,8 @@ function getProductSize(
     (
       text.includes('키로') ||
       text.includes('킬로') ||
+       text.includes('킬로그램') ||
+       text.includes('키로그램') ||
       text.includes('kg')
     )
   ) {
@@ -4062,6 +4403,70 @@ function setType(
 
     typeSelect.value =
       type;
+
+  }
+
+
+  /*
+   * ⭐ 입고를 선택하면
+   *    거래처가 비어 있을 때만
+   *    현대바이오랜드를 기본값으로 넣습니다.
+   *
+   * 기존에 사용자가 선택한 거래처는
+   * 절대 덮어쓰지 않습니다.
+   */
+  if (
+    type === 'in'
+  ) {
+
+    const partnerSelect =
+      document.getElementById(
+        'partnerSelect'
+      );
+
+    if (
+      partnerSelect &&
+      !partnerSelect.value
+    ) {
+
+      const defaultPartner =
+        findDefaultInboundPartner();
+
+      if (
+        defaultPartner
+      ) {
+
+        partnerSelect.value =
+          defaultPartner.id;
+
+      }
+
+    }
+
+
+    const directPartner =
+      document.getElementById(
+        'directPartner'
+      );
+
+    if (
+      directPartner &&
+      !directPartner.value
+    ) {
+
+      const defaultPartner =
+        findDefaultInboundPartner();
+
+      if (
+        defaultPartner
+      ) {
+
+        directPartner.value =
+          defaultPartner.id;
+
+      }
+
+    }
 
   }
 
@@ -5104,7 +5509,6 @@ function parseOrderText(
 ) {
 
   const result = {
-
     type:
       selectedType,
 
@@ -5125,7 +5529,6 @@ function parseOrderText(
 
     deliveryType:
       ''
-
   };
 
 
@@ -5161,9 +5564,27 @@ function parseOrderText(
   }
 
 
+  /*
+   * ======================================================
+   * 🔢 수량 인식 핵심 개선
+   *
+   * 숫자 + 개/박스가 있을 때만 수량으로 인정합니다.
+   *
+   * 예:
+   *   "푸로찜 15kg 2개"
+   *      → 제품 15Kg / 수량 2
+   *
+   *   "푸로찜 15kg"
+   *      → 제품 15Kg / 수량 1
+   *
+   * 따라서 제품 규격의 "15"를 수량으로 잘못
+   * 가져오는 문제를 막습니다.
+   * ======================================================
+   */
+
   const quantityMatch =
     normalized.match(
-      /(\d+)\s*(개|박스|box)?/i
+      /(\d+)\s*(개|박스|박쓰|box|boxes)/i
     );
 
 
@@ -5175,7 +5596,6 @@ function parseOrderText(
       Number(
         quantityMatch[1]
       );
-
 
     if (
       number > 0
@@ -5189,6 +5609,19 @@ function parseOrderText(
   }
 
 
+  /*
+   * ======================================================
+   * 📦 제품 인식
+   *
+   * "푸로찜"뿐 아니라 음성인식에서 자주 나오는
+   * "프로찜 / 프로팀 / 푸로팀 / 프로 짐" 등을
+   * 제품 음성으로 취급합니다.
+   *
+   * 제품 규격(12/15/20Kg)이 함께 있으면
+   * 해당 규격 제품을 우선 선택합니다.
+   * ======================================================
+   */
+
   const itemMatch =
     findBestItemFromSpeech(
       normalized
@@ -5201,6 +5634,24 @@ function parseOrderText(
 
     result.itemId =
       itemMatch.id;
+
+  } else {
+
+    /*
+     * 제품 규격이 없거나 제품명이 흔들려도
+     * 기본 제품은 푸로찜 에스 15Kg입니다.
+     */
+    const defaultItem =
+      findDefault15KgItem();
+
+    if (
+      defaultItem
+    ) {
+
+      result.itemId =
+        defaultItem.id;
+
+    }
 
   }
 
@@ -5217,6 +5668,26 @@ function parseOrderText(
 
     result.partnerId =
       partnerMatch.id;
+
+  } else if (
+    result.type === 'in'
+  ) {
+
+    /*
+     * ⭐ 입고 음성에서 거래처가 인식되지 않으면
+     * 현대바이오랜드를 기본값으로 사용합니다.
+     */
+    const defaultPartner =
+      findDefaultInboundPartner();
+
+    if (
+      defaultPartner
+    ) {
+
+      result.partnerId =
+        defaultPartner.id;
+
+    }
 
   }
 
@@ -5243,6 +5714,15 @@ function parseOrderText(
     deliveryType =
       '본사 발송';
 
+  } else if (
+    /창고|창고수령|창고에서받/.test(
+      normalized
+    )
+  ) {
+
+    deliveryType =
+      '창고 수령';
+
   }
 
 
@@ -5268,7 +5748,6 @@ function parseOrderText(
   return result;
 
 }
-
 
 // ==========================================================
 // 🧹 음성인식 문자열 정규화
@@ -5710,6 +6189,39 @@ function findBestItemFromSpeech(
     );
 
 
+  /*
+   * ======================================================
+   * ⭐ 제품명 음성 별칭
+   *
+   * 음성인식이
+   *   푸로찜 / 프로찜 / 프로팀 / 푸로팀 /
+   *   프로 짐 / 푸로 짐
+   * 등으로 흔들려도 제품으로 인식합니다.
+   * ======================================================
+   */
+
+  const productAlias =
+    /푸로찜|프로찜|푸로팀|프로팀|푸로짐|프로짐|푸로짐다|프로짐다|푸로/
+      .test(
+        speech
+      );
+
+
+  /*
+   * 제품 음성이 명확하고 규격이 없으면
+   * 현재 기본 제품인 15Kg을 사용합니다.
+   */
+  if (
+    productAlias &&
+    !requestedSize
+  ) {
+
+    requestedSize =
+      15;
+
+  }
+
+
   let bestItem =
     null;
 
@@ -5766,6 +6278,20 @@ function findBestItemFromSpeech(
 
         score -=
           0.50;
+
+      }
+
+
+      /*
+       * 제품 별칭이 확인되면
+       * 해당 규격 제품에 강한 우선순위를 줍니다.
+       */
+      if (
+        productAlias
+      ) {
+
+        score +=
+          0.45;
 
       }
 
@@ -5832,7 +6358,10 @@ function findBestItemFromSpeech(
 
   if (
     bestItem &&
-    bestScore >= 0.55
+    (
+      bestScore >= 0.55 ||
+      productAlias
+    )
   ) {
 
     return bestItem;
@@ -5843,7 +6372,6 @@ function findBestItemFromSpeech(
   return null;
 
 }
-
 
 // ==========================================================
 // 📏 음성 제품 규격
@@ -5860,7 +6388,7 @@ function getSpokenProductSize(
 
 
   if (
-    /12(?:kg|키로|킬로)/i.test(
+    /12(?:kg|키로|킬로|키로그램|킬로그램)/i.test(
       normalized
     ) ||
     normalized.includes(
@@ -5868,6 +6396,12 @@ function getSpokenProductSize(
     ) ||
     normalized.includes(
       '십이킬로'
+    ) ||
+    normalized.includes(
+      '십이킬로그램'
+    ) ||
+    normalized.includes(
+      '십이키로그램'
     )
   ) {
 
@@ -5877,7 +6411,7 @@ function getSpokenProductSize(
 
 
   if (
-    /15(?:kg|키로|킬로)/i.test(
+    /15(?:kg|키로|킬로|키로그램|킬로그램)/i.test(
       normalized
     ) ||
     normalized.includes(
@@ -5885,6 +6419,12 @@ function getSpokenProductSize(
     ) ||
     normalized.includes(
       '십오킬로'
+    ) ||
+    normalized.includes(
+      '십오킬로그램'
+    ) ||
+    normalized.includes(
+      '십오키로그램'
     )
   ) {
 
@@ -5894,7 +6434,7 @@ function getSpokenProductSize(
 
 
   if (
-    /20(?:kg|키로|킬로)/i.test(
+    /20(?:kg|키로|킬로|키로그램|킬로그램)/i.test(
       normalized
     ) ||
     normalized.includes(
@@ -5902,6 +6442,12 @@ function getSpokenProductSize(
     ) ||
     normalized.includes(
       '이십킬로'
+    ) ||
+    normalized.includes(
+      '이십킬로그램'
+    ) ||
+    normalized.includes(
+      '이십키로그램'
     )
   ) {
 
@@ -6003,6 +6549,51 @@ function showDirectInput() {
     )
     .value =
       '';
+
+
+  /*
+   * ⭐ 직접 입력하기에서도
+   * 입고 = 현대바이오랜드,
+   * 제품 = 푸로찜 에스 15Kg을 기본값으로 사용합니다.
+   */
+  if (
+    selectedType === 'in'
+  ) {
+
+    const defaultPartner =
+      findDefaultInboundPartner();
+
+    if (
+      defaultPartner
+    ) {
+
+      document
+        .getElementById(
+          'partnerSelect'
+        )
+        .value =
+          defaultPartner.id;
+
+    }
+
+  }
+
+
+  const defaultItem =
+    findDefault15KgItem();
+
+  if (
+    defaultItem
+  ) {
+
+    document
+      .getElementById(
+        'itemSelect'
+      )
+      .value =
+        defaultItem.id;
+
+  }
 
 
   document
@@ -6244,12 +6835,70 @@ function fillStep2(
       data.partnerId || '';
 
 
+  if (
+    !document
+      .getElementById(
+        'partnerSelect'
+      )
+      .value &&
+    (
+      data.type ||
+      selectedType
+    ) === 'in'
+  ) {
+
+    const defaultPartner =
+      findDefaultInboundPartner();
+
+    if (
+      defaultPartner
+    ) {
+
+      document
+        .getElementById(
+          'partnerSelect'
+        )
+        .value =
+          defaultPartner.id;
+
+    }
+
+  }
+
+
   document
     .getElementById(
       'itemSelect'
     )
     .value =
       data.itemId || '';
+
+
+  if (
+    !document
+      .getElementById(
+        'itemSelect'
+      )
+      .value
+  ) {
+
+    const defaultItem =
+      findDefault15KgItem();
+
+    if (
+      defaultItem
+    ) {
+
+      document
+        .getElementById(
+          'itemSelect'
+        )
+        .value =
+          defaultItem.id;
+
+    }
+
+  }
 
 
   document
@@ -7749,7 +8398,7 @@ function applyDeliveryTypeToMemo() {
   const cleanedMemo =
     currentMemo
       .replace(
-        /^(택배 발송|본사 발송)\s*(\/\s*)?/,
+        /^(택배 발송|본사 발송|창고 수령)\s*(\/\s*)?/,
         ''
       )
       .trim();

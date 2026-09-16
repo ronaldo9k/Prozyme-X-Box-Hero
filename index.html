@@ -3029,6 +3029,12 @@
         class="result-text"
       ></div>
 
+      <button
+        class="preview-action-button"
+        onclick="openBoxHero()"
+      >
+      📦 박스히어로 열기
+      </button>
 
       <button
         class="primary-button"
@@ -7270,15 +7276,9 @@ function closePartnerPicker(
   if (
     !fromPopState
   ) {
-
-    partnerPickerOpen =
-      false;
-
-
     history.back();
 
     return;
-
   }
 
 
